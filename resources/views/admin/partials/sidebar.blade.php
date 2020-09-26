@@ -21,13 +21,6 @@
             </a>
         </li>
         <li>
-            <a class="app-menu__item {{ Route::currentRouteName() == 'admin.ingredients.index' ? 'active' : '' }}"
-               href="{{ route('admin.ingredients.index') }}">
-                <i class="app-menu__icon fa fa-carrot"></i>
-                <span class="app-menu__label">Ингридиенты</span>
-            </a>
-        </li>
-        <li>
             <a class="app-menu__item {{ Route::currentRouteName() == 'admin.spots.index' ? 'active' : '' }}"
                href="{{ route('admin.ingredients.index') }}">
                 <i class="app-menu__icon fas fa-store"></i>

@@ -21,7 +21,7 @@ class CreateProductsTable extends Migration
             $table->text('description')->nullable();
             $table->decimal('weight', 8, 2)->nullable();
             $table->decimal('price', 8, 2)->nullable();
-            $table->string('unit')->default("г");
+            $table->string('unit')->default("г")->nullable();
             $table->bigInteger('sort_order')->default(0);
             $table->boolean('hidden')->default(0);
             $table->timestamps();

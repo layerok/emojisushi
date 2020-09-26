@@ -66,11 +66,11 @@ class ProductRepository extends BaseRepository implements ProductContract
         try {
             $collection = collect($params);
 
-            $featured = $collection->has('featured') ? 1 : 0;
-            $status = $collection->has('status') ? 1 : 0;
+            $hidden = $collection->has('hidden') ? 1 : 0;
 
-            $merge = $collection->merge(compact('status', 'featured'));
 
+            $merge = $collection->merge(compact('hidden'));
+            dd($merge->all());
             $product = new Product($merge->all());
 
             $product->save();
@@ -95,7 +95,7 @@ class ProductRepository extends BaseRepository implements ProductContract
 
         $collection = collect($params)->except('_token');
 
-        $hidden = $collection->has('hidden') ? 1 : 0;
+        $hidden = $collection->has('hidden') ? 0 : 1;
 
         $merge = $collection->merge(compact('hidden'));
 

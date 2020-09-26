@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use App\Contracts\BrandContract;
 use App\Contracts\CategoryContract;
 use App\Contracts\ProductContract;
 use App\Http\Controllers\BaseController;
@@ -12,19 +11,17 @@ use App\Models\Product;
 
 class ProductController extends BaseController
 {
-    protected $brandRepository;
+
 
     protected $categoryRepository;
 
     protected $productRepository;
 
     public function __construct(
-        BrandContract $brandRepository,
         CategoryContract $categoryRepository,
         ProductContract $productRepository
     )
     {
-        $this->brandRepository = $brandRepository;
         $this->categoryRepository = $categoryRepository;
         $this->productRepository = $productRepository;
     }
@@ -40,7 +37,7 @@ class ProductController extends BaseController
     {
         $categories = $this->categoryRepository->listCategories('name', 'asc');
 
-        $this->setPageTitle('Products', 'Create Product');
+        $this->setPageTitle('Продукты', 'Создать продукт');
         return view('admin.products.create', compact('categories'));
     }
 
@@ -62,7 +59,7 @@ class ProductController extends BaseController
         $categories = $this->categoryRepository->listCategories('name', 'asc');
 
 
-        $this->setPageTitle('Products', 'Edit Product');
+        $this->setPageTitle('Продукты', 'Редактировать продукт');
         return view('admin.products.edit', compact('categories', 'product'));
     }
 

@@ -26,6 +26,7 @@ class StoreProductFormRequest extends FormRequest
         return [
             'name'      =>  'required|max:255',
             'price'     =>  'nullable|regex:/^\d+(\.\d{1,2})?$/',
+
         ];
     }
 }

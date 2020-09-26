@@ -8,7 +8,13 @@ Route::group(['prefix'  =>  'admin'], function () {
     Route::group(['middleware' => ['auth:admin']], function () {
 
         Route::get('/', function () {
-            return view('admin.dashboard.index');
+
+            return view('admin.dashboard.index', [
+                'products_count'    => App\Models\Product::all()->count(),
+                'spots_count'       => App\Models\Spot::all()->count(),
+                'attribute_values_count'  => App\Models\AttributeValue::all()->count(),
+                'categories_count'  => App\Models\Category::all()->count()
+            ]);
         })->name('admin.dashboard');
         Route::get('/settings', 'Admin\SettingController@index')->name('admin.settings');
         Route::post('/settings', 'Admin\SettingController@update')->name('admin.settings.update');

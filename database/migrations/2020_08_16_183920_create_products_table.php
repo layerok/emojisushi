@@ -27,7 +27,7 @@ class CreateProductsTable extends Migration
             $table->timestamps();
 
             //Исключительно нужно для интеграции с Poster Pos
-            $table->unsignedInteger('poster_id');
+            $table->unsignedBigInteger('poster_id');
 
         });
     }

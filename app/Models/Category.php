@@ -10,11 +10,10 @@ class Category extends Model
     use NestableTrait;
     protected $table = 'categories';
 
-    protected $guarded = [];
+    protected $fillable = ['name', 'image', 'slug', 'parent_id', 'sort_order', 'hidden', 'poster_id'];
 
     protected $casts = [
         'parent_id' =>  'integer',
-        'featured'  =>  'boolean',
         'hidden'      =>  'boolean'
     ];
 

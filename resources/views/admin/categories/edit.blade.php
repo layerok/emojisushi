@@ -15,16 +15,15 @@
                     @csrf
                     <div class="tile-body">
                         <div class="form-group">
-                            <label class="control-label" for="name">Имя на сайте <span class="m-l-5 text-danger"> *</span></label>
+                            <label class="control-label" for="name">Имя <span class="m-l-5 text-danger"> *</span></label>
                             <input class="form-control @error('name') is-invalid @enderror" type="text" name="name" id="name" value="{{ old('name', $targetCategory->name) }}"/>
                             <input type="hidden" name="id" value="{{ $targetCategory->id }}">
                             @error('name') {{ $message }} @enderror
                         </div>
                         <div class="form-group">
-                            <label class="control-label" for="poster_name">Имя в постере <span class="m-l-5 text-danger"> *</span></label>
-                            <input class="form-control @error('poster_name') is-invalid @enderror" type="text" name="poster_name" id="poster_name" value="{{ old('poster_name', $targetCategory->poster_name) }}" readonly/>
-                            <input type="hidden" name="id" value="{{ $targetCategory->id }}">
-                            @error('poster_name') {{ $message }} @enderror
+                            <label class="control-label" for="sort_order">Порядок сортировки <span class="m-l-5 text-danger"> *</span></label>
+                            <input class="form-control @error('sort_order') is-invalid @enderror" type="text" name="sort_order" id="sort_order" value="{{ old('sort_order', $targetCategory->sort_order) }}" />
+                            @error('sort_order') {{ $message }} @enderror
                         </div>
                         {{--<div class="form-group">
                             <label for="parent">Parent Category <span class="m-l-5 text-danger"> *</span></label>
@@ -44,33 +43,33 @@
                         <div class="form-group">
                             <div class="form-check">
                                 <label class="form-check-label">
-                                    <input class="form-check-input" type="checkbox" id="menu" name="menu"
-                                        {{ $targetCategory->menu == 1 ? 'checked' : '' }}
-                                    />Показывать в меню
+                                    <input class="form-check-input" type="checkbox" id="hidden" name="hidden"
+                                        {{ $targetCategory->hidden == 0 ? 'checked' : '' }}
+                                    />Активная
                                 </label>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-md-2">
-                                    @if ($targetCategory->image != null)
-                                        <figure class="mt-2" style="width: 80px; height: auto;">
-                                            <img src="{{ asset('storage/'.$targetCategory->image) }}" id="categoryImage" class="img-fluid" alt="img">
-                                        </figure>
-                                    @endif
-                                </div>
-                                <div class="col-md-10">
-                                    <label class="control-label">Category Image</label>
-                                    <input class="form-control @error('image') is-invalid @enderror" type="file" id="image" name="image"/>
-                                    @error('image') {{ $message }} @enderror
-                                </div>
-                            </div>
-                        </div>
+{{--                        <div class="form-group">--}}
+{{--                            <div class="row">--}}
+{{--                                <div class="col-md-2">--}}
+{{--                                    @if ($targetCategory->image != null)--}}
+{{--                                        <figure class="mt-2" style="width: 80px; height: auto;">--}}
+{{--                                            <img src="{{ asset('storage/'.$targetCategory->image) }}" id="categoryImage" class="img-fluid" alt="img">--}}
+{{--                                        </figure>--}}
+{{--                                    @endif--}}
+{{--                                </div>--}}
+{{--                                <div class="col-md-10">--}}
+{{--                                    <label class="control-label">Category Image</label>--}}
+{{--                                    <input class="form-control @error('image') is-invalid @enderror" type="file" id="image" name="image"/>--}}
+{{--                                    @error('image') {{ $message }} @enderror--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
                     </div>
                     <div class="tile-footer">
-                        <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Update Category</button>
+                        <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Обновить категорию</button>
                         &nbsp;&nbsp;&nbsp;
-                        <a class="btn btn-secondary" href="{{ route('admin.categories.index') }}"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancel</a>
+                        <a class="btn btn-secondary" href="{{ route('admin.categories.index') }}"><i class="fa fa-fw fa-lg fa-times-circle"></i>Отменить</a>
                     </div>
                 </form>
             </div>

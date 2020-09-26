@@ -17,7 +17,7 @@
                 <ul class="nav flex-column nav-tabs user-tabs">
                     <li class="nav-item"><a class="nav-link active" href="#general" data-toggle="tab">Основные</a></li>
                     <li class="nav-item"><a class="nav-link" href="#images" data-toggle="tab">Изображение</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#attributes" data-toggle="tab">Attributes</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#attributes" data-toggle="tab">Аттрибуты</a></li>
                 </ul>
             </div>
         </div>
@@ -27,7 +27,7 @@
                     <div class="tile">
                         <form action="{{ route('admin.products.update') }}" method="POST" role="form">
                             @csrf
-                            <h3 class="tile-title">Product Information</h3>
+                            <h3 class="tile-title">Данные товара</h3>
                             <hr>
                             <div class="tile-body">
                                 <div class="form-group">
@@ -83,7 +83,7 @@
                                             <input
                                                 class="form-control @error('price') is-invalid @enderror"
                                                 type="text"
-                                                placeholder="Enter product price"
+                                                placeholder="Введите цену товара"
                                                 id="price"
                                                 name="price"
                                                 value="{{ old('price', $product->price) }}"

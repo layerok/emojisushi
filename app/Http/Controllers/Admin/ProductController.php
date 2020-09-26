@@ -31,9 +31,8 @@ class ProductController extends BaseController
 
     public function index()
     {
-        //$products = $this->productRepository->listProducts();
         $products = Product::with('categories')->get();
-        $this->setPageTitle('Products', 'Products List');
+        $this->setPageTitle('Продукты', 'Список продуктов');
         return view('admin.products.index', compact('products'));
     }
 

@@ -95,18 +95,16 @@ class ProductRepository extends BaseRepository implements ProductContract
 
         $collection = collect($params)->except('_token');
 
-        $status = $collection->has('status') ? 1 : 0;
+        $hidden = $collection->has('hidden') ? 1 : 0;
 
-        $merge = $collection->merge(compact('status'));
+        $merge = $collection->merge(compact('hidden'));
 
+
+        //dd($merge->all());
         $product->update($merge->all());
 
         if ($collection->has('categories')) {
             $product->categories()->sync($params['categories']);
-        }
-
-        if ($collection->has('ingredients')) {
-            $product->ingredients()->sync($params['ingredients']);
         }
 
         return $product;

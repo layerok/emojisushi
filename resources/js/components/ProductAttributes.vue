@@ -97,6 +97,7 @@
                 valueSelected: false,
                 currentAttributeId: '',
                 currentValue: '',
+                currentAttributeValueId: '',
                 currentQty: '',
                 currentPrice: '',
             }
@@ -140,6 +141,7 @@
             selectValue(value) {
                 this.valueSelected = true;
                 this.currentValue = value.value;
+                this.currentAttributeValueId = value.id;
                 this.currentQty = value.quantity;
                 this.currentPrice = value.price;
             },
@@ -152,11 +154,12 @@
                     let _this = this;
                     let data = {
                         attribute_id: this.currentAttributeId,
-                        value:  this.currentValue,
+                        id:  this.currentAttributeValueId,
                         quantity: this.currentQty,
                         price: this.currentPrice,
                         product_id: this.productid,
                     };
+                    console.log(data);
 
                     axios.post('/admin/products/attributes/add', {
                         data: data
@@ -192,13 +195,14 @@
                                 _this.$swal("Success! Product attribute has been deleted!", {
                                     icon: "success",
                                 });
-                                this.loadProductAttributes(this.productid);
+                                _this.loadProductAttributes(_this.productid);
                             } else {
                                 _this.$swal("Your Product attribute not deleted!");
                             }
                         }).catch(function (error) {
                             console.log(error);
                         });
+
                     } else {
                         this.$swal("Action cancelled!");
                     }

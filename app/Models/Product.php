@@ -15,7 +15,9 @@ class Product extends Model
     /**
      * @var array
      */
-    protected $guarded = [];
+    protected $fillable = [
+        "name", "poster_id", "price", "weight", "sort_order", "unit", "hidden"
+    ];
 
     /**
      * @var array

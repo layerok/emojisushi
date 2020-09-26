@@ -6,7 +6,7 @@
             <h1><i class="fa fa-tags"></i> {{ $pageTitle }}</h1>
             <p>{{ $subTitle }}</p>
         </div>
-        <a href="{{ route('admin.products.create') }}" class="btn btn-primary pull-right">Add Product</a>
+        <a href="{{ route('admin.products.create') }}" class="btn btn-primary pull-right">Добавить продукт</a>
     </div>
     @include('admin.partials.flash')
     <div class="row">
@@ -17,12 +17,10 @@
                         <thead>
                         <tr>
                             <th> # </th>
-                            <th> Имя на сайте </th>
-                            <th> Имя в постере </th>
-                            <th> Заведение </th>
-                            <th class="text-center"> Categories </th>
-                            <th class="text-center"> Price </th>
-                            <th class="text-center"> Status </th>
+                            <th> Имя </th>
+                            <th class="text-center"> Категории </th>
+                            <th class="text-center"> Цена </th>
+                            <th class="text-center"> Статус </th>
                             <th style="width:100px; min-width:100px;" class="text-center text-danger"><i class="fa fa-bolt"> </i></th>
                         </tr>
                         </thead>
@@ -31,8 +29,6 @@
                             <tr>
                                 <td>{{ $product->id }}</td>
                                 <td>{{ $product->name }}</td>
-                                <td>{{ $product->poster_name . ' ' . $product->modificator_name }}</td>
-                                <td>@if ($product->spot_id == 1) 7 небо @else Маршал @endif</td>
                                 <td>
                                     @foreach($product->categories as $category)
                                         <span class="badge badge-info">{{ $category->name }}</span>
@@ -40,10 +36,10 @@
                                 </td>
                                 <td>{{ $product->price }} {{ config('settings.currency_symbol') }}</td>
                                 <td class="text-center">
-                                    @if ($product->status == 1)
-                                        <span class="badge badge-success">Active</span>
+                                    @if ($product->hidden == 0)
+                                        <span class="badge badge-success">Активный</span>
                                     @else
-                                        <span class="badge badge-danger">Not Active</span>
+                                        <span class="badge badge-danger">Не активный</span>
                                     @endif
                                 </td>
                                 <td class="text-center">

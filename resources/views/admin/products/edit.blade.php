@@ -54,8 +54,7 @@
                                         placeholder="Введить id товара"
                                         id="poster_id"
                                         name="poster_id"
-                                        value="{{ old('poster_id', $product->id) }}"
-                                        readonly
+                                        value="{{ old('poster_id', $product->poster_id) }}"
                                     />
                                     <div class="invalid-feedback active">
                                         <i class="fa fa-exclamation-circle fa-fw"></i> @error('poster_id') <span>{{ $message }}</span> @enderror
@@ -164,8 +163,8 @@
                             <div class="tile-footer">
                                 <div class="row d-print-none mt-2">
                                     <div class="col-12 text-right">
-                                        <button class="btn btn-success" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Update Product</button>
-                                        <a class="btn btn-danger" href="{{ route('admin.products.index') }}"><i class="fa fa-fw fa-lg fa-arrow-left"></i>Go Back</a>
+                                        <button class="btn btn-success" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Обновить продукт</button>
+                                        <a class="btn btn-danger" href="{{ route('admin.products.index') }}"><i class="fa fa-fw fa-lg fa-arrow-left"></i>Назад</a>
                                     </div>
                                 </div>
                             </div>
@@ -174,7 +173,7 @@
                 </div>
                 <div class="tab-pane" id="images">
                 <div class="tile">
-                    <h3 class="tile-title">Upload Image</h3>
+                    <h3 class="tile-title">Загрузить изображение</h3>
                     <hr>
                     <div class="tile-body">
                         <div class="row">
@@ -188,7 +187,7 @@
                         <div class="row d-print-none mt-2">
                             <div class="col-12 text-right">
                                 <button class="btn btn-success" type="button" id="uploadButton">
-                                    <i class="fa fa-fw fa-lg fa-upload"></i>Upload Images
+                                    <i class="fa fa-fw fa-lg fa-upload"></i>Загрузить изображение
                                 </button>
                             </div>
                         </div>
@@ -224,7 +223,7 @@
     <script>
         $( document ).ready(function() {
             $('#categories').select2();
-            $('#ingredients').select2();
+
         });
     </script>
     <script type="text/javascript" src="{{ asset('backend/js/plugins/dropzone/dist/min/dropzone.min.js') }}"></script>
@@ -234,7 +233,7 @@
 
         $( document ).ready(function() {
             $('#categories').select2();
-            $('#ingredients').select2();
+
 
             let myDropzone = new Dropzone("#dropzone", {
                 paramName: "image",

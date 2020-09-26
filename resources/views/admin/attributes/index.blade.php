@@ -6,7 +6,7 @@
             <h1><i class="fa fa-tags"></i> {{ $pageTitle }}</h1>
             <p>{{ $subTitle }}</p>
         </div>
-        <a href="{{ route('admin.attributes.create') }}" class="btn btn-primary pull-right">Add Attribute</a>
+        <a href="{{ route('admin.attributes.create') }}" class="btn btn-primary pull-right">Добавить Аттрибуты</a>
     </div>
     @include('admin.partials.flash')
     <div class="row">
@@ -16,11 +16,11 @@
                     <table class="table table-hover table-bordered" id="sampleTable">
                         <thead>
                         <tr>
-                            <th> Code </th>
-                            <th> Name </th>
-                            <th class="text-center"> Frontend Type </th>
-                            <th class="text-center"> Filterable </th>
-                            <th class="text-center"> Required </th>
+                            <th> Код </th>
+                            <th> Имя </th>
+                            <th class="text-center"> Тип в публичке </th>
+                            <th class="text-center"> Фильтруемый </th>
+                            <th class="text-center"> Обязателен </th>
                             <th style="width:100px; min-width:100px;" class="text-center text-danger"><i class="fa fa-bolt"> </i></th>
                         </tr>
                         </thead>
@@ -32,16 +32,16 @@
                                 <td>{{ $attribute->frontend_type }}</td>
                                 <td class="text-center">
                                     @if ($attribute->is_filterable == 1)
-                                        <span class="badge badge-success">Yes</span>
+                                        <span class="badge badge-success">Да</span>
                                     @else
-                                        <span class="badge badge-danger">No</span>
+                                        <span class="badge badge-danger">Нет</span>
                                     @endif
                                 </td>
                                 <td class="text-center">
                                     @if ($attribute->is_required == 1)
-                                        <span class="badge badge-success">Yes</span>
+                                        <span class="badge badge-success">Да</span>
                                     @else
-                                        <span class="badge badge-danger">No</span>
+                                        <span class="badge badge-danger">Нет</span>
                                     @endif
                                 </td>
                                 <td class="text-center">

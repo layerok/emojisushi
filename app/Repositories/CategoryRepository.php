@@ -82,10 +82,10 @@ class CategoryRepository extends BaseRepository implements CategoryContract
                 $image = $this->uploadOne($params['image'], 'categories');
             }
 
-            $featured = $collection->has('featured') ? 1 : 0;
-            $menu = $collection->has('menu') ? 1 : 0;
+            $hidden = $collection->has('hidden') ? 1 : 0;
 
-            $merge = $collection->merge(compact('menu', 'image', 'featured'));
+
+            $merge = $collection->merge(compact( 'image', 'hidden'));
 
             $category = new Category($merge->all());
 
@@ -118,9 +118,9 @@ class CategoryRepository extends BaseRepository implements CategoryContract
             $image = $this->uploadOne($params['image'], 'categories');
         }
 
-        $menu = $collection->has('menu') ? 1 : 0;
+        $hidden = $collection->has('hidden') ? 0 : 1;
 
-        $merge = $collection->merge(compact('menu', 'image'));
+        $merge = $collection->merge(compact('hidden', 'image'));
 
         $category->update($merge->all());
 

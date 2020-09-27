@@ -1,4 +1,10 @@
 window.addEventListener("load", function(event) {
+
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
     var mySwiper = new Swiper('.swiper-container', {
         // Optional parameters
         loop: true,
@@ -19,4 +25,8 @@ window.addEventListener("load", function(event) {
             el: '.swiper-scrollbar',
         },
     })
+
+
+
+
 });

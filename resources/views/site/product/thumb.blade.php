@@ -5,7 +5,8 @@
                 <img class="self-center align-center-start" style=" width:auto; max-height:220px" src="" alt="">
                 <!--<div class="h4 contain" :style="{backgroundImage: 'url(' + item.poster_image + ')'}"  ></div>-->
             </div>
-            <form class="flex flex-column justify-between h-100">
+            <form action="{{ route('cart.manipulate') }}" method="post" data-buy class="flex flex-column justify-between h-100">
+                @csrf
                 <div>
                     <h3  class="f3-l f5 fw5 mv3 mb0">{{ $product->name }}</h3>
                     <p  class="f6-l f7 fw5 mb2">
@@ -26,19 +27,25 @@
 
                 <div class="flex flex-column">
                     <p  class="self-end f4-l f7 mt2 mb1">{{ number_format($product->weight, '0', ',', ' ') . ' ' . $product->unit }}</p>
-                    <div class="flex flex-column flex-row-l justify-between items-center-l">
-                        <input type="hidden" name="poster_id" value="{{ $product->poster_id }}">
-                        <button type="submit" class="order-2 order-1-l w4 bg-dark-red tc white pa3 bn br-pill bg-animate hover-bg-red pointer">
+                    <div data-product-controls="{{ $product->id }}" class="flex flex-column flex-row-l justify-between items-center-l">
+                        <input type="hidden" name="id" value="{{ $product->id }}">
+
+                        <button data-control-add type="submit" name="action" value="add" class="@if(Cart::get($product->id)) dn @endif order-2 order-1-l w4 bg-dark-red tc white pa3 bn br-pill bg-animate hover-bg-red pointer">
                             В корзину
                         </button>
 
-                        {{--<div class="order-2 order-1-l" >
+                        <div data-control-update class="order-2 order-1-l @if(!Cart::get($product->id)) dn @endif" >
                             <div class="flex bg-dark-red w4 white br-pill overflow-hidden ">
-                                <button  class="w-third bn  pv3 ph2 bg-inherit white bg-animate hover-bg-red pointer">-</button>
-                                <div class="w-third tc pv3">2</div>
-                                <button  class="w-third bn  pv3 ph2 bg-inherit white bg-animate hover-bg-red pointer">+</button>
+                                <button name="action" value="decrease" type="submit" class="w-third bn  pv3 ph2 bg-inherit white bg-animate hover-bg-red pointer">-</button>
+                                <div data-control-quantity class="w-third tc pv3">
+                                    @if(Cart::get($product->id))
+                                        {{ Cart::get($product->id)['quantity'] }}
+                                    @endif
+                                </div>
+                                <button name="action" value="increase" type="submit" class="w-third bn  pv3 ph2 bg-inherit white bg-animate hover-bg-red pointer">+</button>
                             </div>
-                        </div>--}}
+                        </div>
+
                         <div class="order-1 order-2-l fw5 tc tl-ns"><span class="f2">{{ number_format($product->price, '0', ',', ' ') }}</span> <span class="f4"> грн.</span></div>
                     </div>
                 </div>

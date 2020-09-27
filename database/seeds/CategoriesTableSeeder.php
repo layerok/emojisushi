@@ -17,7 +17,8 @@ class CategoriesTableSeeder extends Seeder
     {
         // Не удалять
         Category::create([
-            'name' => 'Корневая'
+            'name' => 'Корневая',
+            'parent_id' => 0
         ]);
 
         $spots = DB::table('spots')->get();

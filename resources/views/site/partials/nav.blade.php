@@ -1,34 +1,30 @@
-<nav class="w-100 bt bb b--red mv2">
-    <ul class="ma0 pv3 list flex justify-between items-center ph2 overflow-y-auto">
-        @foreach($categories as $cat)
-            @foreach($cat->items as $value)
-                @if ($value->items->count() > 0)
-                    <!-- вложенные пункты -->
-                @else
-                    <li class="mv1 flex-shrink-0">
-                        <a class="ph3 pv1 br-pill link @isset($category) @if($value->slug == $category->slug) bg-red @endif @endisset hover-bg-red hover-white white " href="{{ route('category.show', $value->slug) }}">
-                            <span class="ph1">{{ $value->name }}</span>
-                        </a>
-                    </li>
-                @endif
+
+<div class="w-100 flex-column">
+{{--    <div class="bt b--dark-red flex justify-center ph3">--}}
+{{--        <p class="mr2">Текущий ресторан: {{ $store.state.currentSpot.name }}</p>--}}
+{{--        <router-link class="pv3" :to="{name: 'home'}">Изменить</router-link>--}}
+{{--    </div>--}}
+    <nav class="w-100 bt bb b--dark-red mb2 flex ">
+        <ul class="w-100 ma0 pv3 list flex justify-between items-center ph2 overflow-y-auto">
+            @foreach($categories as $category)
+                <li  class="mv1 flex-shrink-0"><!---->
+                    <a href="/category/{{ $category->slug }}"  class="@isset($slug)@if($slug == $category->slug) bg-dark-red @endif @endisset ph3-ns ph1 pv1 br-pill link mr2-ns mr1 hover-bg-dark-red hover-white white ">
+                        <span class="ph1">{{ $category->name }}</span>
+                    </a>
+                </li>
+
             @endforeach
-        @endforeach
-    </ul>
-</nav>
-<!-- Slider main container -->
-<div class="swiper-container">
-    <!-- Additional required wrapper -->
-    <div class="swiper-wrapper">
-        <!-- Slides -->
-        <div class="swiper-slide"><img src="/img/slide1.jpg" alt="Собери свой WOK"></div>
-        <div class="swiper-slide"><img src="/img/slide2.jpg" alt="Бесплатная доставка"></div>
-        <div class="swiper-slide"><img src="/img/slide3.jpg" alt="Sumoist Sushi & WOK"></div>
-        <div class="swiper-slide"><img src="/img/slide4.jpg" alt="Бесплатная дегустация на торговой 15(7 небо) с 14:00 - 16:30"></div>
-        <div class="swiper-slide"><img src="/img/slide5.jpg" alt="-20% на все кроме наборов с 13:00 - 16:00(пн-чт)"></div>
 
-    </div>
-    <!-- If we need pagination -->
-    <div class="swiper-pagination"></div>
 
+        </ul>
+{{--        @include('site.partials.cart')--}}
+    </nav>
 </div>
+{{--<div v-else class="flex w-100 justify-center items-center">
+    <div class="lds-facebook"><div></div><div></div><div></div></div>
+</div>--}}
+
+
+
+
 

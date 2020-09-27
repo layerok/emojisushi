@@ -2,10 +2,19 @@
 @section('title', 'Homepage')
 
 @section('content')
-    <div class="flex justify-center">
-        <div class="w-100 mw7 ph3">
-            <h2>Homepage</h2>
+
+    <section  class="flex flex-column items-center pt3 ph2 ph0-l">
+        <div class="w-100 mw7 flex flex-wrap">
+
+            @forelse($products as $product)
+                @include('site.product.thumb')
+            @empty
+                Товары не найдены
+            @endforelse
+
+
         </div>
-    </div>
+    </section>
+
 
 @stop

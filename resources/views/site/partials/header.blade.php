@@ -41,7 +41,10 @@
             </div>
 
         </div>
-        @include('site.partials.slider')
+        @if(Request::is('/'))
+            @include('site.partials.slider')
+        @endif
+
     </div>
 
 </header>

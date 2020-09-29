@@ -13,7 +13,7 @@ require 'admin.php';
 
 Route::get('/', function(){
 
-    $products = App\Models\Product::with('attributes.attributeValues')->get();
+    $products = App\Models\Product::with('attributes.attributeValues')->where('hidden','=',0)->get();
 
     return view('site.pages.homepage', compact('products'));
 });

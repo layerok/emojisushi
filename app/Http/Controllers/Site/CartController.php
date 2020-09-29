@@ -30,7 +30,15 @@ class CartController extends Controller
         if($product->exists()){
             switch($request->input('action')){
                 case 'add': {
-                    Cart::add($product->id, $product->name, $product->price , 1, $options);
+                    Cart::add([
+                        'id' => $product->id,
+                        'name' =>$product->name,
+                        'price' => $product->price ,
+                        'quantity' => 1,
+                        'attributes' => $options,
+                        'associatedModel' => $product,
+
+                    ]);
                     $response['message'] = "Товар добавлен!";
                     $response['status']  = "success";
                     break;

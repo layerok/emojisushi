@@ -1,3 +1,8 @@
+label.error{
+    font-size: 14px;
+    color: #e7040f;
+    margin-top:4px;
+}
 .w7{
     width: 1202px;
 }

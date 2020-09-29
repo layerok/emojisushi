@@ -11,7 +11,15 @@ $(document).ready(function(){
 
                     /* Compile markup string as a named template */
                     $.template( "cartTemplate", markup );
-                    /* Render the named template */
+
+                    $('[data-cart-total]').each(function(){
+                        $(this).html(cartData.total + " грн." );
+                    })
+
+                    $('[data-cart-total-quantity]').each(function(){
+                        $(this).html(cartData.totalQuantity + " тов.");
+                    })
+
                     $("[data-cart-popup-items]").html("");
 
                     if(cartData.products.length < 1){
@@ -41,7 +49,7 @@ $(document).ready(function(){
                             $(this).find('[data-control-update]').removeClass('dn');
                         }
                     })
-
+                    /* Render the named template */
                     $.tmpl( "cartTemplate", Object.values(cartData.products) ).appendTo( "[data-cart-popup-items]" );
                     initBindigs();
                 });

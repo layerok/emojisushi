@@ -12,7 +12,9 @@ class CartController extends Controller
     public function getCart()
     {
         $response = [
-            'products' => Cart::getContent()
+            'products'          => Cart::getContent(),
+            'totalQuantity' => Cart::getTotalQuantity(),
+            'total'         => Cart::getTotal(),
         ];
         return json_encode($response,true);
     }

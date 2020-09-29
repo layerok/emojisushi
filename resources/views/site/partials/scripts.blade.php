@@ -2,6 +2,7 @@
 <script src="{{ asset('frontend/js/jquery.validate.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('frontend/js/jquery.form.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('frontend/js/jquery.tmpl.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('frontend/js/jquery.mask.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('frontend/js/notify.js') }}" type="text/javascript"></script>
 <script src="{{ asset('frontend/js/layerok.js') }}" type="text/javascript"></script>
 <script src="{{ asset('frontend/js/gsap/gsap.min.js') }}" type="text/javascript"></script>

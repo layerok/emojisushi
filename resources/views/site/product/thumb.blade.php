@@ -10,18 +10,26 @@
                 <div>
                     <h3  class="f3-l f5 fw5 mv3 mb0">{{ $product->name }}</h3>
                     <p  class="f6-l f7 fw5 mb2">
+                        <div class="flex mb3 bg-white-10 br2 modificator">
+                            @foreach($product->attributes as $productAttribute)
 
-                        @foreach($product->attributes as $productAttribute)
-                            @foreach($productAttribute->attributeValues as $attributeValue)
-                                @if($attributeValue->attribute_id == 3)
-                                    {{ $attributeValue->value }}
-                                @endif
+                                @foreach($productAttribute->attributeValues as $attributeValue)
 
-                                @if($attributeValue->attribute->frontend_type == 'radio')
-                                    <input value="{{ $attributeValue->poster_id }}" checked name="modificator_id" type="radio"> {{ $attributeValue->value }}
-                                @endif
+                                    @if($attributeValue->attribute_id == 3)
+
+                                        {{ $attributeValue->value }}
+                                    @endif
+
+                                    @if($attributeValue->attribute->frontend_type == 'radio')
+
+                                            <input  id="modificator_{{ $attributeValue->poster_id }}" class="checked-bg-dark-red checked-white dn" type="radio" name="modificator_id" value="{{ $attributeValue->poster_id }}" checked >
+                                            <label class="ma2 w-100 bg-white dark-red pa2 tc br2 shadow-1   pointer" for="modificator_{{ $attributeValue->poster_id }}">{{ $attributeValue->value }}</label>
+
+                                    @endif
+                                @endforeach
+
                             @endforeach
-                        @endforeach
+                        </div>
                     </p>
                 </div>
 

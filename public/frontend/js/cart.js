@@ -1,64 +1,16 @@
 $(document).ready(function(){
 
-    function getCart(){
-        $.ajax({
-            url: "/cart/get",
-            dataType: 'json',
-            success: function( cartData ) {
-                console.log(cartData);
-                $.get( "/frontend/js/templates/cart.html", function(data, textStatus, XMLHttpRequest){
-                    var markup = data;
+    function initTemplates(){
+        $.get( "/frontend/js/templates/cart.html", function(data){
+            /* Compile markup string as a named template */
+            $.template( "cartTemplate", data);
+        });
 
-                    /* Compile markup string as a named template */
-                    $.template( "cartTemplate", markup );
-
-                    $('[data-cart-total]').each(function(){
-                        $(this).html(cartData.total + " грн." );
-                    })
-
-                    $('[data-cart-total-quantity]').each(function(){
-                        $(this).html(cartData.totalQuantity + " тов.");
-                    })
-
-                    $("[data-cart-popup-items]").html("");
-
-                    if(cartData.products.length < 1){
-                        $("[data-cart-popup-items]").addClass('dn');
-                        $("[data-cart-popup-empty]").removeClass('dn');
-                        $("[data-cart-popup-action]").addClass('dn');
-
-                    }else{
-                        $("[data-cart-popup-items]").removeClass('dn');
-                        $("[data-cart-popup-empty]").addClass('dn');
-                        $("[data-cart-popup-action]").removeClass('dn');
-                    }
-
-                    let products = $('[data-product-controls]');
-
-                    products.each(function(){
-                        let product_id = $(this).attr('data-product-controls');
-
-                        if(typeof cartData.products[product_id] === 'undefined') {
-                            $(this).find('[data-control-add]').removeClass('dn');
-                            $(this).find('[data-control-update]').addClass('dn');
-                        }
-                        else {
-                            // does exist
-                            $(this).find('[data-control-add]').addClass('dn');
-                            $(this).find('[data-control-quantity]').text(cartData.products[product_id]['quantity']);
-                            $(this).find('[data-control-update]').removeClass('dn');
-                        }
-                    })
-                    /* Render the named template */
-                    $.tmpl( "cartTemplate", Object.values(cartData.products) ).appendTo( "[data-cart-popup-items]" );
-                    initBindigs();
-                });
-
-            }
-        } );
+        $.get( "/frontend/js/templates/cart-in-checkout.html", function(data){
+            /* Compile markup string as a named template */
+            $.template( "cartInCheckoutTemplate", data );
+        });
     }
-
-    getCart();
 
     function initBindigs(){
         $('[data-buy]').each(function() {
@@ -91,39 +43,68 @@ $(document).ready(function(){
             })
         });
 
-        $('[data-cart-add]').each(function() {
-            $(this).validate({
-                submitHandler: function (form, event) {
-                    event.preventDefault();
-                    $(form).ajaxSubmit({
-                        dataType: 'json',
-                        data: {"_token": $('meta[name="csrf-token"]').attr('content')},
-                        success: function (res) {
 
-                            $.notify(res.message, res.status);
-                            getCart();
-
-                            // if (res.status != 'error') {
-                            //     if (res.hasOwnProperty('liqpay')) {
-                            //         let liqPayForm = $.parseHTML($.trim(res.html_str))[0];
-                            //         $('body').append(liqPayForm);
-                            //         liqPayForm.submit();
-                            //     } else {
-                            //         window.location.href = "/orders/thankyou";
-                            //     }
-                            // }
-
-                        },
-                        error: function () {
-
-                            $.notify('Ошибка', 'error')
-                        }
-                    });
-                },
-            })
-        });
     }
 
+    function updateStats(cartData){
+        $('[data-cart-total]').each(function(){
+            $(this).html(cartData.total );
+        })
+
+        $('[data-cart-total-quantity]').each(function(){
+            $(this).html(cartData.totalQuantity);
+        })
+
+        if(cartData.products.length < 1){
+            $("[data-cart-empty]").removeClass('dn');
+            $("[data-cart-not-empty]").addClass('dn');
+
+        }else{
+            $("[data-cart-not-empty]").removeClass('dn');
+            $("[data-cart-empty]").addClass('dn');
+        }
+
+        let products = $('[data-product-controls]');
+
+        products.each(function(){
+            let product_id = $(this).attr('data-product-controls');
+
+            if(typeof cartData.products[product_id] === 'undefined') {
+                $(this).find('[data-control-add]').removeClass('dn');
+                $(this).find('[data-control-update]').addClass('dn');
+            }
+            else {
+                // does exist
+                $(this).find('[data-control-add]').addClass('dn');
+                $(this).find('[data-control-quantity]').text(cartData.products[product_id]['quantity']);
+                $(this).find('[data-control-update]').removeClass('dn');
+            }
+        })
+
+        $("[data-cart-clear]").html("");
+    }
+
+    function getCart(){
+        $.ajax({
+            url: "/cart/get",
+            dataType: 'json',
+            success: function( cartData ) {
+                console.log(cartData);
+
+                updateStats(cartData);
+
+                /* Render the named templates */
+                $.tmpl( "cartTemplate", Object.values(cartData.products) ).appendTo( "[data-cart-popup-items]" );
+                $.tmpl( "cartInCheckoutTemplate", Object.values(cartData.products) ).appendTo( "[data-cart-checkout-items]" );
+
+                initBindigs();
+            }
+        } );
+    }
+
+
+    initBindigs();
+    initTemplates();
 
 
 

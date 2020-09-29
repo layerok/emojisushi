@@ -1,0 +1,29 @@
+<form action="/cart/manipulate" method="post" data-buy  class="flex relative mb3">
+    <input type="hidden" name="id" value="${id}" >
+    <button type="submit" name="action" value="remove"  class="ph0 self-start white absolute right-0 top-0 pointer bg-transparent bn">&times;</button>
+    <div class="w-40 nested-img dn db-ns">
+        <img src="" style="max-height:150px; width:auto" >
+    </div>
+    <div class="w-100 w-60-ns pl2 flex flex-column-ns flex-row justify-between">
+        <div>
+            <h3 class="f5 f3-ns fw5 mt0 mb2-ns mb0">${ name }</h3>
+            <p class="fw5 mv0 f5 dn-ns">${ quantity } шт</p>
+        </div>
+        <p  class="f6 fw5 mt0 mb3 dn db-ns">
+
+            {{each(i, attribute) associatedModel.attributes}}
+                {{each(j, attributeValues) attribute.attribute_values}}
+                    ${ attributeValues.value }
+                {{/each}}
+
+            {{/each}}
+
+
+        </p>
+        <div class="flex justify-between items-end-ns items-start">
+            <div class=" fw5 mv0 mr4 mr0-ns"><span class="f2-ns f4">${ price }</span> <span class="f4-ns f6"> грн.</span></div>
+            <p class="fw5 mv0 f5 dn db-ns">${ quantity } шт</p>
+        </div>
+        <p class="f4 mv0 dn db-ns">${ associatedModel.weight } г</p>
+    </div>
+</form>

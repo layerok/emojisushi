@@ -12,7 +12,7 @@ window.addEventListener("load", function(event) {
                 document.querySelector('.cart-in-menu').classList.remove('dn');
             }
         },
-        top: 0
+        top: -1
     })
 
 

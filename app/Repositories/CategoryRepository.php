@@ -161,9 +161,7 @@ class CategoryRepository extends BaseRepository implements CategoryContract
 
         return Category::with(['products' =>function ($query) {
             $query->where('hidden', '=', 0);
-        }])
-            ->where('slug', $slug)
-
+            }])->where('slug', $slug)
             ->first();
     }
 

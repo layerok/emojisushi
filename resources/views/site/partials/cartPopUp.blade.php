@@ -23,7 +23,7 @@
                         </div>
                         <div class="flex justify-end">
 
-                            <input type="hidden" name="id" value="{{ $product->id }}" >
+                            <input type="hidden" name="uid" value="{{ $product->attributes->uid }}" >
                             <button type="submit" name="action" value="remove" class="self-start dark-red mv0 pointer f4 bg-transparent bn">&times;</button>
                         </div>
                     </form>

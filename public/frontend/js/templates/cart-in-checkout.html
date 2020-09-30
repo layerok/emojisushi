@@ -1,5 +1,5 @@
 <form action="/cart/manipulate" method="post" data-buy  class="flex relative mb3">
-    <input type="hidden" name="id" value="${id}" >
+    <input type="hidden" name="uid" value="${attributes.uid}" >
     <button type="submit" name="action" value="remove"  class="ph0 self-start white absolute right-0 top-0 pointer bg-transparent bn">&times;</button>
     <div class="w-40 nested-img dn db-ns">
         <img src="" style="max-height:150px; width:auto" >
@@ -11,12 +11,7 @@
         </div>
         <p  class="f6 fw5 mt0 mb3 dn db-ns">
 
-            {{each(i, attribute) associatedModel.attributes}}
-                {{each(j, attributeValues) attribute.attribute_values}}
-                    ${ attributeValues.value }
-                {{/each}}
-
-            {{/each}}
+            ${ attributes.ingredients }
 
 
         </p>

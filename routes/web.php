@@ -12,8 +12,12 @@
 require 'admin.php';
 
 Route::get('/', function(){
+    var_dump($_GET['word']);
+    /*$products = App\Models\Product::with('attributes.attributeValues')->where('hidden','=',0)->get();*/
+    $products = App\Models\Product::with('attributes.attributeValues')->where('name', 'like', "%{$_GET['word']}%" )->get();
 
-    $products = App\Models\Product::with('attributes.attributeValues')->where('hidden','=',0)->get();
+
+
 
     return view('site.pages.homepage', compact('products'));
 });

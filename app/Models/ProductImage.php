@@ -30,4 +30,16 @@ class ProductImage extends Model
     {
         return $this->belongsTo(Product::class);
     }
+
+    /**
+     * @return string
+     */
+    public function getFullAttribute()
+    {
+        if (! isset($this->attributes['full'])) {
+        return '/images/default_profilepicture.png';
+    }
+
+        return $this->attributes['full'];
+    }
 }

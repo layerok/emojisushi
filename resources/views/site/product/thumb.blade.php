@@ -2,7 +2,12 @@
     <div class="br3 ba b--red pa3-l pa2 h-100">
         <div class="flex flex-column pb1 pb2 h-100">
             <div class="nested-img flex flex-shrink-0 justify-center "  >
-                <img class="self-center align-center-start" style=" width:auto; max-height:220px" src="" alt="">
+                @if( count($product->images) > 0)
+                    @php  $path = $product->images()->first()->value('full'); @endphp
+                @else
+                    @php $path = 'img/default.jpg' @endphp
+                @endif
+                    <img class="self-center align-center-start" style=" width:auto; max-height:220px" src="{{ '/storage/'.$path }}" alt="">
                 <!--<div class="h4 contain" :style="{backgroundImage: 'url(' + item.poster_image + ')'}"  ></div>-->
             </div>
             <form action="{{ route('cart.manipulate') }}" method="post" data-buy class="flex flex-column justify-between h-100">

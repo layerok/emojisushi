@@ -15,10 +15,7 @@ Route::get('/', function(){
 
     $searched_word = $_GET['word'] ?? '';
 
-    $products = App\Models\Product::with('attributes.attributeValues')->where('name', 'like', "%{$searched_word}%" )->get();
-
-
-
+    $products = App\Models\Product::with(['attributes.attributeValues', 'images'])->where('name', 'like', "%{$searched_word}%" )->get();
 
     return view('site.pages.homepage', compact('products'));
 });

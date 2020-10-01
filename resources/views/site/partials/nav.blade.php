@@ -2,13 +2,6 @@
 <div id="nav" class="w-100 flex-column z-4 ">
 
 
-    <FORM method="get" action="/">
-        @csrf
-
-        <INPUT name="word" type="text">
-            <BR><BR>
-                    <INPUT type="submit" value= "Отправить">
-    </FORM>
 
 
 

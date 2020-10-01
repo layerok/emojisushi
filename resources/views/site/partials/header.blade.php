@@ -19,13 +19,28 @@
             </div>
 
             <!-- Лого -->
-            <div class="w-100 order-1 order-0-l flex justify-center">
+            <div class="w-100 order-1 order-0-l flex justify-center relative">
                 <div class="flex flex-column items-center">
                     <a href="/">
                         <img src="/img/logosumoist.png" alt="">
                     </a>
                     <p><span class="dark-red">Время работы:</span> 11:00-22:00</p>
+
+                    <FORM method="get" action="/" autocomplete="off">
+                        @csrf
+
+                        <INPUT name="word" type="text" class="br3 bg-transparent dark-red">
+                            <button class="absolute bg-transparent bn pointer " style="top:138px; right:194px" type="submit">
+                                <svg width="12" height="12" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M6.97073 0C10.8144 0 13.9415 3.12707 13.9415 6.97073C13.9415 8.65403 13.3417 10.1998 12.3447 11.4058L17 16.0611L16.0611 17L11.4058 12.3447C10.1998 13.3417 8.65403 13.9415 6.97073 13.9415C3.12707 13.9415 0 10.8144 0 6.97073C0 3.12707 3.12704 0 6.97073 0ZM6.97073 12.6137C10.0823 12.6137 12.6137 10.0823 12.6137 6.97073C12.6137 3.8592 10.0823 1.32776 6.97073 1.32776C3.8592 1.32776 1.32776 3.8592 1.32776 6.97073C1.32776 10.0823 3.8592 12.6137 6.97073 12.6137Z" fill="white"></path>
+                                </svg>
+                            </button>
+
+
+                    </FORM>
+
                 </div>
+
 
             </div>
             @include('site.partials.cart')
@@ -48,5 +63,4 @@
     </div>
 
 </header>
-
 

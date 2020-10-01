@@ -64,7 +64,7 @@
                                 @foreach($cart_items as $product)
                                     <form action="/cart/manipulate" method="post" data-buy  class="flex relative mb3">
                                         @csrf
-                                        <input type="hidden" name="id" value="{{ $product->id }}" >
+                                        <input type="hidden" name="uid" value="{{ $product->attributes->uid }}" >
                                         <button type="submit" name="action" value="remove"  class="ph0 self-start white absolute right-0 top-0 pointer bg-transparent bn">&times;</button>
                                         <div class="w-40 nested-img dn db-ns">
                                             <img src="" style="max-height:150px; width:auto" >
@@ -75,13 +75,7 @@
                                                 <p class="fw5 mv0 f5 dn-ns">{{ $product->quantity }} шт</p>
                                             </div>
                                             <p  class="f6 fw5 mt0 mb3 dn db-ns">
-                                                @foreach($product->associatedModel->attributes as $productAttribute)
-                                                    @foreach($productAttribute->attributeValues as $attributeValue)
-                                                        @if($attributeValue->attribute_id == 3)
-                                                            {{ $attributeValue->value }}
-                                                        @endif
-                                                    @endforeach
-                                                @endforeach
+                                                {{ $product->attributes->ingredients }}
                                             </p>
                                             <div class="flex justify-between items-end-ns items-start">
                                                 <div class=" fw5 mv0 mr4 mr0-ns"><span class="f2-ns f4">{{ $product->price }}</span> <span class="f4-ns f6"> грн.</span></div>

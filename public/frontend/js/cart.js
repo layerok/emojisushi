@@ -20,7 +20,7 @@ $(document).ready(function(){
                     $(form).ajaxSubmit({
                         dataType: 'json',
                         success: function (res) {
-
+                            console.log(res);
                             $.notify(res.message, res.status);
                             getCart();
 
@@ -35,7 +35,8 @@ $(document).ready(function(){
                             // }
 
                         },
-                        error: function () {
+                        error: function (data) {
+                            console.log(data);
                             $.notify('Ошибка', 'error')
                         }
                     });
@@ -65,7 +66,7 @@ $(document).ready(function(){
         }
 
         let products = $('[data-product-controls]');
-
+        console.log(cartData.products);
         products.each(function(){
             let product_id = $(this).attr('data-product-controls');
 
@@ -74,6 +75,7 @@ $(document).ready(function(){
                 $(this).find('[data-control-update]').addClass('dn');
             }
             else {
+                console.log(product_id);
                 // does exist
                 $(this).find('[data-control-add]').addClass('dn');
                 $(this).find('[data-control-quantity]').text(cartData.products[product_id]['quantity']);
@@ -105,6 +107,30 @@ $(document).ready(function(){
 
     initBindigs();
     initTemplates();
+    let modificators = document.querySelectorAll('[data-modificator]');
+    modificators.forEach(function(elem){
+        elem.addEventListener('click', handleClick);
+    });
+
+    console.log(modificators)
+
+
+    function handleClick(e) {
+        let productForm = e.target.closest('form');
+        let controls = productForm.querySelectorAll('[data-product-controls]');
+        console.log(productForm, controls);
+
+        controls.forEach(function(elem){
+            if(controls[ e.target.value] == elem ){
+                elem.classList.remove('dn');
+                elem.classList.add('flex');
+            }else{
+                elem.classList.add('dn');
+                elem.classList.remove('flex');
+            }
+        })
+
+    }
 
 
 

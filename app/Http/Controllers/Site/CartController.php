@@ -12,7 +12,7 @@ class CartController extends Controller
     public function getCart()
     {
         $response = [
-            'products'          => Cart::getContent(),
+            'products'        => Cart::getContent(),
             'totalQuantity' => Cart::getTotalQuantity(),
             'total'         => Cart::getTotal(),
         ];
@@ -20,36 +20,65 @@ class CartController extends Controller
     }
     public function manipulate(Request $request)
     {
-        $product = Product::find($request->input('id'));
-        $options = $request->except('_token', 'qty');
+        $input = $request->input();
+
+        $options = $request->except('_token', 'action', 'uid');
+
+        $active_mod = isset($input['active_modificator'])? (int)$input['active_modificator'] : null;
+        if(isset($active_mod)){
+
+            $uid = $input['uid'][$active_mod];
+
+        }else{
+            $uid = $input['uid'];
+
+        }
+
+
+        $product = Product::find($request->input('product_id'));
+
+        //Cart::clear();
+        //return json_encode($input);
 
         $response = [
             'message' => 'Ошибка!',
             'status'  => 'error'
         ];
-        if($product->exists()){
+
+
             switch($request->input('action')){
                 case 'add': {
-                    Cart::add([
-                        'id' => $product->id,
-                        'name' =>$product->name,
-                        'price' => $product->price ,
-                        'quantity' => 1,
-                        'attributes' => $options,
-                        'associatedModel' => $product,
+                    if($product->exists()){
+                        $options = array_merge($options, ['uid' => $uid]);
+                        if(isset($active_mod)){
+                            $name = $product->name . ' ' . $input['modificator_value'][$active_mod] ;
+                            $price = $input['modificator_price'][$active_mod];
+                        }else{
+                            $name = $product->name;
+                            $price = $product->price;
+                        }
 
-                    ]);
-                    $response['message'] = "Товар добавлен!";
-                    $response['status']  = "success";
+
+                        Cart::add([
+                            'id' =>$uid,
+                            'name' => $name,
+                            'price' => $price ,
+                            'quantity' => 1,
+                            'attributes' => $options,
+                            'associatedModel' => $product,
+                        ]);
+                        $response['message'] = "Товар добавлен!";
+                        $response['status']  = "success";
+                    }
                     break;
                 }
                 case 'decrease': {
-                    if(Cart::get($product->id)->quantity == 1){
+                    if(Cart::get($uid)->quantity == 1){
                         $response['message'] = "Товар удален!";
-                        Cart::remove($product->id);
+                        Cart::remove($uid);
                     }else{
                         $response['message'] = "Кол-во уменьшено!";
-                        Cart::update($product->id, [
+                        Cart::update($uid, [
                             'quantity' => -1
                         ]);
                     }
@@ -59,7 +88,7 @@ class CartController extends Controller
                     break;
                 }
                 case 'increase': {
-                    Cart::update($product->id, [
+                    Cart::update($uid, [
                         'quantity' => 1
                     ]);
                     $response['message'] = "Кол-во увеличено!";
@@ -67,7 +96,7 @@ class CartController extends Controller
                     break;
                 }
                 case 'remove': {
-                    Cart::remove($product->id);
+                    Cart::remove($uid);
                     $response['message'] = "Товар удален!";
                     $response['status']  = "success";
                     break;
@@ -76,10 +105,8 @@ class CartController extends Controller
 
 
             return json_encode($response);
-        }else{
 
-            return json_encode($response);
-        }
+
 
     }
 

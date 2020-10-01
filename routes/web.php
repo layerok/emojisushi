@@ -13,7 +13,9 @@ require 'admin.php';
 
 Route::get('/', function(){
 
-    $products = App\Models\Product::with('attributes.attributeValues')->where('name', 'like', "%{$_GET['word']}%" )->get();
+    $searched_word = $_GET['word'] ?? '';
+
+    $products = App\Models\Product::with('attributes.attributeValues')->where('name', 'like', "%{$searched_word}%" )->get();
 
 
 

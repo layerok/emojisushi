@@ -16,6 +16,14 @@ label.error{
     max-width: 1202px;
 }
 
+.placeholder-dark-red::placeholder{
+    color: #e7040f;
+}
+
+.placeholder-white::placeholder{
+    color: #fff;
+}
+
 .checked-bg-dark-red:checked + label {
     background-color: #e7040f;
 }

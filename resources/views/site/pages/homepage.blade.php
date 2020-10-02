@@ -10,7 +10,13 @@
                 @forelse($products as $product)
                     @include('site.product.thumb')
                 @empty
-                    Товары не найдены
+                    <div class="ph2 ph3-l f3 mv3">
+                    @isset($_GET['word'])
+                        <p>По запросу "{{ $_GET['word'] }}" ничего не найдено</p><br>
+                    @else
+                            Товары не найдены
+                    @endisset
+                    </div>
                 @endforelse
             </div>
 

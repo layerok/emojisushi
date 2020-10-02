@@ -8,7 +8,7 @@
                 @forelse($category->products as $product)
                     @include('site.product.thumb')
                 @empty
-                    Товары не найдены
+                    <div class="ph2 ph3-l">Товары не найдены</div>
                 @endforelse
             </div>
 

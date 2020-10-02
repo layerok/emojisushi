@@ -1,3 +1,4 @@
+
 window.addEventListener("load", function(event) {
     $.notify.defaults({
        position: 'bottom right',
@@ -100,6 +101,51 @@ window.addEventListener("load", function(event) {
     })
 
 
+    //  !!!!!!!!!!!!!!!!!!!!!!!!  custom select !!!!!!!!!!!!!!!!!!!!!!!!!!!
+    let selects = document.querySelectorAll('.select');
+
+    selects.forEach(function(elem){
+        elem.addEventListener('click', function(e){
+            let list = elem.querySelector('ul');
+            let input = elem.querySelector('input');
+            let checkmark = elem.querySelector('.check-mark');
+            let currentOptionHolder = elem.querySelector('.current-option');
+
+            checkmark.classList.toggle('rotate-45');
+            checkmark.classList.toggle('rotate-225');
+            checkmark.classList.toggle('mt1');
+
+            list.classList.toggle('scale0');
+            list.classList.toggle('o-0');
+
+            elem.classList.toggle('bg-light-gray');
+            elem.classList.toggle('bg-white');
+
+            if(!e.target.classList.contains('fw5') && e.target.tagName === 'LI') {
+                input.value = e.target.dataset.value;
+                currentOptionHolder.innerHTML = e.target.innerHTML;
+                console.log(input.dataset.submitOnChange);
+                if(input.dataset.changeAction) {
+                    elem.closest('form').setAttribute('action', elem.closest('form').getAttribute('action')+'/filter/'+input.value)
+
+                }
+
+                if(input.dataset.submitOnChange){
+
+                    e.preventDefault();
+                    console.log(elem.closest('form'));
+                    elem.closest('form').submit();
+                }
+
+            }
+        });
+    });
+
+
 
 
 });
+
+
+
+

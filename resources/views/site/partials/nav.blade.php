@@ -1,11 +1,6 @@
 
 <div id="nav" class="w-100 flex-column z-4 ">
 
-
-
-
-
-
     <nav class="w-auto bt bb b--dark-red bg-black mb2 flex ">
         <ul class="w-100 ma0 pv3 list flex justify-between items-center ph2 overflow-y-auto">
             @foreach($categories as $category)

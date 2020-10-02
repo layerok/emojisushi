@@ -3,9 +3,44 @@ label.error{
     color: #e7040f;
     margin-top:4px;
 }
+
+
 .w7{
     width: 1202px;
 }
+
+.top-100{
+    top: 100%;
+}
+
+/* transitions */
+
+.ease-in{
+    transition: all 0.5s ease-in;
+}
+
+.ease-in-fast{
+    transition: all 0.25s ease-in;
+}
+.h40{
+    height: 40px;
+}
+
+.h0{
+    height: 0;
+}
+
+.hover-bg-near-white:hover,
+.hover-bg-near-white:focus{
+    background-color: #f8f8f8;
+}
+
+.hover-bg-near-black:hover,
+.hover-bg-near-black:focus{
+    background-color: #111;
+}
+
+/* end transition */
 .top-3 {
     top: 4rem;
 }
@@ -14,6 +49,14 @@ label.error{
 }
 .mw7{
     max-width: 1202px;
+}
+
+.scale0{
+    transform: scale(0);
+}
+
+.scale1{
+    transform: scale(1);
 }
 
 .placeholder-dark-red::placeholder{

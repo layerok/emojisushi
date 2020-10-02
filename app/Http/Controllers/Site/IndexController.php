@@ -6,32 +6,31 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Contracts\CategoryContract;
+use Cart;
 
-class CategoryController extends Controller
+class IndexController extends Controller
 {
-    protected $categoryRepository;
-
     private $catalog_sort;
 
-    public function __construct(CategoryContract $categoryRepository)
-    {
-        $this->categoryRepository = $categoryRepository;
-    }
 
-    public function show($slug)
+    public function index()
     {
-//        $category = $this->categoryRepository->findBySlug($slug);
 
+        //Cart::clear();
         $this->setCatalogSort();
 
-        $category = Category::with(['products' =>function ($query) {
-            $query->with('images')->where('hidden', '=', 0)->when($this->catalog_sort, function ($query, $sortBy) {
-                return $query->orderByRaw($sortBy);
-            });
-        }])->where('slug', $slug)
-            ->first();
+//        $category = Category::with(['products' =>function ($query) {
+//            $query->with('images')->where('hidden', '=', 0)->when($this->catalog_sort, function ($query, $sortBy) {
+//                return $query->orderByRaw($sortBy);
+//            });
+//        }])->where('slug', $slug)
+//            ->first();
 
-        return view('site.pages.category', compact('category', 'slug'));
+        $searched_word = $_GET['word'] ?? '';
+
+        $products = \App\Models\Product::with(['attributes.attributeValues', 'images'])->where('name', 'like', "%{$searched_word}%" )->get();
+
+        return view('site.pages.homepage', compact('products'));
     }
 
     private function setCatalogSort()

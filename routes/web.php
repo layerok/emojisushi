@@ -11,18 +11,11 @@
 */
 require 'admin.php';
 
-Route::get('/', function(){
-
-    $searched_word = $_GET['word'] ?? '';
-
-    $products = App\Models\Product::with(['attributes.attributeValues', 'images'])->where('name', 'like', "%{$searched_word}%" )->get();
-
-    return view('site.pages.homepage', compact('products'));
-});
+Route::match(['get', 'post'],'/', 'Site\IndexController@index');
 
 
 
-Route::get('/category/{slug}', 'Site\CategoryController@show')->name('category.show');
+Route::match(['get', 'post'], '/category/{slug}', 'Site\CategoryController@show')->name('category.show');
 
 
 Route::get('/cart/get', 'Site\CartController@getCart')->name('checkout.cart.get');

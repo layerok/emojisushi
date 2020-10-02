@@ -7,7 +7,7 @@
     <title>@yield('title') - {{ config('app.name') }}</title>
     @include('site.partials.styles')
 </head>
-<body class="bg-black white roboto">
+<body class="bg-black white roboto  ">
 
 <div id="app" >
     @include('site.partials.header')

@@ -13,12 +13,16 @@
                     <form action="/cart/manipulate" method="post" data-buy  class="flex justify-between ph3 pb2 pt2 mt1 bb b--red">
                         <div class="w-80 flex items-start">
                             @if( count($product->associatedModel->images) > 0)
-                                @php  $path = $product->associatedModel->images()->first()->value('full'); @endphp
+                                @php  $path = '/storage/'. $product->associatedModel->images()->first()->value('full'); @endphp
                             @else
-                                @php $path = 'img/default.jpg' @endphp
+                                @php if(isset($product->associatedModel->image)){
+                                    $path = $product->associatedModel->image;
+                                }else{
+                                    $path ='/storage/' . 'img/default.jpg';
+                                } @endphp
                             @endif
                             <div class="w-40 flex-shrink-0">
-                                <img src="{{ '/storage/'.$path }}" alt="">
+                                <img src="{{ $path }}" alt="">
                             </div>
                             <div class="flex flex-column dark-red f6 ml2 pl1">
                                 <p  class="mt0 mb1">{{ $product->name }}</p>

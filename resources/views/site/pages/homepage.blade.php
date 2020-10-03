@@ -1,5 +1,5 @@
 @extends('site.app')
-@section('title', 'Homepage')
+@section('title', 'Главная')
 
 @section('content')
 

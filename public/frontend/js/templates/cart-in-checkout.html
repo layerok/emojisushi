@@ -2,7 +2,7 @@
     <input type="hidden" name="uid" value="${attributes.uid}" >
     <button type="submit" name="action" value="remove"  class="ph0 self-start white absolute right-0 top-0 pointer bg-transparent bn">&times;</button>
     <div class="w-40 nested-img dn db-ns">
-        <img src="{{if associatedModel.images[0] }}${associatedModel.images[0].full}{{else}} /storage/img/default.jpg {{/if}}" style="max-height:150px; width:auto" >
+        <img src="{{if associatedModel.images[0] }}${associatedModel.images[0].full}{{else associatedModel.image}} /storage/products/${associatedModel.image}{{else}} /storage/img/default.jpg {{/if}}" style="max-height:150px; width:auto" >
     </div>
     <div class="w-100 w-60-ns pl2 flex flex-column-ns flex-row justify-between">
         <div>

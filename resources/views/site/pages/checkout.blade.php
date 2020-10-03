@@ -1,5 +1,5 @@
 @extends('site.app')
-@section('title', 'Homepage')
+@section('title', 'Оплата')
 
 @section('content')
 
@@ -45,13 +45,18 @@
                                 <input name="change" class=" ph3 pv2 w-100 br2 bn placeholder-dark-red dark-red" type="text" placeholder="Приготовить сдачу с">
                             </div>
                             <div class="flex items-center">
-                                <button type="submit"  class="link db w4 bg-dark-red tc white pa3 bn br-pill bg-animate hover-bg-red pointer">
+                                <button id="checkout-loader" class="dn relative link w4 bg-dark-red tc white pa3 bn br-pill bg-animate hover-bg-red pointer">
+                                    <span style="opacity:0" >Оформить</span>
+                                    <div style="transform: scale(0.3); position: absolute ;top: -14px;left: 26px;" class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+                                    {{--<div  style="top: -16px;left: -8px;transform: scale(0.25);width: auto;height: auto;" class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>--}}
+                                </button>
+                                <button id="place-order" type="submit"  class="relative link db w4 bg-dark-red tc white pa3 bn br-pill bg-animate hover-bg-red pointer">
                                     <span >Оформить</span>
                                     {{--<div  style="top: -16px;left: -8px;transform: scale(0.25);width: auto;height: auto;" class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>--}}
                                 </button>
                                 <div  class="ml4 fw5 mv0"><span data-cart-total class="f2">{{ Cart::getTotal() }}</span> <span class="f4"> грн. </span></div>
                             </div>
-                            <div class="mt3 dark-red" >Ошибка</div>
+                           {{-- <div class="mt3 dark-red" >Ошибка</div>--}}
 
                         </form>
                     </div>
@@ -67,12 +72,16 @@
                                         <input type="hidden" name="uid" value="{{ $product->attributes->uid }}" >
                                         <button type="submit" name="action" value="remove"  class="ph0 self-start white absolute right-0 top-0 pointer bg-transparent bn">&times;</button>
                                         @if( count($product->associatedModel->images) > 0)
-                                            @php  $path = $product->associatedModel->images()->first()->value('full'); @endphp
+                                            @php  $path = '/storage/'. $product->associatedModel->images()->first()->value('full'); @endphp
                                         @else
-                                            @php $path = 'img/default.jpg' @endphp
+                                            @php if(isset($product->associatedModel->image)){
+                                                $path = $product->associatedModel->image;
+                                            }else{
+                                                $path ='/storage/' . 'img/default.jpg';
+                                            } @endphp
                                         @endif
                                         <div class="w-40 nested-img dn db-ns">
-                                            <img src="{{ '/storage/'.$path }}" style="max-height:150px; width:auto" >
+                                            <img src="{{ $path }}" style="max-height:150px; width:auto" >
                                         </div>
                                         <div class="w-100 w-60-ns pl2 flex flex-column-ns flex-row justify-between">
                                             <div>

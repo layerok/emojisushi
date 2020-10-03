@@ -28,7 +28,11 @@ class IndexController extends Controller
 
         $searched_word = $_GET['word'] ?? '';
 
-        $products = \App\Models\Product::with(['attributes.attributeValues', 'images'])->where('name', 'like', "%{$searched_word}%" )->get();
+        $products = \App\Models\Product::with(['attributes.attributeValues', 'images'])
+            ->where('hidden', '=', 0)
+            ->when($this->catalog_sort, function ($query, $sortBy) {
+               return $query->orderByRaw($sortBy);
+            })->where('name', 'like', "%{$searched_word}%" )->get();
 
         return view('site.pages.homepage', compact('products'));
     }

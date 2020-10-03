@@ -1,13 +1,20 @@
 <div   class="pa3-l pa2 w-50 w-50-ns w-33-l ">
     <div class="br3 ba b--dark-red pa3-l pa2 h-100">
-        <div class="flex flex-column pb1 pb2 h-100">
+        <div class="flex flex-column pb1 pb2 h-100 relative">
             <div class="nested-img flex flex-shrink-0 justify-center "  >
                 @if( count($product->images) > 0)
-                    @php  $path = $product->images()->first()->value('full'); @endphp
+                    @php  $path = '/storage/'. $product->images()->first()->value('full'); @endphp
                 @else
-                    @php $path = 'img/default.jpg' @endphp
+                    @php
+                        if(isset($product->image)){
+                            $path = $product->image;
+                        }else{
+                            $path ='/storage/' . 'img/default.jpg';
+                        }
+
+                    @endphp
                 @endif
-                    <img class="self-center align-center-start" style=" width:auto; max-height:220px" src="{{ '/storage/'.$path }}" alt="">
+                    <img class="self-center align-center-start" style=" width:auto; max-height:220px" src="{{ $path }}" alt="">
                 <!--<div class="h4 contain" :style="{backgroundImage: 'url(' + item.poster_image + ')'}"  ></div>-->
             </div>
             <form action="{{ route('cart.manipulate') }}" method="post" data-buy class="flex flex-column justify-between h-100">
@@ -19,6 +26,7 @@
                             @php
                                 $modificators = [];
                                 $ingredients = [];
+                                $sharpness = [];
                                 $i = -1;
                             @endphp
                             @foreach($product->attributes as $productAttribute)
@@ -28,6 +36,10 @@
                                     @if($attributeValue->attribute_id == 3)
 
                                         @php $ingredients[] = $attributeValue->value @endphp
+                                    @endif
+                                    @if($attributeValue->attribute_id == 6)
+
+                                        @php $sharpness[] = $attributeValue @endphp
                                     @endif
 
                                     @if($attributeValue->attribute->frontend_type == 'radio')
@@ -42,7 +54,7 @@
 
 
                                             <input data-modificator id="modificator_{{ $attributeValue->poster_id }}" class="checked-bg-dark-red checked-white dn" type="radio" name="active_modificator" value="{{ $i }}"  checked >
-                                            <label class=" ma2 w-100-l bg-white dark-red pa2 tc br-pill shadow-1 pointer" for="modificator_{{ $attributeValue->poster_id }}">{{ $attributeValue->value }}</label>
+                                            <label class=" ma2 w-100-l bg-white dark-red pa2 tc br-pill shadow-1 pointer flex items-center justify-center" for="modificator_{{ $attributeValue->poster_id }}">{{ $attributeValue->value }}</label>
 
                                     @endif
                                 @endforeach
@@ -53,6 +65,22 @@
                         </p>
                     </div>
                 </div>
+
+                @foreach($sharpness as $sharp)
+                    @if($sharp->id == 1172)
+                        <div class="bg-black pa1 w2 nested-img absolute top-1 right-1 br-100">
+                            <img src="{{ '/storage/img/chili.svg' }}" alt="">
+                        </div>
+
+                    @endif
+
+                    @if($sharp->id == 1173)
+                        <div class="bg-black pa1 w2 nested-img absolute top-1 right-1 br-100">
+                            <img src="{{ '/storage/img/herb.svg' }}" alt="">
+                        </div>
+
+                    @endif
+                @endforeach
 
                 <div class="flex flex-column">
                     <p  class="self-end f4-l f7 mt2 mb1">{{ number_format($product->weight, '0', ',', ' ') . ' ' . $product->unit }}</p>

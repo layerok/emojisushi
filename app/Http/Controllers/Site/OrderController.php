@@ -39,11 +39,20 @@ class OrderController extends Controller
             $products = [];
 
             foreach(Cart::getContent() as $value){
-                $products[] = [
+
+                $product = [
                     'product_id' => $value->associatedModel->poster_id,
-                    'count'      => $value->quantity,
-                    'modificator_id' => $value->associatedModel->poster_id
+                    'count'      => $value->quantity
                 ];
+                $modificator = [];
+                if(isset($value->attributes['active_modificator'])){
+                    $modificator = [
+                        'modificator_id' => $value->attributes->uid
+                    ];
+                }
+
+
+                $products[] = array_merge($product, $modificator);
             }
 
             $order = [
@@ -56,10 +65,10 @@ class OrderController extends Controller
                 'products'   => $products
             ];
 
-            return json_encode($order);
+            //return json_encode($order);
 
             $poster = new Poster($spot->poster_token);
-            //return json_encode($poster->sendOrder($order));
+            return json_encode($poster->sendOrder($order));
 
         }else{
             // spot not found

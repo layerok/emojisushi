@@ -61,13 +61,30 @@ window.addEventListener("load", function(event) {
     $('.checkout-form').each(function(){
         $(this).validate({
             submitHandler: function (form, event) {
+
+                $("#checkout-loader").addClass('db');
+                $("#checkout-loader").removeClass('dn');
+
+                $("#place-order").addClass('dn');
+                $("#place-order").removeClass('db');
                 event.preventDefault();
                 console.log(form);
                 $(form).ajaxSubmit({
                     dataType: 'json',
                     success: function (res) {
-                        console.log(res);
-                        //$.notify(res.message, res.status);
+
+                        let response = JSON.parse(res);
+                        console.log(response);
+                        let messages = {
+                            37: 'Перепроверьте введенный номер телефона'
+                        }
+                        if(messages.hasOwnProperty(response.error)){
+
+                            $.notify(messages[response.error], 'error');
+                        }else{
+                            $.notify(response.message, 'error');
+                        }
+
                         //getCart();
 
                         // if (res.status != 'error') {
@@ -79,10 +96,20 @@ window.addEventListener("load", function(event) {
                         //         window.location.href = "/orders/thankyou";
                         //     }
                         // }
+                        $("#checkout-loader").addClass('dn');
+                        $("#checkout-loader").removeClass('db');
+
+                        $("#place-order").addClass('db');
+                        $("#place-order").removeClass('dn');
 
                     },
                     error: function () {
                         $.notify('Ошибка', 'error')
+                        $("#checkout-loader").addClass('dn');
+                        $("#checkout-loader").removeClass('db');
+
+                        $("#place-order").addClass('db');
+                        $("#place-order").removeClass('dn');
                     }
                 });
             },

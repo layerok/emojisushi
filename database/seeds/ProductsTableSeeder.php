@@ -46,7 +46,7 @@ class ProductsTableSeeder extends Seeder
                     'name'          => $value['product_name'],
                     'poster_id'     => $value['product_id'],
                     'weight'        => $value['out'],
-                    'image'         => $value['photo_origin'] ? $spot->poster_link . $value['photo_origin'] : null,
+                    'image'         => $value['photo'] ? $spot->poster_link . $value['photo'] : null,
                     'unit'          => $value['unit'],
                     'sort_order'    => $value['sort_order']
                 ];

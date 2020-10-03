@@ -25,7 +25,7 @@
                         <img src="/img/logosumoist.png" alt="">
                     </a>
                     <p><span class="dark-red">Время работы:</span> 11:00-22:00</p>
-                    <form class="relative mb2" method="get" action="/" autocomplete="off">
+                    <form class="relative mb2" method="get" action="/#products" autocomplete="off">
                         @csrf
                         <input name="word" type="text" class="outline-0 br-pill ba b--dark-red b--top b--left b--right b--bottom bg-transparent white pa3 placeholder-white" placeholder="Поиск" @isset($_GET['word']) value="{{ $_GET['word'] }}" @endisset>
                         <button class="absolute bg-transparent bn pointer " style="top:15px; right:11px" type="submit">

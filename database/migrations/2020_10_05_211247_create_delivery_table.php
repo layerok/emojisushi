@@ -4,10 +4,13 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTableDelivery extends Migration
+class CreateDeliveryTable extends Migration
 {
-
-
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
     public function up()
     {
         Schema::create('delivery', function (Blueprint $table) {
@@ -15,13 +18,16 @@ class CreateTableDelivery extends Migration
             $table->text('name');
             $table->decimal('price', 8, 2)->nullable();
             $table->boolean('hidden')->default(0);
-
         });
     }
 
-       public function down()
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
     {
         Schema::dropIfExists('delivery');
     }
-
 }

@@ -142,6 +142,10 @@ label.error{
     transform: scale(1);
 }
 
+.placeholder-orange::placeholder{
+    color: #ff6300;
+}
+
 .placeholder-dark-red::placeholder{
     color: #e7040f;
 }
@@ -157,9 +161,12 @@ label.error{
     color: white;
 }
 
-.placeholder-dark-red::placeholder{
-    color: #e7040f;
+.checked-bg-orange:checked + label {
+    background-color: #ff6300;
 }
+
+
+
 
 .roboto{
     font-family: 'Roboto', sans-serif;

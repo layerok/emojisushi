@@ -29,4 +29,7 @@ Route::group(['prefix' => 'order'], function(){
     Route::post('/send', 'Site\OrderController@send')->name('order.send');
 });
 
+Route::get('/delivery-and-payment', 'Site\PagesController@delivery')->name('pages.delivery');
+Route::get('/thankyou', 'Site\PagesController@thankyou')->name('pages.thankyou');
+
 

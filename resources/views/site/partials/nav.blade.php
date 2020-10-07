@@ -11,6 +11,13 @@
                 </li>
 
             @endforeach
+                <li  class="mv1 flex-shrink-0"><!---->
+                    <a href="{{ route('pages.delivery') }}"  class="@if (\Route::current()->getName() == 'pages.delivery')  bg-orange black @else white @endif  ph3-ns ph1 pv1 br-pill link mr2-ns mr1 hover-bg-orange hover-black  ">
+                        <span class="ph1">Доставка и оплата</span>
+                    </a>
+                </li>
+
+
 
 
         </ul>

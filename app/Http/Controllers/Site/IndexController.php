@@ -30,10 +30,13 @@ class IndexController extends Controller
         $searched_word = $_GET['word'] ?? '';
 
         $products = \App\Models\Product::with(['attributes.attributeValues', 'images'])
-            ->where('hidden', '=', 0)
+            ->select('products.*')
+            ->leftJoin('product_categories', 'products.id', '=', 'product_categories.product_id' )
+            ->leftJoin('categories', 'categories.id', '=', 'product_categories.category_id' )
+            ->where('products.hidden', '=', 0)
             ->when($this->catalog_sort, function ($query, $sortBy) {
                return $query->orderByRaw($sortBy);
-            })->where('name', 'like', "%{$searched_word}%" )->get();
+            })->where('products.name', 'like', "%{$searched_word}%" )->get();
 
         return view('site.pages.homepage', compact('products'));
     }
@@ -55,7 +58,7 @@ class IndexController extends Controller
         switch ($catalog_sort_type) {
             case 1:
                 // по умолчанию
-                $this->catalog_sort = "id DESC";
+                $this->catalog_sort = "categories.sort_order DESC";
                 break;
             case 2:
                 // Цена (возрастание)
@@ -67,11 +70,11 @@ class IndexController extends Controller
                 break;
             case 4:
                 // Сначала новые
-                $this->catalog_sort = 'id ASC';
+                $this->catalog_sort = 'categories.sort_order DESC, products.id ASC ';
                 break;
             case 5:
                 // Сначала старые
-                $this->catalog_sort = 'id DESC';
+                $this->catalog_sort = ' categories.sort_order DESC, products.id DESC';
                 break;
             default:
                 // Сортировка не применяется

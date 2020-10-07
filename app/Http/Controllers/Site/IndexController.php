@@ -33,7 +33,10 @@ class IndexController extends Controller
             ->select('products.*')
             ->leftJoin('product_categories', 'products.id', '=', 'product_categories.product_id' )
             ->leftJoin('categories', 'categories.id', '=', 'product_categories.category_id' )
-            ->where('products.hidden', '=', 0)
+            ->where([
+                ['products.hidden', '=', 0],
+                ['categories.hidden', '=', 0]
+            ])
             ->when($this->catalog_sort, function ($query, $sortBy) {
                return $query->orderByRaw($sortBy);
             })->where('products.name', 'like', "%{$searched_word}%" )->get();

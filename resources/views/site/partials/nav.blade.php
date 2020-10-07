@@ -5,7 +5,7 @@
         <ul class="w-100 ma0 pv3 list flex justify-between items-center ph2 overflow-y-auto">
             @foreach($categories as $category)
                 <li  class="mv1 flex-shrink-0"><!---->
-                    <a href="/category/{{ $category->slug }}"  class="@isset($slug)@if($slug == $category->slug) bg-orange @endif @endisset ph3-ns ph1 pv1 br-pill link mr2-ns mr1 hover-bg-orange hover-white white ">
+                    <a href="/category/{{ $category->slug }}"  class="@isset($slug)@if($slug == $category->slug) bg-orange black @else white @endif @else white @endisset ph3-ns ph1 pv1 br-pill link mr2-ns mr1 hover-bg-orange hover-black  ">
                         <span class="ph1">{{ $category->name }}</span>
                     </a>
                 </li>

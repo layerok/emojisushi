@@ -4,19 +4,16 @@
     <div class="swiper-wrapper">
         <!-- Slides -->
         <div class="swiper-slide">
-            <img src="/img/slide1.jpg" alt="">
+            <img src="/storage/img/slides/slide1.jpg" alt="">
         </div>
         <div class="swiper-slide">
-            <img src="/img/slide2.jpg" alt="">
+            <img src="/storage/img/slides/slide2.jpg" alt="">
         </div>
         <div class="swiper-slide">
-            <img src="/img/slide3.jpg" alt="">
+            <img src="/storage/img/slides/slide3.jpg" alt="">
         </div>
         <div class="swiper-slide">
-            <img src="/img/slide4.jpg" alt="">
-        </div>
-        <div class="swiper-slide">
-            <img src="/img/slide5.jpg" alt="">
+            <img src="/storage/img/slides/slide4.jpg" alt="">
         </div>
 
     </div>

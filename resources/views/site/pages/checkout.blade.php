@@ -15,42 +15,42 @@
                         <form  class="mt2 checkout-form"  action="{{ route('order.send') }}" method="post">
                             @csrf
                             <div class="flex mb3 pb2">
-                                <input  id="deliveryMethod1" class="checked-bg-orange checked-white dn" type="radio" name="deliveryMethod" value="Заказ на вынос" checked >
-                                <label class="w-100 bg-white orange pa2 tc br2 br--left  pointer" for="deliveryMethod1">Заказ на вынос</label>
-                                <input  id="deliveryMethod2" class="checked-bg-orange checked-white dn" type="radio" name="deliveryMethod" value="Доставка">
-                                <label class="w-100 bg-white orange pa2 tc br2 br--right orange pointer" for="deliveryMethod2">Доставка</label>
+                                <input  id="deliveryMethod1" class="checked-bg-orange checked-black dn" type="radio" name="deliveryMethod" value="Заказ на вынос" checked >
+                                <label class="w-100 bg-white black pa2 tc br2 br--left  pointer" for="deliveryMethod1">Заказ на вынос</label>
+                                <input  id="deliveryMethod2" class="checked-bg-orange checked-black dn" type="radio" name="deliveryMethod" value="Доставка">
+                                <label class="w-100 bg-white black pa2 tc br2 br--right pointer" for="deliveryMethod2">Доставка</label>
                             </div>
                             <div class="flex flex-column mb3 pb2">
-                                <input  name="name" class=" ph3 pv2 w-100 br2 bn placeholder-orange orange" type="text" placeholder="Имя">
+                                <input  name="name" class=" ph3 pv2 w-100 br2 bn placeholder-black black" type="text" placeholder="Имя">
                             </div>
                             <div class="flex flex-column mb3 pb2">
-                                <input  name="email" class=" ph3 pv2 w-100 br2 bn placeholder-orange orange" type="text" placeholder="Email">
+                                <input  name="email" class=" ph3 pv2 w-100 br2 bn placeholder-black black" type="text" placeholder="Email">
                             </div>
                             <div class="flex flex-column mb3 pb2">
-                                <input name="phone" data-type="phone"  value="" type="tel"  class=" ph3 pv2 w-100 br2 bn placeholder-orange orange" placeholder="Телефон"></input>
+                                <input name="phone" data-type="phone"  value="" type="tel"  class=" ph3 pv2 w-100 br2 bn placeholder-black black" placeholder="Телефон"></input>
                             </div>
                             <div class="flex flex-column mb3 pb2">
-                                <input name="address" class=" ph3 pv2 w-100 br2 bn placeholder-orange orange" type="text" placeholder="Адрес доставки">
+                                <input name="address" class=" ph3 pv2 w-100 br2 bn placeholder-black black" type="text" placeholder="Адрес доставки">
                             </div>
                             <div class="flex flex-column mb3 pb2">
-                                <input  name="comment" class=" ph3 pv2 w-100 br2 bn placeholder-orange orange" type="text" placeholder="Комментарий к заказу">
+                                <input  name="comment" class=" ph3 pv2 w-100 br2 bn placeholder-black black" type="text" placeholder="Комментарий к заказу">
                             </div>
                             <div class="flex mb3 pb2">
-                                <input id="paymentMethod1" class="checked-bg-orange checked-white dn" type="radio" name="paymentMethod" value="Наличные" checked  >
-                                <label class="w-100 bg-white orange pa2 tc br2 br--left  pointer" for="paymentMethod1">Наличные</label>
-                                <input id="paymentMethod2" class="checked-bg-orange checked-white dn" type="radio" name="paymentMethod" value="Картой">
-                                <label class="w-100 bg-white orange pa2 tc br2 br--right pointer" for="paymentMethod2">Картой</label>
+                                <input id="paymentMethod1" class="checked-bg-orange checked-black dn" type="radio" name="paymentMethod" value="Наличные" checked  >
+                                <label class="w-100 bg-white black pa2 tc br2 br--left  pointer" for="paymentMethod1">Наличные</label>
+                                <input id="paymentMethod2" class="checked-bg-orange checked-black dn" type="radio" name="paymentMethod" value="Картой">
+                                <label class="w-100 bg-white black pa2 tc br2 br--right pointer" for="paymentMethod2">Картой</label>
                             </div>
                             <div class="flex flex-column mb3 pb2">
-                                <input name="change" class=" ph3 pv2 w-100 br2 bn placeholder-orange orange" type="text" placeholder="Приготовить сдачу с">
+                                <input name="change" class=" ph3 pv2 w-100 br2 bn placeholder-black black" type="text" placeholder="Приготовить сдачу с">
                             </div>
                             <div class="flex items-center">
-                                <button id="checkout-loader" class="dn relative link w4 bg-orange tc white pa3 bn br-pill bg-animate hover-bg-gold pointer">
+                                <button id="checkout-loader" class="dn relative link w4 bg-orange tc black pa3 bn br-pill bg-animate hover-bg-gold pointer">
                                     <span style="opacity:0" >Оформить</span>
                                     <div style="transform: scale(0.3); position: absolute ;top: -14px;left: 26px;" class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
                                     {{--<div  style="top: -16px;left: -8px;transform: scale(0.25);width: auto;height: auto;" class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>--}}
                                 </button>
-                                <button id="place-order" type="submit"  class="relative link db w4 bg-orange tc white pa3 bn br-pill bg-animate hover-bg-gold pointer">
+                                <button id="place-order" type="submit"  class="relative link db w4 bg-orange tc black pa3 bn br-pill bg-animate hover-bg-gold pointer">
                                     <span >Оформить</span>
                                     {{--<div  style="top: -16px;left: -8px;transform: scale(0.25);width: auto;height: auto;" class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>--}}
                                 </button>
@@ -72,7 +72,7 @@
                                         <input type="hidden" name="uid" value="{{ $product->attributes->uid }}" >
                                         <button type="submit" name="action" value="remove"  class="ph0 self-start white absolute right-0 top-0 pointer bg-transparent bn">&times;</button>
                                         @if( count($product->associatedModel->images) > 0)
-                                            @php  $path = '/storage/'. $product->associatedModel->images()->first()->value('full'); @endphp
+                                            @php  $path = '/storage/'. $product->associatedModel->images()->first()->full; @endphp
                                         @else
                                             @php if(isset($product->associatedModel->image)){
                                                 $path = $product->associatedModel->image;

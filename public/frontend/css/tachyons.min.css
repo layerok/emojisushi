@@ -452,7 +452,7 @@ img {
 }
 
 .b--orange {
-    border-color: #ff6300
+    border-color: #F8CE46
 }
 
 .b--gold {
@@ -1712,7 +1712,7 @@ img {
 }
 
 .orange {
-    color: #ff6300
+    color: #F8CE46
 }
 
 .gold {
@@ -1940,7 +1940,7 @@ img {
 }
 
 .bg-orange {
-    background-color: #ff6300
+    background-color: #F8CE46
 }
 
 .bg-gold {
@@ -2384,7 +2384,7 @@ img {
 }
 
 .hover-bg-orange:focus, .hover-bg-orange:hover {
-    background-color: #ff6300
+    background-color: #F8CE46
 }
 
 .hover-bg-gold:focus, .hover-bg-gold:hover {

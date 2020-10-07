@@ -3,7 +3,7 @@
         <div class="flex flex-column pb1 pb2 h-100 relative">
             <div class="nested-img flex flex-shrink-0 justify-center "  >
                 @if( count($product->images) > 0)
-                    @php  $path = '/storage/'. $product->images()->first()->value('full'); @endphp
+                    @php  $path = '/storage/'. $product->images()->first()->full; @endphp
                 @else
                     @php
                         if(isset($product->image)){
@@ -53,16 +53,17 @@
                                         @endphp
 
 
-                                            <input data-modificator id="modificator_{{ $attributeValue->poster_id }}" class="checked-bg-orange checked-white dn" type="radio" name="active_modificator" value="{{ $i }}"  checked >
-                                            <label class=" ma2 w-100-l bg-white orange pa2 tc br-pill shadow-1 pointer flex items-center justify-center" for="modificator_{{ $attributeValue->poster_id }}">{{ $attributeValue->value }}</label>
+                                            <input data-modificator id="modificator_{{ $attributeValue->poster_id }}" class="checked-bg-orange checked-black dn" type="radio" name="active_modificator" value="{{ $i }}"  checked >
+                                            <label class=" ma2 w-100-l bg-white black pa2 tc br-pill shadow-1 pointer flex items-center justify-center" for="modificator_{{ $attributeValue->poster_id }}">{{ $attributeValue->value }}</label>
 
                                     @endif
                                 @endforeach
 
                             @endforeach
-                            {{ implode(', ', $ingredients) }}
-                            <input type="hidden" name="ingredients" value="{{ implode(', ', $ingredients) }}">
+
                         </p>
+                        <p>{{ implode(', ', $ingredients) }}</p>
+                        <input type="hidden" name="ingredients" value="{{ implode(', ', $ingredients) }}">
                     </div>
                 </div>
 
@@ -92,19 +93,19 @@
                                 <input type="hidden" name="modificator_value[]" value="{{ $modificator['value'] }}">
                                 <input type="hidden" name="modificator_price[]" value="{{ $modificator['price'] }}">
 
-                                <button data-control-add type="submit" name="action" value="add" class="@if(Cart::get($modificator['id'] )) dn @endif order-2 order-1-ns w4 bg-orange tc white pa3 bn br-pill bg-animate hover-bg-gold pointer">
+                                <button data-control-add type="submit" name="action" value="add" class="@if(Cart::get($modificator['id'] )) dn @endif order-2 order-1-ns w4 bg-orange tc black pa3 bn br-pill bg-animate hover-bg-gold pointer">
                                     В корзину
                                 </button>
 
                                 <div data-control-update class="order-2 order-1-l @if(!Cart::get($modificator['id'])) dn @endif" >
-                                    <div class="flex bg-orange w4 white br-pill overflow-hidden ">
-                                        <button name="action" value="decrease" type="submit" class="w-third bn  pv3 ph2 bg-inherit white bg-animate hover-bg-gold pointer">-</button>
+                                    <div class="flex bg-orange w4 black br-pill overflow-hidden ">
+                                        <button name="action" value="decrease" type="submit" class="w-third bn  pv3 ph2 bg-inherit black bg-animate hover-bg-gold pointer">-</button>
                                         <div data-control-quantity class="w-third tc pv3">
                                             @if(Cart::get($modificator['id']))
                                                 {{ Cart::get($modificator['id'])['quantity'] }}
                                             @endif
                                         </div>
-                                        <button name="action" value="increase" type="submit" class="w-third bn  pv3 ph2 bg-inherit white bg-animate hover-bg-gold pointer">+</button>
+                                        <button name="action" value="increase" type="submit" class="w-third bn  pv3 ph2 bg-inherit black bg-animate hover-bg-gold pointer">+</button>
                                     </div>
                                 </div>
 
@@ -116,19 +117,19 @@
                             <input type="hidden" name="product_id" value="{{ $product->id }}">
                             <input type="hidden" name="uid" value="{{ $product->id }}">
 
-                            <button data-control-add type="submit" name="action" value="add" class="@if(Cart::get($product->id)) dn @endif order-2 order-1-ns w4 bg-orange tc white pa3 bn br-pill bg-animate hover-bg-gold pointer">
+                            <button data-control-add type="submit" name="action" value="add" class="@if(Cart::get($product->id)) dn @endif order-2 order-1-ns w4 bg-orange tc black pa3 bn br-pill bg-animate hover-bg-gold pointer">
                                 В корзину
                             </button>
 
                             <div data-control-update class="order-2 order-1-l @if(!Cart::get($product->id)) dn @endif" >
-                                <div class="flex bg-orange w4 white br-pill overflow-hidden ">
-                                    <button name="action" value="decrease" type="submit" class="w-third bn  pv3 ph2 bg-inherit white bg-animate hover-bg-gold pointer">-</button>
+                                <div class="flex bg-orange w4 black br-pill overflow-hidden ">
+                                    <button name="action" value="decrease" type="submit" class="w-third bn  pv3 ph2 bg-inherit black bg-animate hover-bg-gold pointer">-</button>
                                     <div data-control-quantity class="w-third tc pv3">
                                         @if(Cart::get($product->id))
                                             {{ Cart::get($product->id)['quantity'] }}
                                         @endif
                                     </div>
-                                    <button name="action" value="increase" type="submit" class="w-third bn  pv3 ph2 bg-inherit white bg-animate hover-bg-gold pointer">+</button>
+                                    <button name="action" value="increase" type="submit" class="w-third bn  pv3 ph2 bg-inherit black bg-animate hover-bg-gold pointer">+</button>
                                 </div>
                             </div>
 

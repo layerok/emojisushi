@@ -6,8 +6,8 @@
 
 <!-- Magnific Popup core CSS file -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" integrity="sha512-+EoPw+Fiwh6eSeRK7zwIKG2MA8i3rV/DGa3tdttQGgWyatG/SkncT53KHQaS5Jh9MNOT3dmFL0FjTY08And/Cw==" crossorigin="anonymous" />
-<link rel="stylesheet" href="{{ asset('frontend/css/tachyons.min.css') }}"/>
-<link rel="stylesheet" href="{{ asset('frontend/css/custom-tachyons.css') }}"/>
+<link rel="stylesheet" href="/frontend/css/tachyons.min.css"/>
+<link rel="stylesheet" href="/frontend/css/custom-tachyons.css"/>
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css">
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 

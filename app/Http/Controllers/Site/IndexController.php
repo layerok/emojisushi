@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Site;
 
+use Illuminate\Support\Facades\DB;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -54,7 +55,7 @@ class IndexController extends Controller
         switch ($catalog_sort_type) {
             case 1:
                 // по умолчанию
-                $this->catalog_sort = "id ASC";
+                $this->catalog_sort = "id DESC";
                 break;
             case 2:
                 // Цена (возрастание)

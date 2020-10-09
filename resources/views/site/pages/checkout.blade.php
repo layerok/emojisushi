@@ -35,6 +35,9 @@
                             <div class="flex flex-column mb3 pb2">
                                 <input  name="comment" class=" ph3 pv2 w-100 br2 bn placeholder-black black" type="text" placeholder="Комментарий к заказу">
                             </div>
+                            <div class="flex flex-column mb3 pb2">
+                                <input  name="sticks" class=" ph3 pv2 w-100 br2 bn placeholder-black black" type="text" placeholder="Палочки на сколько персон?">
+                            </div>
                             <div class="flex mb3 pb2">
                                 <input id="paymentMethod1" class="checked-bg-orange checked-black dn" type="radio" name="paymentMethod" value="Наличные" checked  >
                                 <label class="w-100 bg-white black pa2 tc br2 br--left  pointer" for="paymentMethod1">Наличные</label>

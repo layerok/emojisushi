@@ -7,6 +7,7 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Contracts\CategoryContract;
+use App\Libraries\Telegram;
 use Cart;
 
 class IndexController extends Controller
@@ -16,6 +17,7 @@ class IndexController extends Controller
 
     public function index()
     {
+
 
         //Cart::clear();
         $this->setCatalogSort();

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Site;
 
 use App\Libraries\Poster;
+use App\Libraries\Telegram;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Cart;
@@ -34,15 +35,24 @@ class OrderController extends Controller
             if(!empty($data['change'])){
                 $comment .= " || Приготовить сдачу с: ".$data['change'];
             }
+            if(!empty($data['sticks'])){
+                $comment .= " || Кол-во палочек: ".$data['sticks'];
+            }
 
 
             $products = [];
+            $productsForTelegram = [];
 
             foreach(Cart::getContent() as $value){
 
                 $product = [
                     'product_id' => $value->associatedModel->poster_id,
                     'count'      => $value->quantity
+                ];
+                $productForTelegram = [
+                    'name' => $value->name,
+                    'count'      => $value->quantity,
+                    'category_id' => $value->associatedModel
                 ];
                 $modificator = [];
                 if(isset($value->attributes['active_modificator'])){
@@ -53,7 +63,18 @@ class OrderController extends Controller
 
 
                 $products[] = array_merge($product, $modificator);
+                $productsForTelegram[] = $productForTelegram;
             }
+
+            $orderForTelegram = [
+                'first_name' => $data['name'],
+                'phone'      => $data['phone'],
+                'email'      => $data['email'],
+                'comment'    => $comment,
+                'address'    => $data['address'],
+                'products'   => $productsForTelegram,
+                'total'      => Cart::getTotal() . 'грн'
+            ];
 
             $order = [
                 'spot_id' => 1,
@@ -65,10 +86,23 @@ class OrderController extends Controller
                 'products'   => $products
             ];
 
+
+
             //return json_encode($order);
 
             $poster = new Poster($spot->poster_token);
-            return json_encode($poster->sendOrder($order));
+
+            $response = json_decode($poster->sendOrder($order), true);
+
+
+
+            if(!isset($response['error'])){
+                $bot = new Telegram(env('TELEGRAM_BOT_ID'), env('TELEGRAM_CHAT_ID'));
+                $bot->send('Новый заказ', $orderForTelegram);
+                //var_dump($response);
+                //$response[] = $response;
+            }
+            return json_encode($response);
 
         }else{
             // spot not found

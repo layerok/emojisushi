@@ -1,7 +1,8 @@
 
 window.addEventListener("load", function(event) {
+    $("#beanEater").delay().fadeOut();
     $.notify.defaults({
-       position: 'bottom right',
+        position: 'bottom right',
     });
     $.ajaxSetup({
         headers: {
@@ -71,10 +72,10 @@ window.addEventListener("load", function(event) {
                 console.log(form);
                 $(form).ajaxSubmit({
                     dataType: 'json',
-                    success: function (res) {
-
-                        let response = JSON.parse(res);
-                        console.log(response);
+                    success: function (response) {
+                        //console.log(res);
+                        //let response = JSON.parse(res);
+                        //console.log(response);
                         let messages = {
                             37: 'Перепроверьте введенный номер телефона',
                             33: 'Введите действительный email'

@@ -9,7 +9,7 @@
     @include('site.partials.styles')
 </head>
 <body class="bg-black white roboto  ">
-<div id="beanEater" class="flex justify-center items-center min-vh-100 w-100 fixed z-max bg-white">
+<div id="beanEater" class="flex justify-center items-center min-vh-100 w-100 fixed z-max bg-black">
     <img src="{{ asset('/storage/img/bean_eater.svg') }}" alt="">
 </div>
 

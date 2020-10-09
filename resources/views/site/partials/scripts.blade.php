@@ -15,7 +15,7 @@
 <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script src="{{ asset('frontend/js/cart.js') }}" type="text/javascript"></script>
-<script src="/frontend/js/script.js?23" type="text/javascript"></script>
+<script src="/frontend/js/script.js?24" type="text/javascript"></script>
 
 
 

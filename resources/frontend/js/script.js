@@ -1,6 +1,8 @@
-
-window.addEventListener("load", function(event) {
+$(document).ready(function(){
     $("#beanEater").delay().fadeOut();
+})
+window.addEventListener("load", function(event) {
+
     $.notify.defaults({
         position: 'bottom right',
     });

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Site;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Cart;
 
 class PagesController extends Controller
 {
@@ -13,7 +14,7 @@ class PagesController extends Controller
     }
 
     public function thankyou(){
-
+        Cart::clear();
         return view('site.pages.thankyou', ['page']);
     }
 }

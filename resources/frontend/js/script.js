@@ -1,7 +1,7 @@
 
 window.addEventListener("load", function(event) {
     $.notify.defaults({
-       position: 'bottom right',
+        position: 'bottom right',
     });
     $.ajaxSetup({
         headers: {
@@ -76,14 +76,20 @@ window.addEventListener("load", function(event) {
                         let response = JSON.parse(res);
                         console.log(response);
                         let messages = {
-                            37: 'Перепроверьте введенный номер телефона'
+                            37: 'Перепроверьте введенный номер телефона',
+                            33: 'Введите действительный email'
                         }
-                        if(messages.hasOwnProperty(response.error)){
+                        if(response.hasOwnProperty('error')){
+                            if(messages.hasOwnProperty(response.error)){
 
-                            $.notify(messages[response.error], 'error');
+                                $.notify(messages[response.error], 'error');
+                            }else{
+                                $.notify(response.message, 'error');
+                            }
                         }else{
-                            $.notify(response.message, 'error');
+                            window.location.href = '/thankyou';
                         }
+
 
                         //getCart();
 

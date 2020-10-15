@@ -1,6 +1,10 @@
+$(document).ready(function(){
+    $("#beanEater").delay().fadeOut();
+})
 window.addEventListener("load", function(event) {
+
     $.notify.defaults({
-       position: 'bottom right',
+        position: 'bottom right',
     });
     $.ajaxSetup({
         headers: {
@@ -60,13 +64,36 @@ window.addEventListener("load", function(event) {
     $('.checkout-form').each(function(){
         $(this).validate({
             submitHandler: function (form, event) {
+
+                $("#checkout-loader").addClass('db');
+                $("#checkout-loader").removeClass('dn');
+
+                $("#place-order").addClass('dn');
+                $("#place-order").removeClass('db');
                 event.preventDefault();
                 console.log(form);
                 $(form).ajaxSubmit({
                     dataType: 'json',
-                    success: function (res) {
-                        console.log(res);
-                        //$.notify(res.message, res.status);
+                    success: function (response) {
+                        //console.log(res);
+                        //let response = JSON.parse(res);
+                        //console.log(response);
+                        let messages = {
+                            37: 'Перепроверьте введенный номер телефона',
+                            33: 'Введите действительный email'
+                        }
+                        if(response.hasOwnProperty('error')){
+                            if(messages.hasOwnProperty(response.error)){
+
+                                $.notify(messages[response.error], 'error');
+                            }else{
+                                $.notify(response.message, 'error');
+                            }
+                        }else{
+                            window.location.href = '/thankyou';
+                        }
+
+
                         //getCart();
 
                         // if (res.status != 'error') {
@@ -78,10 +105,20 @@ window.addEventListener("load", function(event) {
                         //         window.location.href = "/orders/thankyou";
                         //     }
                         // }
+                        $("#checkout-loader").addClass('dn');
+                        $("#checkout-loader").removeClass('db');
+
+                        $("#place-order").addClass('db');
+                        $("#place-order").removeClass('dn');
 
                     },
                     error: function () {
                         $.notify('Ошибка', 'error')
+                        $("#checkout-loader").addClass('dn');
+                        $("#checkout-loader").removeClass('db');
+
+                        $("#place-order").addClass('db');
+                        $("#place-order").removeClass('dn');
                     }
                 });
             },
@@ -100,6 +137,51 @@ window.addEventListener("load", function(event) {
     })
 
 
+    //  !!!!!!!!!!!!!!!!!!!!!!!!  custom select !!!!!!!!!!!!!!!!!!!!!!!!!!!
+    let selects = document.querySelectorAll('.select');
+
+    selects.forEach(function(elem){
+        elem.addEventListener('click', function(e){
+            let list = elem.querySelector('ul');
+            let input = elem.querySelector('input');
+            let checkmark = elem.querySelector('.check-mark');
+            let currentOptionHolder = elem.querySelector('.current-option');
+
+            checkmark.classList.toggle('rotate-45');
+            checkmark.classList.toggle('rotate-225');
+            checkmark.classList.toggle('mt1');
+
+            list.classList.toggle('scale0');
+            list.classList.toggle('o-0');
+
+            elem.classList.toggle('bg-light-gray');
+            elem.classList.toggle('bg-white');
+
+            if(!e.target.classList.contains('fw5') && e.target.tagName === 'LI') {
+                input.value = e.target.dataset.value;
+                currentOptionHolder.innerHTML = e.target.innerHTML;
+                console.log(input.dataset.submitOnChange);
+                if(input.dataset.changeAction) {
+                    elem.closest('form').setAttribute('action', elem.closest('form').getAttribute('action')+'/filter/'+input.value)
+
+                }
+
+                if(input.dataset.submitOnChange){
+
+                    e.preventDefault();
+                    console.log(elem.closest('form'));
+                    elem.closest('form').submit();
+                }
+
+            }
+        });
+    });
+
+
 
 
 });
+
+
+
+

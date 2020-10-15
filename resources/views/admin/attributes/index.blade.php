@@ -16,6 +16,7 @@
                     <table class="table table-hover table-bordered" id="sampleTable">
                         <thead>
                         <tr>
+                            <th> id </th>
                             <th> Код </th>
                             <th> Имя </th>
                             <th class="text-center"> Тип в публичке </th>
@@ -27,6 +28,7 @@
                         <tbody>
                         @foreach($attributes as $attribute)
                             <tr>
+                                <td>{{ $attribute->id }}</td>
                                 <td>{{ $attribute->code }}</td>
                                 <td>{{ $attribute->name }}</td>
                                 <td>{{ $attribute->frontend_type }}</td>

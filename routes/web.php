@@ -11,23 +11,13 @@
 */
 require 'admin.php';
 
-Route::get('/', function(){
-
-
-    $products = App\Models\Product::with('attributes.attributeValues')->where([
-        ['name', 'like', "%{$_GET['word']}%" ],
-        ['hidden','=', '0'],
-        ])->get();
+Route::match(['get', 'post'],'/', 'Site\IndexController@index');
 
 
 
 
-    return view('site.pages.homepage', compact('products'));
-});
 
-
-
-Route::get('/category/{slug}', 'Site\CategoryController@show')->name('category.show');
+Route::match(['get', 'post'], '/category/{slug}', 'Site\CategoryController@show')->name('category.show');
 
 
 Route::get('/cart/get', 'Site\CartController@getCart')->name('checkout.cart.get');
@@ -40,5 +30,8 @@ Route::group(['prefix' => 'order'], function(){
 
     Route::post('/send', 'Site\OrderController@send')->name('order.send');
 });
+
+Route::get('/delivery-and-payment', 'Site\PagesController@delivery')->name('pages.delivery');
+Route::get('/thankyou', 'Site\PagesController@thankyou')->name('pages.thankyou');
 
 

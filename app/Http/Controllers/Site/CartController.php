@@ -35,7 +35,7 @@ class CartController extends Controller
         }
 
 
-        $product = Product::find($request->input('product_id'));
+
 
         //Cart::clear();
         //return json_encode($input);
@@ -48,6 +48,7 @@ class CartController extends Controller
 
             switch($request->input('action')){
                 case 'add': {
+                    $product = Product::with('images')->find($request->input('product_id'));
                     if($product->exists()){
                         $options = array_merge($options, ['uid' => $uid]);
                         if(isset($active_mod)){

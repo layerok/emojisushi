@@ -1,8 +1,9 @@
 <!-- Корзина -->
 <div  class="mh0  mh3-l pv2 order-0 flex items-center justify-end relative @isset($is_second_popup)  @else w-50 @endisset "  ><!---->
     <div class="flex flex-shrink-0"  @isset($is_second_popup) data-layerok="#show-sign-modal_2" @else data-layerok="#show-sign-modal" @endisset>
+
         <div class="nested-img pointer " >
-            <img src="/img/cart.png" alt="Корзина">
+            <img src="/storage/img/cart.svg" alt="Корзина">
         </div>
         <div class="flex flex-column justify-between ml3-ns pl2">
             <div  class="f4"><span data-cart-total>{{ Cart::getTotal() }}</span> грн.</div>

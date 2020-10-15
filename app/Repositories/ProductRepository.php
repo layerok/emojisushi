@@ -70,7 +70,7 @@ class ProductRepository extends BaseRepository implements ProductContract
 
 
             $merge = $collection->merge(compact('hidden'));
-            dd($merge->all());
+            //dd($merge->all());
             $product = new Product($merge->all());
 
             $product->save();

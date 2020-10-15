@@ -60,6 +60,20 @@
                                         <i class="fa fa-exclamation-circle fa-fw"></i> @error('poster_id') <span>{{ $message }}</span> @enderror
                                     </div>
                                 </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="image">Ссылка на изображение</label>
+                                    <input
+                                        class="form-control @error('image') is-invalid @enderror"
+                                        type="text"
+                                        placeholder="Введить ссылку на изображение"
+                                        id="image"
+                                        name="image"
+                                        value="{{ old('image', $product->image) }}"
+                                    />
+                                    <div class="invalid-feedback active">
+                                        <i class="fa fa-exclamation-circle fa-fw"></i> @error('image') <span>{{ $message }}</span> @enderror
+                                    </div>
+                                </div>
 
                                 <div class="row">
                                     <div class="col-md-12">

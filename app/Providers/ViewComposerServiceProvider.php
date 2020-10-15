@@ -17,7 +17,10 @@ class ViewComposerServiceProvider extends ServiceProvider
     public function boot()
     {
         View::composer('site.partials.nav', function ($view) {
-            $view->with('categories', Category::all()->where('id', '>' , 1));
+            $view->with('categories', Category::where([
+                ['id', '>' , 1],
+                ['hidden', '=' , 0],
+            ])->orderBy('sort_order', 'desc')->get());
         });
         View::composer('site.partials.header', function ($view) {
             $view->with('cartCount', Cart::getContent()->count());

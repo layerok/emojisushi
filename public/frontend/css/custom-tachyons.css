@@ -134,6 +134,7 @@ label.error{
     max-width: 1202px;
 }
 
+
 .scale0{
     transform: scale(0);
 }
@@ -148,6 +149,7 @@ label.error{
 .placeholder-black::placeholder{
     color: black;
 }
+
 
 .placeholder-dark-red::placeholder{
     color: #e7040f;

@@ -86,12 +86,12 @@ class OrderController extends Controller
 
             //return json_encode($order);
             if(env('APP_PRODUCTION_MODE')){
-                $poster = new Poster($spot->poster_token);
+                $poster = new Poster(env('POSTER_TOKEN'));
                 //$response = json_decode($poster->sendOrder($order), true);
 
                 if(!isset($response['error'])){
                     $bot = new Telegram(env('TELEGRAM_BOT_ID'), env('TELEGRAM_CHAT_ID'));
-                    //$bot->send('Новый заказ', $orderForTelegram);
+                    $bot->send('Новый заказ', $orderForTelegram);
                 }
             }else{
                 $response = ['response' => 'success'];

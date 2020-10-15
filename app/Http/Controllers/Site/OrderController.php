@@ -13,8 +13,17 @@ class OrderController extends Controller
 {
 
     public function index(){
+
+
+
         $cart_items = Cart::getContent();
-        return view('site.pages.checkout', compact('cart_items'));
+        $delivery   = DB::table('delivery')->all();
+        $payment    = DB::table('payment')->all();
+
+        return view('site.pages.checkout', compact('cart_items', 'delivery', 'payment'));
+
+
+
     }
 
     public function send(Request $request){

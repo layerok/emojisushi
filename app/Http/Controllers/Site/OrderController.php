@@ -51,8 +51,7 @@ class OrderController extends Controller
                 ];
                 $productForTelegram = [
                     'name' => $value->name,
-                    'count'      => $value->quantity,
-                    'category_id' => $value->associatedModel
+                    'count'      => $value->quantity
                 ];
                 $modificator = [];
                 if(isset($value->attributes['active_modificator'])){
@@ -60,7 +59,6 @@ class OrderController extends Controller
                         'modificator_id' => $value->attributes->uid
                     ];
                 }
-
 
                 $products[] = array_merge($product, $modificator);
                 $productsForTelegram[] = $productForTelegram;
@@ -86,22 +84,19 @@ class OrderController extends Controller
                 'products'   => $products
             ];
 
-
-
             //return json_encode($order);
+            if(env('APP_PRODUCTION_MODE')){
+                $poster = new Poster($spot->poster_token);
+                //$response = json_decode($poster->sendOrder($order), true);
 
-            $poster = new Poster($spot->poster_token);
-
-            $response = json_decode($poster->sendOrder($order), true);
-
-
-
-            if(!isset($response['error'])){
-                $bot = new Telegram(env('TELEGRAM_BOT_ID'), env('TELEGRAM_CHAT_ID'));
-                $bot->send('Новый заказ', $orderForTelegram);
-                //var_dump($response);
-                //$response[] = $response;
+                if(!isset($response['error'])){
+                    $bot = new Telegram(env('TELEGRAM_BOT_ID'), env('TELEGRAM_CHAT_ID'));
+                    //$bot->send('Новый заказ', $orderForTelegram);
+                }
+            }else{
+                $response = ['response' => 'success'];
             }
+
             return json_encode($response);
 
         }else{

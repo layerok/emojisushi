@@ -16,10 +16,6 @@
                         <span class="ph1">Доставка и оплата</span>
                     </a>
                 </li>
-
-
-
-
         </ul>
         @php $is_second_popup = true; @endphp
         <div class="cart-in-menu dn ">

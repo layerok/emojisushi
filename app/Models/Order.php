@@ -17,24 +17,31 @@ class Order extends Model
      * @var array
      */
     protected $fillable = [
-        "name", "poster_id", "price", "weight", "sort_order", "unit", "hidden"
+        "first_name", "email", "address", "phone", "comment", "payment_id", "delivery_id", "payment_status_id"
     ];
 
-    /**
-     * @var array
-     */
-    protected $casts = [
-        'hidden'    =>  'boolean',
-    ];
-
-    /**
-     * @param $value
-     */
-    public function setNameAttribute($value)
+    public function delivery()
     {
-        $this->attributes['name'] = $value;
-        $this->attributes['slug'] = Str::slug($value);
+        return $this->belongsTo(Delivery::class);
     }
+
+    public function payment()
+    {
+        return $this->belongsTo(Payment::class);
+    }
+
+    public function payment_status()
+    {
+        return $this->belongsTo(PaymentStatus::class);
+    }
+
+    public function products()
+    {
+        return $this->hasMany(OrderProduct::class);
+    }
+
+
+
 
 
     /**

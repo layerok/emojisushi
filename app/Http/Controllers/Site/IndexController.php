@@ -18,7 +18,10 @@ class IndexController extends Controller
 
     public function index()
     {
-
+//        $poster = new Poster(env('POSTER_TOKEN'));
+//        $data = json_decode($poster->query('menu.getProducts'), true);
+//
+//        dd($data);
         $this->setCatalogSort();
 
         $searched_word = $_GET['word'] ?? '';

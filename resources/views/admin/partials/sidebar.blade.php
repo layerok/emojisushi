@@ -12,7 +12,8 @@
                                Route::currentRouteName() == 'admin.orders.index'  ||
                                Route::currentRouteName() == 'admin.delivery.index' ||
                                Route::currentRouteName() == 'admin.payment.index' ||
-                               Route::currentRouteName() == 'admin.attributes.index' ? 'is-expanded' : '' }}">
+                               Route::currentRouteName() == 'admin.attributes.index' ||
+                               Route::currentRouteName() == 'admin.payment-status.index' ? 'is-expanded' : '' }}">
             <a class="app-menu__item" href="#" data-toggle="treeview">
                 <i class="app-menu__icon fas fa-store"></i>
                 <span class="app-menu__label">Магазин</span>
@@ -57,8 +58,15 @@
                 <li>
                     <a class="treeview-item {{ Route::currentRouteName() == 'admin.payment.index' ? 'active' : '' }}"
                        href="{{ route('admin.payment.index') }}">
-                        <i class="app-menu__icon fas fa-money-bill-alt"></i>
+                        <i class="app-menu__icon fas fa-wallet"></i>
                         <span class="app-menu__label"> Способы оплаты</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="treeview-item {{ Route::currentRouteName() == 'admin.payment-status.index' ? 'active' : '' }}"
+                       href="{{ route('admin.payment-status.index') }}">
+                        <i class="app-menu__icon fas fa-money-bill-alt"></i>
+                        <span class="app-menu__label"> Статусы оплаты</span>
                     </a>
                 </li>
                 <li>

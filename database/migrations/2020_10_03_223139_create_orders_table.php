@@ -20,15 +20,22 @@ class CreateOrdersTable extends Migration
             $table->string('phone');
             $table->string('address')->nullable();
             $table->string('comment')->nullable();
-            $table->string('change')->nullable();
-            $table->string('payment')->nullable();
-            $table->string('delivery')->nullable();
+            $table->unsignedBigInteger('payment_id')->index();
+            $table->unsignedBigInteger('delivery_id')->index();
             $table->unsignedBigInteger('payment_status_id');
 
+            $table->foreign('payment_id')
+                ->references('id')->on('payment')
+                ->onDelete('restrict');
+
+            $table->foreign('delivery_id')
+                ->references('id')->on('delivery')
+                ->onDelete('restrict');
+
             $table->foreign('payment_status_id')
-                ->references('id')
-                ->on('payment_statuses')
-                ->onDelete('cascade');
+                ->references('id')->on('payment_statuses')
+                ->onDelete('restrict');
+
             $table->timestamps();
         });
     }

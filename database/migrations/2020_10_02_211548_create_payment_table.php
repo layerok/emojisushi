@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDeliveryTable extends Migration
+class CreatePaymentTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,13 @@ class CreateDeliveryTable extends Migration
      */
     public function up()
     {
-        Schema::create('delivery', function (Blueprint $table) {
-            $table->bigIncrements('id');
+        Schema::create('payment', function (Blueprint $table) {
             $table->text('name');
-            $table->decimal('price', 8, 2)->nullable();
-            $table->boolean('hidden')->default(0);
+            $table->bigIncrements('id');
+            $table->boolean('hidden')->default('0');
+
+            $table->timestamps();
+
         });
     }
 
@@ -28,6 +30,6 @@ class CreateDeliveryTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('delivery');
+        Schema::dropIfExists('payment');
     }
 }

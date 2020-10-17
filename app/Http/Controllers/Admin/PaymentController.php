@@ -6,12 +6,13 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\BaseController;
+use App\Models\Payment;
 
 class PaymentController extends BaseController
 {
     public function index()
     {
-        $records = DB::table('payment')->get();
+        $records = Payment::all();
 
         $this->setPageTitle('Способы оплаты', 'Способы оплаты');
         return view('admin.payment.index', compact('records'));
@@ -43,7 +44,7 @@ class PaymentController extends BaseController
         $hidden = $collection->has('hidden') ? 0 : 1;
         $merge = $collection->merge(compact('hidden'));
 
-        $payment = DB::table('payment')->insert($merge->all());
+        $payment = Payment::create($merge->all());
 
         if (!$payment) {
             return $this->responseRedirectBack('Возникла ошибка создания способа оплаты.', 'error', true, true);
@@ -57,7 +58,7 @@ class PaymentController extends BaseController
      */
     public function edit($id)
     {
-        $targetRecord = DB::table('payment')->find($id);
+        $targetRecord = Payment::findOrFail($id);
 
         //$categories = $this->categoryRepository->treeList();
 
@@ -82,7 +83,7 @@ class PaymentController extends BaseController
         $hidden = $collection->has('hidden') ? 0 : 1;
         $merge = $collection->merge(compact('hidden'));
 
-        $payment = DB::table('payment')->where('id', '=', $params['id'])->update($merge->all());
+        $payment = Payment::findOrFail($params['id'])->update($merge->all());
 
         if (!$payment) {
             return $this->responseRedirectBack('Возникла ошибка обновления способа оплаты.', 'error', true, true);
@@ -96,7 +97,7 @@ class PaymentController extends BaseController
      */
     public function delete($id)
     {
-        $payment = DB::table('payment')->where('id', '=', $id)->delete();
+        $payment = Payment::findOrFail($id)->delete();
 
         if (!$payment) {
             return $this->responseRedirectBack('Возникла ошибка при удалении способа оплаты.', 'error', true, true);

@@ -3,10 +3,10 @@
 @section('content')
     <div class="app-title">
         <div>
-            <h1><i class="fas fa-wallet"></i> {{ $pageTitle }}</h1>
+            <h1><i class="fas fa-money-bill-alt"></i> {{ $pageTitle }}</h1>
             <p>{{ $subTitle }}</p>
         </div>
-        <a href="{{ route('admin.payment.create') }}" class="btn btn-primary pull-right">Добавить способ оплаты</a>
+        <a href="{{ route('admin.payment-status.create') }}" class="btn btn-primary pull-right">Добавить статус оплаты</a>
     </div>
     @include('admin.partials.flash')
     <div class="row">
@@ -18,7 +18,6 @@
                         <tr>
                             <th> # </th>
                             <th> Имя </th>
-                            <th> Статус </th>
                             <th style="width:100px; min-width:100px;" class="text-center text-danger"><i class="fa fa-bolt"> </i></th>
                         </tr>
                         </thead>
@@ -30,18 +29,12 @@
                                     <td>{{ $record->name }}</td>
 
 
-                                    <td class="text-center">
-                                        @if ($record->hidden == 0)
-                                            <span class="badge badge-success">Активно</span>
-                                        @else
-                                            <span class="badge badge-danger">Не активно</span>
-                                        @endif
-                                    </td>
+
 
                                     <td class="text-center">
                                         <div class="btn-group" role="group" aria-label="Second group">
-                                            <a href="{{ route('admin.payment.edit', $record->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i></a>
-                                            <a href="{{ route('admin.payment.delete', $record->id) }}" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
+                                            <a href="{{ route('admin.payment-status.edit', $record->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i></a>
+                                            <a href="{{ route('admin.payment-status.delete', $record->id) }}" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
                                         </div>
                                     </td>
                                 </tr>

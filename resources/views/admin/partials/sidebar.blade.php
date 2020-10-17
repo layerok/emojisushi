@@ -21,10 +21,24 @@
             </a>
         </li>
         <li>
-            <a class="app-menu__item {{ Route::currentRouteName() == 'admin.spots.index' ? 'active' : '' }}"
-               href="{{ route('admin.ingredients.index') }}">
+            <a class="app-menu__item "
+               href="#">
                 <i class="app-menu__icon fas fa-store"></i>
                 <span class="app-menu__label">Заведения</span>
+            </a>
+        </li>
+        <li>
+            <a class="app-menu__item {{ Route::currentRouteName() == 'admin.delivery.index' ? 'active' : '' }}"
+               href="{{ route('admin.delivery.index') }}">
+                <i class="app-menu__icon fas fa-truck"> </i>
+                <span class="app-menu__label"> Способы доставки</span>
+            </a>
+        </li>
+        <li>
+            <a class="app-menu__item "
+               href="#">
+                <i class="app-menu__icon fas fa-money-bill-alt"></i>
+                <span class="app-menu__label">Способы оплаты</span>
             </a>
         </li>
         <li>

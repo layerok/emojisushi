@@ -38,8 +38,8 @@ Route::group(['prefix'  =>  'admin'], function () {
             Route::get('/{id}/edit', 'Admin\IngredientController@edit')->name('admin.ingredients.edit');
             Route::post('/update', 'Admin\IngredientController@update')->name('admin.ingredients.update');
             Route::get('/{id}/delete', 'Admin\IngredientController@delete')->name('admin.ingredients.delete');
-
         });
+
 
         Route::group(['prefix'  =>   'attributes'], function() {
 
@@ -75,6 +75,8 @@ Route::group(['prefix'  =>  'admin'], function () {
             Route::post('/store', 'Admin\ProductController@store')->name('admin.products.store');
             Route::get('/edit/{id}', 'Admin\ProductController@edit')->name('admin.products.edit');
             Route::post('/update', 'Admin\ProductController@update')->name('admin.products.update');
+            Route::get('/{id}/delete', 'Admin\ProductController@delete')->name('admin.products.delete');
+
 
             Route::post('images/upload', 'Admin\ProductImageController@upload')->name('admin.products.images.upload');
             Route::get('images/{id}/delete', 'Admin\ProductImageController@delete')->name('admin.products.images.delete');
@@ -84,6 +86,17 @@ Route::group(['prefix'  =>  'admin'], function () {
             Route::post('attributes/values', 'Admin\ProductAttributeController@loadValues');
             Route::post('attributes/add', 'Admin\ProductAttributeController@addAttribute');
             Route::post('attributes/delete', 'Admin\ProductAttributeController@deleteAttribute');
+
+        });
+        Route::group(['prefix' => 'delivery'], function () {
+
+            Route::get('/', 'Admin\DeliveryController@index')->name('admin.delivery.index');
+            Route::get('/create', 'Admin\DeliveryController@create')->name('admin.delivery.create');
+            Route::post('/store', 'Admin\DeliveryController@store')->name('admin.delivery.store');
+            Route::get('/edit/{id}', 'Admin\DeliveryController@edit')->name('admin.delivery.edit');
+            Route::post('/update', 'Admin\DeliveryController@update')->name('admin.delivery.update');
+            Route::get('/{id}/delete', 'Admin\DeliveryController@delete')->name('admin.delivery.delete');
+
 
         });
 

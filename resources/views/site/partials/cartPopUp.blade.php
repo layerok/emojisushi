@@ -18,7 +18,7 @@
                                 @php if(isset($product->associatedModel->image)){
                                     $path = $product->associatedModel->image;
                                 }else{
-                                    $path ='/storage/' . 'img/default.jpg';
+                                    $path ='/storage/' . 'img/default-thumb.png';
                                 } @endphp
                             @endif
                             <div class="w-40 flex-shrink-0">

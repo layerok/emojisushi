@@ -17,8 +17,8 @@ class OrderController extends Controller
 
 
         $cart_items = Cart::getContent();
-        $delivery   = DB::table('delivery')->all();
-        $payment    = DB::table('payment')->all();
+        $delivery   = DB::table('delivery')->get();
+        $payment    = DB::table('payment')->get();
 
         return view('site.pages.checkout', compact('cart_items', 'delivery', 'payment'));
 

@@ -15,10 +15,10 @@
                         <form  class="mt2 checkout-form"  action="{{ route('order.send') }}" method="post">
                             @csrf
                             <div class="flex mb3 pb2">
-                                <input  id="deliveryMethod1" class="checked-bg-orange checked-black dn" type="radio" name="deliveryMethod" value="Заказ на вынос" checked >
-                                <label class="w-100 bg-white black pa2 tc br2 br--left  pointer" for="deliveryMethod1">Заказ на вынос</label>
-                                <input  id="deliveryMethod2" class="checked-bg-orange checked-black dn" type="radio" name="deliveryMethod" value="Доставка">
-                                <label class="w-100 bg-white black pa2 tc br2 br--right pointer" for="deliveryMethod2">Доставка</label>
+                                @foreach($delivery as $key => $record)
+                                    <input  id="deliveryMethod{{ $record->id }}" class="checked-bg-orange checked-black dn" type="radio" name="deliveryId" value="{{ $record->id }}" @if($loop->first) checked @endif >
+                                    <label class="w-100 bg-white black pa2 tc @if($loop->first) br2  br--left @endif @if($loop->last) br2 br--right  @endif  pointer" for="deliveryMethod{{$record->id}}">{{ $record->name }}</label>
+                                @endforeach
                             </div>
                             <div class="flex flex-column mb3 pb2">
                                 <input  name="name" class=" ph3 pv2 w-100 br2 bn placeholder-black black" type="text" placeholder="Имя">
@@ -27,7 +27,7 @@
                                 <input  name="email" class=" ph3 pv2 w-100 br2 bn placeholder-black black" type="text" placeholder="Email">
                             </div>
                             <div class="flex flex-column mb3 pb2">
-                                <input name="phone" data-type="phone"  value="" type="tel"  class=" ph3 pv2 w-100 br2 bn placeholder-black black" placeholder="Телефон"></input>
+                                <input name="phone" data-type="phone"  value="" type="tel"  class=" ph3 pv2 w-100 br2 bn placeholder-black black" placeholder="Телефон">
                             </div>
                             <div class="flex flex-column mb3 pb2">
                                 <input name="address" class=" ph3 pv2 w-100 br2 bn placeholder-black black" type="text" placeholder="Адрес доставки">
@@ -39,10 +39,10 @@
                                 <input  name="sticks" class=" ph3 pv2 w-100 br2 bn placeholder-black black" type="text" placeholder="Палочки на сколько персон?">
                             </div>
                             <div class="flex mb3 pb2">
-                                <input id="paymentMethod1" class="checked-bg-orange checked-black dn" type="radio" name="paymentMethod" value="Наличные" checked  >
-                                <label class="w-100 bg-white black pa2 tc br2 br--left  pointer" for="paymentMethod1">Наличные</label>
-                                <input id="paymentMethod2" class="checked-bg-orange checked-black dn" type="radio" name="paymentMethod" value="Картой">
-                                <label class="w-100 bg-white black pa2 tc br2 br--right pointer" for="paymentMethod2">Картой</label>
+                                @foreach($payment as $key => $record)
+                                    <input id="paymentMethod{{ $record->id }}" class="checked-bg-orange checked-black dn" type="radio" name="paymentId" value="{{ $record->id }}" @if($loop->first) checked @endif  >
+                                    <label class="w-100 bg-white black pa2 tc  @if($loop->first) br2 br--left @endif @if($loop->last) br2 br--right  @endif  pointer" for="paymentMethod{{$record->id}}">{{ $record->name }}</label>
+                                @endforeach
                             </div>
                             <div class="flex flex-column mb3 pb2">
                                 <input name="change" class=" ph3 pv2 w-100 br2 bn placeholder-black black" type="text" placeholder="Приготовить сдачу с">
@@ -80,7 +80,7 @@
                                             @php if(isset($product->associatedModel->image)){
                                                 $path = $product->associatedModel->image;
                                             }else{
-                                                $path ='/storage/' . 'img/default.jpg';
+                                                $path ='/storage/' . 'img/default-thumb.png';
                                             } @endphp
                                         @endif
                                         <div class="w-40 nested-img dn db-ns">

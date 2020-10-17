@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Contracts\CategoryContract;
 use App\Libraries\Telegram;
 use Cart;
+use App\Libraries\Poster;
 
 class IndexController extends Controller
 {
@@ -18,16 +19,7 @@ class IndexController extends Controller
     public function index()
     {
 
-
-        //Cart::clear();
         $this->setCatalogSort();
-
-//        $category = Category::with(['products' =>function ($query) {
-//            $query->with('images')->where('hidden', '=', 0)->when($this->catalog_sort, function ($query, $sortBy) {
-//                return $query->orderByRaw($sortBy);
-//            });
-//        }])->where('slug', $slug)
-//            ->first();
 
         $searched_word = $_GET['word'] ?? '';
 

@@ -9,7 +9,7 @@
                         if(isset($product->image)){
                             $path = $product->image;
                         }else{
-                            $path ='/storage/' . 'img/default.jpg';
+                            $path ='/storage/' . 'img/default-thumb.png';
                         }
 
                     @endphp

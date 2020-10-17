@@ -36,10 +36,11 @@ class AttributeValuesTableSeeder extends Seeder
 
         $spots = DB::table('spots')->get();
         foreach($spots as $spot){
+
             $poster = new Poster($spot->poster_token);
             $data = json_decode($poster->query('menu.getIngredients'), true);
 
-            foreach($data['response'] as $value){
+            foreach($data["response"] as $value){
                 AttributeValue::create([
                     'attribute_id'  => 3,
                     'poster_id'     => $value['ingredient_id'],

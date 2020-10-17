@@ -33,22 +33,6 @@
                             </svg>
                         </button>
                     </form>
-            <p><span class="dark-red">Время работы:</span> 11:00-22:00</p>
-
-                    <form class="relative" method="get" action="/" autocomplete="off">
-                        @csrf
-
-                        <input name="word" type="text" class="br3 ba b--white b--top b--left b--right b--bottom bg-transparent dark-red ph2 pv1 placeholder-white" placeholder="Поиск">
-                            <button class="absolute bg-transparent bn pointer " style="top:5px; right:7px" type="submit">
-                                <svg width="12" height="12" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M6.97073 0C10.8144 0 13.9415 3.12707 13.9415 6.97073C13.9415 8.65403 13.3417 10.1998 12.3447 11.4058L17 16.0611L16.0611 17L11.4058 12.3447C10.1998 13.3417 8.65403 13.9415 6.97073 13.9415C3.12707 13.9415 0 10.8144 0 6.97073C0 3.12707 3.12704 0 6.97073 0ZM6.97073 12.6137C10.0823 12.6137 12.6137 10.0823 12.6137 6.97073C12.6137 3.8592 10.0823 1.32776 6.97073 1.32776C3.8592 1.32776 1.32776 3.8592 1.32776 6.97073C1.32776 10.0823 3.8592 12.6137 6.97073 12.6137Z" fill="white"></path>
-                                </svg>
-                            </button>
-
-
-                    </form>
-
->>>>>>> delivery
                 </div>
             </div>
             @include('site.partials.cart')

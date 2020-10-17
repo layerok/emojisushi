@@ -3,6 +3,7 @@
 use App\Models\Admin;
 use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class AdminsTableSeeder extends Seeder
 {
@@ -16,7 +17,7 @@ class AdminsTableSeeder extends Seeder
         $faker = Faker::create();
 
 
-        DB::create([
+        Admin::create([
             'name'      =>  $faker->name,
             'email'     =>  'admin@admin.com',
             'password'  =>  bcrypt('password'),

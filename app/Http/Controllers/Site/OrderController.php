@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Site;
 
 use App\Libraries\Poster;
 use App\Libraries\Telegram;
+use App\Models\OrderProduct;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Cart;
@@ -56,7 +57,7 @@ class OrderController extends Controller
                 $comment .= " || Кол-во палочек: ".$data['sticks'];
             }
 
-            Order::create([
+            $order = Order::create([
                 'email' => $data['email'] ?? 'Не указан',
                 'first_name' => $data['name'] ?? 'Не указано',
                 'phone' => $data['phone'],
@@ -73,13 +74,22 @@ class OrderController extends Controller
 
             foreach(Cart::getContent() as $value){
 
+                OrderProduct::create([
+                    'order_id' => $order->id,
+                    'product_id' => $value->associatedModel->id,
+                    'product_modificator_id' => isset($value->attributes['active_modificator']) ? $value->attributes->modificator_id : null,
+                    'quantity' => $value->quantity,
+                    'price'    => $value->price,
+                    'sum'      => $value->price * $value->quantity
+                ]);
+
                 $product = [
                     'product_id' => $value->associatedModel->poster_id,
                     'count'      => $value->quantity
                 ];
                 $productForTelegram = [
-                    'name' => $value->name,
-                    'count'      => $value->quantity
+                    'name'      => $value->name,
+                    'count'     => $value->quantity
                 ];
                 $modificator = [];
                 if(isset($value->attributes['active_modificator'])){

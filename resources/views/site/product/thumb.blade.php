@@ -87,17 +87,18 @@
                     <p  class="self-end f4-l f7 mt2 mb1">{{ number_format($product->weight, '0', ',', ' ') . ' ' . $product->unit }}</p>
                     @if(count($modificators) > 0 )
                         @foreach($modificators as $key => $modificator)
-                            <div data-product-controls="{{ $modificator['id'] }}" class=" @if(count($modificators) != $key + 1 ) dn  @else flex @endif flex-column flex-row-ns justify-between items-center">
+                            <div data-product-controls="99{{ $modificator['id'] }}99" class=" @if(count($modificators) != $key + 1 ) dn  @else flex @endif flex-column flex-row-ns justify-between items-center">
                                 <input type="hidden" name="product_id" value="{{ $product->id }}">
-                                <input type="hidden" name="uid[]" value="{{ $modificator['id'] }}">
+                                <input type="hidden" name="uid[]" value="99{{ $modificator['id'] }}99">
+                                <input type="hidden" name="modificator_id[]" value="{{ $modificator['id'] }}">
                                 <input type="hidden" name="modificator_value[]" value="{{ $modificator['value'] }}">
                                 <input type="hidden" name="modificator_price[]" value="{{ $modificator['price'] }}">
 
-                                <button data-control-add type="submit" name="action" value="add" class="@if(Cart::get($modificator['id'] )) dn @endif order-2 order-1-ns w4 bg-orange tc black pa3 bn br-pill bg-animate hover-bg-gold pointer">
+                                <button data-control-add type="submit" name="action" value="add" class="@if(Cart::get('99'.$modificator['id']. '99' )) dn @endif order-2 order-1-ns w4 bg-orange tc black pa3 bn br-pill bg-animate hover-bg-gold pointer">
                                     В корзину
                                 </button>
 
-                                <div data-control-update class="order-2 order-1-l @if(!Cart::get($modificator['id'])) dn @endif" >
+                                <div data-control-update class="order-2 order-1-l @if(!Cart::get('99'.$modificator['id']). '99') dn @endif" >
                                     <div class="flex bg-orange w4 black br-pill overflow-hidden ">
                                         <button name="action" value="decrease" type="submit" class="w-third bn  pv3 ph2 bg-inherit black bg-animate hover-bg-gold pointer">-</button>
                                         <div data-control-quantity class="w-third tc pv3">

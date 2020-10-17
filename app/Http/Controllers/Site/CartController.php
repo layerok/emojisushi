@@ -28,6 +28,7 @@ class CartController extends Controller
         if(isset($active_mod)){
 
             $uid = $input['uid'][$active_mod];
+            $options['modificator_id'] = $input['modificator_id'][$active_mod];
 
         }else{
             $uid = $input['uid'];

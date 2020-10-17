@@ -13,7 +13,7 @@ class OrderController extends BaseController
 {
     public function index()
     {
-        $records = Order::all();
+        $records = Order::orderBy('updated_at', 'desc')->get();
 
         $this->setPageTitle('Заказы', 'Заказы');
         return view('admin.orders.index', compact('records'));

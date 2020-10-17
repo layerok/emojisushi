@@ -35,10 +35,10 @@
             </a>
         </li>
         <li>
-            <a class="app-menu__item "
-               href="#">
+            <a class="app-menu__item {{ Route::currentRouteName() == 'admin.payment.index' ? 'active' : '' }}"
+               href="{{ route('admin.payment.index') }}">
                 <i class="app-menu__icon fas fa-money-bill-alt"></i>
-                <span class="app-menu__label">Способы оплаты</span>
+                <span class="app-menu__label"> Способы оплаты</span>
             </a>
         </li>
         <li>

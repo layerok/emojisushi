@@ -47,9 +47,9 @@ class DeliveryController extends BaseController
         $delivery = DB::table('delivery')->insert($merge->all());
 
         if (!$delivery) {
-            return $this->responseRedirectBack('Возникла ошибка создания способа оплаты.', 'error', true, true);
+            return $this->responseRedirectBack('Возникла ошибка создания способа доставки.', 'error', true, true);
         }
-        return $this->responseRedirect('admin.delivery.index', 'Способ оплаты создан успешно' ,'success',false, false);
+        return $this->responseRedirect('admin.delivery.index', 'Способ доставки создан успешно' ,'success',false, false);
     }
 
     /**
@@ -100,8 +100,8 @@ class DeliveryController extends BaseController
         $delivery = DB::table('delivery')->where('id', '=', $id)->delete();
 
         if (!$delivery) {
-            return $this->responseRedirectBack('Возникла ошибка при удалении способа оплаты.', 'error', true, true);
+            return $this->responseRedirectBack('Возникла ошибка при удалении способа доставки.', 'error', true, true);
         }
-        return $this->responseRedirect('admin.delivery.index', 'Способ оплаты удален успешно' ,'success',false, false);
+        return $this->responseRedirect('admin.delivery.index', 'Способ доставки удален успешно' ,'success',false, false);
     }
 }

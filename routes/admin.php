@@ -89,15 +89,21 @@ Route::group(['prefix'  =>  'admin'], function () {
 
         });
         Route::group(['prefix' => 'delivery'], function () {
-
             Route::get('/', 'Admin\DeliveryController@index')->name('admin.delivery.index');
             Route::get('/create', 'Admin\DeliveryController@create')->name('admin.delivery.create');
             Route::post('/store', 'Admin\DeliveryController@store')->name('admin.delivery.store');
             Route::get('/edit/{id}', 'Admin\DeliveryController@edit')->name('admin.delivery.edit');
             Route::post('/update', 'Admin\DeliveryController@update')->name('admin.delivery.update');
             Route::get('/{id}/delete', 'Admin\DeliveryController@delete')->name('admin.delivery.delete');
+        });
 
-
+        Route::group(['prefix' => 'payment'], function () {
+            Route::get('/', 'Admin\PaymentController@index')->name('admin.payment.index');
+            Route::get('/create', 'Admin\PaymentController@create')->name('admin.payment.create');
+            Route::post('/store', 'Admin\PaymentController@store')->name('admin.payment.store');
+            Route::get('/edit/{id}', 'Admin\PaymentController@edit')->name('admin.payment.edit');
+            Route::post('/update', 'Admin\PaymentController@update')->name('admin.payment.update');
+            Route::get('/{id}/delete', 'Admin\PaymentController@delete')->name('admin.payment.delete');
         });
 
     });

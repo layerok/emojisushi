@@ -103,11 +103,17 @@ class ProductsTableSeeder extends Seeder
                         foreach($value['ingredients'] as $ingredient){
 
                             // Создаю ингридиент и привязываю его к аттрибуты "Ингридиент"
-                            $attribute_value_id = AttributeValue::insertGetId([
-                                'attribute_id' => 3,// 3 - id аттрибута "Ингридиент"
-                                'value'        => $ingredient['ingredient_name'],
-                                'poster_id'    => $ingredient['ingredient_id']
-                            ]);
+                            if(AttributeValue::where('poster_id', '=', $ingredient['ingredient_id'])->exists()){
+                                $attribute_value_id = AttributeValue::where('poster_id', '=', $ingredient['ingredient_id'])->first();
+                            }else{
+                                $attribute_value_id = AttributeValue::insertGetId([
+                                    'attribute_id' => 3,// 3 - id аттрибута "Ингридиент"
+                                    'value'        => $ingredient['ingredient_name'],
+                                    'poster_id'    => $ingredient['ingredient_id']
+                                ]);
+                            }
+
+
 
                             // Создаю аттрибут для продукта
                             $product_attribute = ProductAttribute::create([

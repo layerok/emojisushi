@@ -14,7 +14,7 @@ class DeliveryController extends BaseController
     {
         $records = DB::table('delivery')->get();
 
-        $this->setPageTitle('Способы доставок', 'Способы доставок');
+        $this->setPageTitle('Способы доставки', 'Способы доставки');
         return view('admin.delivery.index', compact('records'));
     }
 

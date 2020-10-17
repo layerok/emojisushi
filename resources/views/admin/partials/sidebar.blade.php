@@ -13,7 +13,8 @@
                                Route::currentRouteName() == 'admin.delivery.index' ||
                                Route::currentRouteName() == 'admin.payment.index' ||
                                Route::currentRouteName() == 'admin.attributes.index' ||
-                               Route::currentRouteName() == 'admin.payment-status.index' ? 'is-expanded' : '' }}">
+                               Route::currentRouteName() == 'admin.payment-status.index' ||
+                               Route::currentRouteName() == 'admin.orders.index' ? 'is-expanded' : '' }}">
             <a class="app-menu__item" href="#" data-toggle="treeview">
                 <i class="app-menu__icon fas fa-store"></i>
                 <span class="app-menu__label">Магазин</span>
@@ -43,7 +44,7 @@
                 </li>
                 <li>
                     <a class="treeview-item {{ Route::currentRouteName() == 'admin.orders.index' ? 'active' : '' }}"
-                       href="#">
+                       href="{{ route('admin.orders.index') }}">
                         <i class="app-menu__icon fas fa-shopping-cart"></i>
                         <span class="app-menu__label"> Заказы</span>
                     </a>

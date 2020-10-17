@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Cart;
 use Illuminate\Support\Facades\DB;
+use App\Models\Order;
+use App\Models\Delivery;
+use App\Models\Payment;
 
 class OrderController extends Controller
 {
@@ -30,11 +33,16 @@ class OrderController extends Controller
 
 
         $spot = DB::table('spots')->find(1);
-
-
         $data = $request->all();
 
+
+
+
+
         if($spot){
+            $data['deliveryMethod'] = Delivery::find($data['delivery_id'])->name;
+            $data['paymentMethod'] =  Payment::find($data['payment_id'])->name;
+
             $comment = '';
             if(!empty($data['change'])){
                 $comment .= "Комментарий: ".$data['comment'];
@@ -47,6 +55,17 @@ class OrderController extends Controller
             if(!empty($data['sticks'])){
                 $comment .= " || Кол-во палочек: ".$data['sticks'];
             }
+
+            Order::create([
+                'email' => $data['email'] ?? 'Не указан',
+                'first_name' => $data['name'] ?? 'Не указано',
+                'phone' => $data['phone'],
+                'address' => $data['address'] ?? 'Не указано',
+                'comment' => $comment,
+                'payment_id' => $data['payment_id'],
+                'delivery_id' => $data['delivery_id'],
+                'sum'         => Cart::getTotal()
+            ]);
 
 
             $products = [];

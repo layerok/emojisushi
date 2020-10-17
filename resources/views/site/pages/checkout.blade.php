@@ -16,7 +16,7 @@
                             @csrf
                             <div class="flex mb3 pb2">
                                 @foreach($delivery as $key => $record)
-                                    <input  id="deliveryMethod{{ $record->id }}" class="checked-bg-orange checked-black dn" type="radio" name="deliveryId" value="{{ $record->id }}" @if($loop->first) checked @endif >
+                                    <input  id="deliveryMethod{{ $record->id }}" class="checked-bg-orange checked-black dn" type="radio" name="delivery_id" value="{{ $record->id }}" @if($loop->first) checked @endif >
                                     <label class="w-100 bg-white black pa2 tc @if($loop->first) br2  br--left @endif @if($loop->last) br2 br--right  @endif  pointer" for="deliveryMethod{{$record->id}}">{{ $record->name }}</label>
                                 @endforeach
                             </div>
@@ -40,7 +40,7 @@
                             </div>
                             <div class="flex mb3 pb2">
                                 @foreach($payment as $key => $record)
-                                    <input id="paymentMethod{{ $record->id }}" class="checked-bg-orange checked-black dn" type="radio" name="paymentId" value="{{ $record->id }}" @if($loop->first) checked @endif  >
+                                    <input id="paymentMethod{{ $record->id }}" class="checked-bg-orange checked-black dn" type="radio" name="payment_id" value="{{ $record->id }}" @if($loop->first) checked @endif  >
                                     <label class="w-100 bg-white black pa2 tc  @if($loop->first) br2 br--left @endif @if($loop->last) br2 br--right  @endif  pointer" for="paymentMethod{{$record->id}}">{{ $record->name }}</label>
                                 @endforeach
                             </div>

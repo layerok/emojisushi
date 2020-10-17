@@ -3,18 +3,20 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\BaseController;
+use App\Models\Payment;
+use App\Models\Delivery;
+use App\Models\PaymentStatus;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\DB;
+use App\Models\Order;
 
 class OrderController extends BaseController
 {
     public function index()
     {
-        $records = DB::table('delivery')->get();
+        $records = Order::all();
 
-        $this->setPageTitle('Способы доставки', 'Способы доставки');
-        return view('admin.delivery.index', compact('records'));
+        $this->setPageTitle('Заказы', 'Заказы');
+        return view('admin.orders.index', compact('records'));
     }
 
     /**
@@ -22,9 +24,12 @@ class OrderController extends BaseController
      */
     public function create()
     {
+        $delivery = Delivery::all();
+        $payment = Payment::all();
+        $payment_statuses = PaymentStatus::all();
 
-        $this->setPageTitle('Способы доставки', 'Создать способ доставки');
-        return view('admin.delivery.create');
+        $this->setPageTitle('Заказы', 'Создать заказ');
+        return view('admin.orders.create', compact('delivery', 'payment', 'payment_statuses'));
     }
     /**
      * @param Request $request
@@ -34,21 +39,20 @@ class OrderController extends BaseController
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name'      =>  'required|max:191',
+            'phone'      =>  'required',
         ]);
 
         $params = $request->except('_token');
 
         $collection = collect($params)->except('_token');
-        $hidden = $collection->has('hidden') ? 0 : 1;
-        $merge = $collection->merge(compact('hidden'));
 
-        $delivery = DB::table('delivery')->insert($merge->all());
 
-        if (!$delivery) {
-            return $this->responseRedirectBack('Возникла ошибка создания способа доставки.', 'error', true, true);
+        $order = Order::create($collection->all());
+
+        if (!$order) {
+            return $this->responseRedirectBack('Возникла ошибка создания заказа.', 'error', true, true);
         }
-        return $this->responseRedirect('admin.delivery.index', 'Способ доставки создан успешно' ,'success',false, false);
+        return $this->responseRedirect('admin.orders.index', 'Заказ создан успешно' ,'success',false, false);
     }
 
     /**
@@ -57,12 +61,15 @@ class OrderController extends BaseController
      */
     public function edit($id)
     {
-        $targetRecord = DB::table('delivery')->find($id);
+        $targetRecord = Order::findOrFail($id);
 
-        //$categories = $this->categoryRepository->treeList();
+        $delivery = Delivery::all();
+        $payment = Payment::all();
+        $payment_statuses = PaymentStatus::all();
 
-        $this->setPageTitle('Способы доставки', 'Редактировать способ доставки : '.$targetRecord->name);
-        return view('admin.delivery.edit', compact('targetRecord'));
+
+        $this->setPageTitle('Заказы', 'Редактировать заказ : '.$targetRecord->name);
+        return view('admin.orders.edit', compact('targetRecord', 'delivery', 'payment', 'payment_statuses'));
     }
 
     /**
@@ -72,22 +79,21 @@ class OrderController extends BaseController
      */
     public function update(Request $request)
     {
+
         $this->validate($request, [
-            'name'      =>  'required|max:191'
+            'phone'     =>  'required'
         ]);
 
         $params = $request->except('_token');
-
         $collection = collect($params)->except('_token');
-        $hidden = $collection->has('hidden') ? 0 : 1;
-        $merge = $collection->merge(compact('hidden'));
 
-        $delivery = DB::table('delivery')->where('id', '=', $params['id'])->update($merge->all());
 
-        if (!$delivery) {
-            return $this->responseRedirectBack('Возникла ошибка обновления способа доставки.', 'error', true, true);
+        $order = Order::find($params['id'])->update($collection->all());
+
+        if (!$order) {
+            return $this->responseRedirectBack('Возникла ошибка обновления заказа.', 'error', true, true);
         }
-        return $this->responseRedirectBack('Способ доставки обновлен успешно' ,'success',false, false);
+        return $this->responseRedirectBack('Заказ обновлен успешно' ,'success',false, false);
     }
 
     /**
@@ -96,11 +102,11 @@ class OrderController extends BaseController
      */
     public function delete($id)
     {
-        $delivery = DB::table('delivery')->where('id', '=', $id)->delete();
+        $order = Order::findOrFail($id)->delete();
 
-        if (!$delivery) {
-            return $this->responseRedirectBack('Возникла ошибка при удалении способа доставки.', 'error', true, true);
+        if (!$order) {
+            return $this->responseRedirectBack('Возникла ошибка при удалении заказа.', 'error', true, true);
         }
-        return $this->responseRedirect('admin.delivery.index', 'Способ доставки удален успешно' ,'success',false, false);
+        return $this->responseRedirect('admin.orders.index', 'Заказ удален успешно' ,'success',false, false);
     }
 }

@@ -115,6 +115,15 @@ Route::group(['prefix'  =>  'admin'], function () {
             Route::get('/{id}/delete',  'Admin\PaymentStatusController@delete') ->name('admin.payment-status.delete');
         });
 
+        Route::group(['prefix' => 'orders'], function () {
+            Route::get('/',             'Admin\OrderController@index')  ->name('admin.orders.index');
+            Route::get('/create',       'Admin\OrderController@create') ->name('admin.orders.create');
+            Route::post('/store',       'Admin\OrderController@store')  ->name('admin.orders.store');
+            Route::get('/edit/{id}',    'Admin\OrderController@edit')   ->name('admin.orders.edit');
+            Route::post('/update',      'Admin\OrderController@update') ->name('admin.orders.update');
+            Route::get('/{id}/delete',  'Admin\OrderController@delete') ->name('admin.orders.delete');
+        });
+
     });
 
 });

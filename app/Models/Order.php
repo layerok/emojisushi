@@ -17,7 +17,7 @@ class Order extends Model
      * @var array
      */
     protected $fillable = [
-        "first_name", "email", "address", "phone", "comment", "payment_id", "delivery_id", "payment_status_id"
+        "first_name", "email", "address", "phone", "comment", "payment_id", "delivery_id", "payment_status_id", "sum"
     ];
 
     public function delivery()
@@ -41,30 +41,4 @@ class Order extends Model
     }
 
 
-
-
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function images()
-    {
-        return $this->hasMany(ProductImage::class);
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function attributes()
-    {
-        return $this->hasMany(ProductAttribute::class);
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
-    public function categories()
-    {
-        return $this->belongsToMany(Category::class, 'product_categories', 'product_id', 'category_id');
-    }
 }

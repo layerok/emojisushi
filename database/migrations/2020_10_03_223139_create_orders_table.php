@@ -20,9 +20,10 @@ class CreateOrdersTable extends Migration
             $table->string('phone');
             $table->string('address')->nullable();
             $table->string('comment')->nullable();
+            $table->decimal('sum', 8, 2)->default(0);
             $table->unsignedBigInteger('payment_id')->index();
             $table->unsignedBigInteger('delivery_id')->index();
-            $table->unsignedBigInteger('payment_status_id');
+            $table->unsignedBigInteger('payment_status_id')->default(2);
 
             $table->foreign('payment_id')
                 ->references('id')->on('payment')

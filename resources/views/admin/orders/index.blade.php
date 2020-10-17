@@ -3,10 +3,10 @@
 @section('content')
     <div class="app-title">
         <div>
-            <h1><i class="fa fa-tags"></i> {{ $pageTitle }}</h1>
+            <h1><i class="fas fa-shopping-cart"></i> {{ $pageTitle }}</h1>
             <p>{{ $subTitle }}</p>
         </div>
-        <a href="{{ route('admin.products.create') }}" class="btn btn-primary pull-right">Добавить продукт</a>
+        <a href="{{ route('admin.orders.create') }}" class="btn btn-primary pull-right">Добавить заказ</a>
     </div>
     @include('admin.partials.flash')
     <div class="row">
@@ -17,35 +17,32 @@
                         <thead>
                         <tr>
                             <th> # </th>
+                            <th> Дата создания </th>
                             <th> Имя </th>
-                            <th class="text-center"> Категории </th>
-                            <th class="text-center"> Цена </th>
+                            <th> Телефон </th>
+                            <th class="text-center"> Сумма </th>
                             <th class="text-center"> Статус </th>
                             <th style="width:100px; min-width:100px;" class="text-center text-danger"><i class="fa fa-bolt"> </i></th>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($products as $product)
+                        @foreach($records as $record)
                             <tr>
-                                <td>{{ $product->id }}</td>
-                                <td>{{ $product->name }}</td>
-                                <td>
-                                    @foreach($product->categories as $category)
-                                        <span class="badge badge-info">{{ $category->name }}</span>
-                                    @endforeach
-                                </td>
-                                <td>{{ $product->price }} {{ config('settings.currency_symbol') }}</td>
+                                <td>{{ $record->id }}</td>
+                                <td>{{ $record->created_at }}</td>
+                                <td>{{ $record->first_name }}</td>
+                                <td>{{ $record->phone }}</td>
+
+                                <td>{{ $record->sum }} {{ config('settings.currency_symbol') }}</td>
                                 <td class="text-center">
-                                    @if ($product->hidden == 0)
-                                        <span class="badge badge-success">Активный</span>
-                                    @else
-                                        <span class="badge badge-danger">Не активный</span>
-                                    @endif
+                                    <span class="badge {{ $record->payment_status->id == 1 ? 'badge-success' : 'badge-danger' }} ">
+                                        {{ $record->payment_status->name }}
+                                    </span>
                                 </td>
                                 <td class="text-center">
                                     <div class="btn-group" role="group" aria-label="Second group">
-                                        <a href="{{ route('admin.products.edit', $product->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i></a>
-                                        <a href="{{ route('admin.products.edit', $product->id) }}" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
+                                        <a href="{{ route('admin.orders.edit', $record->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i></a>
+                                        <a href="{{ route('admin.orders.delete', $record->id) }}" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
                                     </div>
                                 </td>
                             </tr>

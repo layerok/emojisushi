@@ -29,6 +29,7 @@ class CartController extends Controller
 
             $uid = $input['uid'][$active_mod];
             $options['modificator_id'] = $input['modificator_id'][$active_mod];
+            $options['attribute_value_id'] = $input['attribute_value_id'][$active_mod];
 
         }else{
             $uid = $input['uid'];

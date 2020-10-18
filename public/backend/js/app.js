@@ -2027,12 +2027,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "product-attributes",
-  props: ['productid'],
+  props: ['orderid'],
   data: function data() {
     return {
-      productAttributes: [],
+      orderProducts: [],
       attributes: [],
       attribute: {},
       attributeSelected: false,
@@ -2048,17 +2050,17 @@ __webpack_require__.r(__webpack_exports__);
   },
   created: function created() {
     this.loadAttributes();
-    this.loadProductAttributes(this.productid);
+    this.loadOrderProducts(this.orderid);
   },
   methods: {
-    loadProductAttributes: function loadProductAttributes(id) {
+    loadOrderProducts: function loadOrderProducts(id) {
       var _this = this;
 
-      axios.post('/admin/products/attributes', {
+      axios.post('/admin/orders/products', {
         id: id
       }).then(function (response) {
-        _this.productAttributes = response.data.attributes;
         console.log(response.data);
+        _this.orderProducts = response.data.products;
       })["catch"](function (error) {
         console.log(error);
       });
@@ -2105,7 +2107,7 @@ __webpack_require__.r(__webpack_exports__);
           id: this.currentAttributeValueId,
           quantity: this.currentQty,
           price: this.currentPrice,
-          product_id: this.productid
+          product_id: this.orderid
         };
         console.log(data);
         axios.post('/admin/products/attributes/add', {
@@ -2122,7 +2124,7 @@ __webpack_require__.r(__webpack_exports__);
         })["catch"](function (error) {
           console.log(error);
         });
-        this.loadProductAttributes(this.productid);
+        this.loadOrderProducts(this.orderid);
       }
     },
     deleteProductAttribute: function deleteProductAttribute(pa) {
@@ -2147,7 +2149,7 @@ __webpack_require__.r(__webpack_exports__);
                 icon: "success"
               });
 
-              _this.loadProductAttributes(_this.productid);
+              _this.loadOrderProducts(_this.orderid);
             } else {
               _this.$swal("Your Product attribute not deleted!");
             }
@@ -20546,7 +20548,7 @@ var render = function() {
             _vm._v(" "),
             _c(
               "tbody",
-              _vm._l(_vm.productAttributes, function(pa) {
+              _vm._l(_vm.orderProducts, function(op) {
                 return _c("tr", [
                   _c(
                     "td",
@@ -20554,25 +20556,7 @@ var render = function() {
                       staticClass: "text-center",
                       staticStyle: { width: "25%" }
                     },
-                    [_vm._v(_vm._s(pa.attribute_values[0].value))]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "td",
-                    {
-                      staticClass: "text-center",
-                      staticStyle: { width: "25%" }
-                    },
-                    [_vm._v(_vm._s(pa.quantity))]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "td",
-                    {
-                      staticClass: "text-center",
-                      staticStyle: { width: "25%" }
-                    },
-                    [_vm._v(_vm._s(pa.price))]
+                    [_vm._v(_vm._s(op.product.name))]
                   ),
                   _vm._v(" "),
                   _c(
@@ -20582,13 +20566,48 @@ var render = function() {
                       staticStyle: { width: "25%" }
                     },
                     [
+                      _vm._v(
+                        _vm._s(
+                          op.attribute_value !== null
+                            ? op.attribute_value.value
+                            : "отсутствует"
+                        )
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "td",
+                    {
+                      staticClass: "text-center",
+                      staticStyle: { width: "20%" }
+                    },
+                    [_vm._v(_vm._s(op.quantity))]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "td",
+                    {
+                      staticClass: "text-center",
+                      staticStyle: { width: "20%" }
+                    },
+                    [_vm._v(_vm._s(op.price))]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "td",
+                    {
+                      staticClass: "text-center",
+                      staticStyle: { width: "10%" }
+                    },
+                    [
                       _c(
                         "button",
                         {
                           staticClass: "btn btn-sm btn-danger",
                           on: {
                             click: function($event) {
-                              return _vm.deleteProductAttribute(pa)
+                              return _vm.deleteProductAttribute(op)
                             }
                           }
                         },
@@ -20631,7 +20650,9 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", { staticClass: "text-center" }, [
-        _c("th", [_vm._v("Значение")]),
+        _c("th", [_vm._v("Наименование")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Значение аттрибута")]),
         _vm._v(" "),
         _c("th", [_vm._v("Кол-во")]),
         _vm._v(" "),

@@ -122,6 +122,8 @@ Route::group(['prefix'  =>  'admin'], function () {
             Route::get('/edit/{id}',    'Admin\OrderController@edit')   ->name('admin.orders.edit');
             Route::post('/update',      'Admin\OrderController@update') ->name('admin.orders.update');
             Route::get('/{id}/delete',  'Admin\OrderController@delete') ->name('admin.orders.delete');
+
+            Route::post('products',     'Admin\OrderProductController@orderProducts');
         });
 
     });

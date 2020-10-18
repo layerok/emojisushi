@@ -17,7 +17,7 @@ class CreateOrdersProductsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('order_id')->index();
             $table->unsignedBigInteger('product_id')->index();
-            $table->unsignedBigInteger('product_modificator_id')->nullable();
+            $table->unsignedBigInteger('attribute_value_id')->nullable();
             $table->unsignedBigInteger('quantity')->default(1);
             $table->unsignedBigInteger('sum')->nullable();
             $table->unsignedBigInteger('price')->nullable();

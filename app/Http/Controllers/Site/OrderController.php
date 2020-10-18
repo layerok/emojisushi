@@ -75,12 +75,12 @@ class OrderController extends Controller
             foreach(Cart::getContent() as $value){
 
                 OrderProduct::create([
-                    'order_id' => $order->id,
-                    'product_id' => $value->associatedModel->id,
-                    'product_modificator_id' => isset($value->attributes['active_modificator']) ? $value->attributes->modificator_id : null,
-                    'quantity' => $value->quantity,
-                    'price'    => $value->price,
-                    'sum'      => $value->price * $value->quantity
+                    'order_id'              => $order->id,
+                    'product_id'            => $value->associatedModel->id,
+                    'attribute_value_id'    => isset($value->attributes['active_modificator']) ? $value->attributes->attribute_value_id : null,
+                    'quantity'              => $value->quantity,
+                    'price'                 => $value->price,
+                    'sum'                   => $value->price * $value->quantity
                 ]);
 
                 $product = [
@@ -94,7 +94,7 @@ class OrderController extends Controller
                 $modificator = [];
                 if(isset($value->attributes['active_modificator'])){
                     $modificator = [
-                        'modificator_id' => $value->attributes->uid
+                        'modificator_id' => $value->attributes->modificator_id
                     ];
                 }
 

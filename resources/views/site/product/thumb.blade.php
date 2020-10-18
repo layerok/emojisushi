@@ -46,9 +46,10 @@
                                         @php
                                             $i++;
                                             $modificators[] = [
-                                                        'id' => $attributeValue->poster_id,
-                                                        'price'          => $productAttribute->price,
-                                                        'value'          => $attributeValue->value
+                                                        'id'                    => $attributeValue->poster_id,
+                                                        'price'                 => $productAttribute->price,
+                                                        'value'                 => $attributeValue->value,
+                                                        'attribute_value_id'    => $attributeValue->id
                                                     ]
                                         @endphp
 
@@ -91,6 +92,7 @@
                                 <input type="hidden" name="product_id" value="{{ $product->id }}">
                                 <input type="hidden" name="uid[]" value="99{{ $modificator['id'] }}99">
                                 <input type="hidden" name="modificator_id[]" value="{{ $modificator['id'] }}">
+                                <input type="hidden" name="attribute_value_id[]" value="{{ $modificator['attribute_value_id'] }}">
                                 <input type="hidden" name="modificator_value[]" value="{{ $modificator['value'] }}">
                                 <input type="hidden" name="modificator_price[]" value="{{ $modificator['price'] }}">
 

@@ -156,7 +156,7 @@
                 </div>
 
                 <div class="tab-pane" id="products">
-                    <product-attributes :productid="{{ $targetRecord->id }}"></product-attributes>
+                    <order-products :orderid="{{ $targetRecord->id }}"></order-products>
                 </div>
             </div>
         </div>

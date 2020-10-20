@@ -15,6 +15,7 @@ class CreatePaymentStatusesTable extends Migration
     {
         Schema::create('payment_statuses', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('key');
             $table->string('name');
             $table->timestamps();
         });

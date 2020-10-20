@@ -5,13 +5,23 @@ namespace App\Http\Controllers\Site;
 use App\Libraries\Poster;
 use App\Libraries\Telegram;
 use App\Models\OrderProduct;
+use App\Models\PaymentStatus;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Cart;
 use Illuminate\Support\Facades\DB;
 use App\Models\Order;
 use App\Models\Delivery;
 use App\Models\Payment;
+use WayForPay;
+use Crypt;
+use Cart;
+use \WayForPay\SDK\Domain\Product;
+use \Maksa988\WayForPay\Collection\ProductCollection;
+use \Maksa988\WayForPay\Domain\Client;
+use \WayForPay\SDK\Domain\Transaction;
+use Illuminate\Support\Facades\Log;
+
+
 
 class OrderController extends Controller
 {
@@ -19,6 +29,17 @@ class OrderController extends Controller
     public function index(){
 
 
+//        Order::create([
+//            'id' => 118,
+//            'payment_id' => 1,
+//            'delivery_id' => 1,
+//            'phone' => "4324242"
+//        ]);
+//        $order = Order::find(99);
+//
+//        $order->update(['is_sent_to_poster' => 1]);
+//
+//        dd(Order::find(99));
 
         $cart_items = Cart::getContent();
         $delivery   = DB::table('delivery')->get();
@@ -30,26 +51,62 @@ class OrderController extends Controller
 
     }
 
+    public function handle(Request $request){
+
+        $data = json_decode(file_get_contents('php://input'), TRUE);
+//        foreach($data as $value){
+//            Log::channel('single')->debug($value);
+//        }
+        return WayForPay::handleServiceUrl($data, function (WayForPay\SDK\Domain\TransactionService $transaction, $success) {
+            Log::channel('single')->debug('Статус заказа №'. $transaction->getOrderReference() . ": " . $transaction->getStatus());
+            $order = Order::find($transaction->getOrderReference());
+            if($order){
+                $payment_status = PaymentStatus::where('key', '=', "{$transaction->getStatus()}")->first();
+                $order->update([
+                    'payment_status_id' => $payment_status->id
+                ]);
+                if(!Order::find($order->id)->is_sent_to_poster){
+                    $poster = new Poster(env('POSTER_TOKEN'));
+                    $poster->sendOrderById($order->id);
+                }
+
+            }
+
+            if($transaction->getReason()->isOK()) {
+
+                return $success();
+            }
+            return "Error: ". $transaction->getReason()->getMessage();
+        });
+
+    }
+
     public function send(Request $request){
+
+        if(Cart::isEmpty()){
+            $response = [
+                "cartIsEmpty" => true
+            ];
+
+
+            return json_encode($response);
+        }
 
 
         $spot = DB::table('spots')->find(1);
         $data = $request->all();
 
 
-
-
-
         if($spot){
+
             $data['deliveryMethod'] = Delivery::find($data['delivery_id'])->name;
             $data['paymentMethod'] =  Payment::find($data['payment_id'])->name;
 
             $comment = '';
-            if(!empty($data['change'])){
-                $comment .= "Комментарий: ".$data['comment'];
+            if(!empty($data['comment'])){
+                $comment .=  $data['comment'];
             }
-            $comment .= " || Способ доставки: " . $data['deliveryMethod'];
-            $comment .= " || Способ Оплаты: " .  $data['paymentMethod'];
+
             if(!empty($data['change'])){
                 $comment .= " || Приготовить сдачу с: ".$data['change'];
             }
@@ -58,10 +115,10 @@ class OrderController extends Controller
             }
 
             $order = Order::create([
-                'email' => $data['email'] ?? 'Не указан',
-                'first_name' => $data['name'] ?? 'Не указано',
+                'email' => $data['email'],
+                'first_name' => $data['name'],
                 'phone' => $data['phone'],
-                'address' => $data['address'] ?? 'Не указано',
+                'address' => $data['address'],
                 'comment' => $comment,
                 'payment_id' => $data['payment_id'],
                 'delivery_id' => $data['delivery_id'],
@@ -69,8 +126,7 @@ class OrderController extends Controller
             ]);
 
 
-            $products = [];
-            $productsForTelegram = [];
+            $way_products = [];
 
             foreach(Cart::getContent() as $value){
 
@@ -83,54 +139,40 @@ class OrderController extends Controller
                     'sum'                   => $value->price * $value->quantity
                 ]);
 
-                $product = [
-                    'product_id' => $value->associatedModel->poster_id,
-                    'count'      => $value->quantity
-                ];
-                $productForTelegram = [
-                    'name'      => $value->name,
-                    'count'     => $value->quantity
-                ];
-                $modificator = [];
-                if(isset($value->attributes['active_modificator'])){
-                    $modificator = [
-                        'modificator_id' => $value->attributes->modificator_id
-                    ];
-                }
+                $way_products[] = new Product($value->name, $value->price, $value->quantity);
 
-                $products[] = array_merge($product, $modificator);
-                $productsForTelegram[] = $productForTelegram;
             }
 
-            $orderForTelegram = [
-                'first_name' => $data['name'],
-                'phone'      => $data['phone'],
-                'email'      => $data['email'],
-                'comment'    => $comment,
-                'address'    => $data['address'],
-                'products'   => $productsForTelegram,
-                'total'      => Cart::getTotal() . 'грн'
-            ];
+            $way_products = new ProductCollection($way_products);
+            $client = new Client($data['name'], null, $data['email'], $data['phone']);
 
-            $order = [
-                'spot_id' => 1,
-                'first_name' => $data['name'],
-                'phone'      => $data['phone'],
-                'email'      => $data['email'],
-                'comment'    => $comment,
-                'address'    => $data['address'],
-                'products'   => $products
-            ];
+            $form = WayForPay::purchase(
+                $order->id,
+                $order->sum,
+                $client,
+                $way_products,
+                'UAH', null, 'RU', null,
+                'http://demo-shop.rudomanenkovladimir.com/thankyou',
+                'http://demo-shop.rudomanenkovladimir.com/handle'
+            )->getAsString($submitText = 'Pay', $buttonClass = 'btn btn-primary'); // Get html form as string
+
+
+            if($data["payment_id"] == 3){
+                $response = [
+                    "payment_id" => 3,
+                    "form" => $form
+                ];
+
+                Cart::clear();
+
+                return json_encode($response);
+            }
 
             //return json_encode($order);
             if(env('APP_PRODUCTION_MODE')){
                 $poster = new Poster(env('POSTER_TOKEN'));
-                //$response = json_decode($poster->sendOrder($order), true);
+                $response = json_decode($poster->sendOrderById($order->id), true);
 
-                if(!isset($response['error'])){
-                    $bot = new Telegram(env('TELEGRAM_BOT_ID'), env('TELEGRAM_CHAT_ID'));
-                    $bot->send('Новый заказ', $orderForTelegram);
-                }
             }else{
                 $response = ['response' => 'success'];
             }

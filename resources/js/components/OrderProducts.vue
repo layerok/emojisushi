@@ -1,58 +1,58 @@
 <template>
     <div>
         <div class="tile">
-            <h3 class="tile-title">Аттрибуты товара</h3>
+            <h3 class="tile-title">Товары в заказе</h3>
             <div class="tile-body">
                 <div class="table-responsive">
-                    <div class="tile">
-                        <h3 class="tile-title">Аттрибуты</h3>
-                        <hr>
-                        <div class="tile-body">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="parent">Выберите аттрибут <span class="m-l-5 text-danger"> *</span></label>
-                                        <select id=parent class="form-control custom-select mt-15" v-model="attribute" @change="selectAttribute(attribute)">
-                                            <option :value="attribute" v-for="attribute in attributes"> {{ attribute.name }} </option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tile" v-if="attributeSelected">
-                        <h3 class="tile-title">Добавить аттрибут к продукту</h3>
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="values">Выберите значение <span class="m-l-5 text-danger"> *</span></label>
-                                    <select id=values class="form-control custom-select mt-15" v-model="value" @change="selectValue(value)">
-                                        <option :value="value" v-for="value in attributeValues"> {{ value.value }} </option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row" v-if="valueSelected">
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label class="control-label" for="quantity">Кол-во</label>
-                                    <input class="form-control" type="number" id="quantity" v-model="currentQty"/>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label class="control-label" for="price">Цена</label>
-                                    <input class="form-control" type="text" id="price" v-model="currentPrice"/>
-                                    <small class="text-danger">Эта цена будет добавлена к главное цене в публичной части сайта</small>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <button class="btn btn-sm btn-primary" @click="addProductAttribute()">
-                                    <i class="fa fa-plus"></i> Добавить
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+<!--                    <div class="tile">-->
+<!--                        <h3 class="tile-title">Аттрибуты</h3>-->
+<!--                        <hr>-->
+<!--                        <div class="tile-body">-->
+<!--                            <div class="row">-->
+<!--                                <div class="col-md-4">-->
+<!--                                    <div class="form-group">-->
+<!--                                        <label for="parent">Выберите аттрибут <span class="m-l-5 text-danger"> *</span></label>-->
+<!--                                        <select id=parent class="form-control custom-select mt-15" v-model="attribute" @change="selectAttribute(attribute)">-->
+<!--                                            <option :value="attribute" v-for="attribute in attributes"> {{ attribute.name }} </option>-->
+<!--                                        </select>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="tile" v-if="attributeSelected">-->
+<!--                        <h3 class="tile-title">Добавить аттрибут к продукту</h3>-->
+<!--                        <div class="row">-->
+<!--                            <div class="col-md-4">-->
+<!--                                <div class="form-group">-->
+<!--                                    <label for="values">Выберите значение <span class="m-l-5 text-danger"> *</span></label>-->
+<!--                                    <select id=values class="form-control custom-select mt-15" v-model="value" @change="selectValue(value)">-->
+<!--                                        <option :value="value" v-for="value in attributeValues"> {{ value.value }} </option>-->
+<!--                                    </select>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="row" v-if="valueSelected">-->
+<!--                            <div class="col-md-4">-->
+<!--                                <div class="form-group">-->
+<!--                                    <label class="control-label" for="quantity">Кол-во</label>-->
+<!--                                    <input class="form-control" type="number" id="quantity" v-model="currentQty"/>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="col-md-4">-->
+<!--                                <div class="form-group">-->
+<!--                                    <label class="control-label" for="price">Цена</label>-->
+<!--                                    <input class="form-control" type="text" id="price" v-model="currentPrice"/>-->
+<!--                                    <small class="text-danger">Эта цена будет добавлена к главное цене в публичной части сайта</small>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="col-md-12">-->
+<!--                                <button class="btn btn-sm btn-primary" @click="addProductAttribute()">-->
+<!--                                    <i class="fa fa-plus"></i> Добавить-->
+<!--                                </button>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
                     <table class="table table-sm">
                         <thead>
                         <tr class="text-center">
@@ -70,9 +70,9 @@
                             <td style="width: 20%" class="text-center">{{ op.quantity}}</td>
                             <td style="width: 20%" class="text-center">{{ op.price}}</td>
                             <td style="width: 10%" class="text-center">
-                                <button class="btn btn-sm btn-danger" @click="deleteProductAttribute(op)">
-                                    <i class="fa fa-trash"></i>
-                                </button>
+<!--                                <button class="btn btn-sm btn-danger" @click="deleteProductAttribute(op)">-->
+<!--                                    <i class="fa fa-trash"></i>-->
+<!--                                </button>-->
                             </td>
                         </tr>
                         </tbody>

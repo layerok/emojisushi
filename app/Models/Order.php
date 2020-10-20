@@ -17,7 +17,11 @@ class Order extends Model
      * @var array
      */
     protected $fillable = [
-        "first_name", "email", "address", "phone", "comment", "payment_id", "delivery_id", "payment_status_id", "sum"
+        "id", "first_name", "email", "address", "phone", "comment", "payment_id", "delivery_id", "payment_status_id", "sum", "is_sent_to_poster"
+    ];
+
+    protected $casts  = [
+        'is_sent_to_poster' =>  'boolean'
     ];
 
     public function delivery()

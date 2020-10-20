@@ -89,22 +89,24 @@ window.addEventListener("load", function(event) {
                             }else{
                                 $.notify(response.message, 'error');
                             }
-                        }else{
+                        }else if(response.hasOwnProperty('payment_id')){
+                            console.log(response);
+                            let formHolder = $('#form-holder');
+                            formHolder.html(response.form);
+                            formHolder.css('display', 'none');
+                            let form = formHolder.find('form');
+                            form.submit();
+
+                        }else if(response.hasOwnProperty('cartIsEmpty')){
+                            document.location.reload()
+                        }
+                        else{
+                            console.log(response);
                             window.location.href = '/thankyou';
                         }
 
 
-                        //getCart();
 
-                        // if (res.status != 'error') {
-                        //     if (res.hasOwnProperty('liqpay')) {
-                        //         let liqPayForm = $.parseHTML($.trim(res.html_str))[0];
-                        //         $('body').append(liqPayForm);
-                        //         liqPayForm.submit();
-                        //     } else {
-                        //         window.location.href = "/orders/thankyou";
-                        //     }
-                        // }
                         $("#checkout-loader").addClass('dn');
                         $("#checkout-loader").removeClass('db');
 
@@ -127,10 +129,16 @@ window.addEventListener("load", function(event) {
                     required: true,
                     phone: true,
                 },
+                email: {
+                    email: true
+                }
             },
             messages: {
                 phone: {
                     required: "Пожалуйста, заполните это поле",
+                },
+                email:{
+                    email: "Введите действительный email"
                 }
             }
         });

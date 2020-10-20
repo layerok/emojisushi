@@ -61,7 +61,9 @@
                             </div>
                            {{-- <div class="mt3 dark-red" >Ошибка</div>--}}
 
+
                         </form>
+                        <div id="form-holder" class="mt3"></div>
                     </div>
                     <div class="order-1 order-2-l w-100 w-60-l pa2 ba b--orange overflow-y-scroll self-start" style="max-height: 520px " >
                         <!-- products container -->
@@ -117,3 +119,7 @@
 
 
 @stop
+
+@push('scripts')
+
+@endpush

@@ -16,7 +16,8 @@ class PaymentTableSeeder extends Seeder
 
         DB::table('payment')->insert([
             ['name' => 'Картой'],
-            ['name' => 'Наличными']
+            ['name' => 'Наличными'],
+            ['name' => 'WayForPay']
         ]);
 
     }

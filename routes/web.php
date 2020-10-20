@@ -34,6 +34,7 @@ Route::group(['prefix' => 'order'], function(){
 });
 
 Route::get('/delivery-and-payment', 'Site\PagesController@delivery')->name('pages.delivery');
-Route::get('/thankyou', 'Site\PagesController@thankyou')->name('pages.thankyou');
+Route::match(['get', 'post'], '/thankyou', 'Site\PagesController@thankyou')->name('pages.thankyou');
+Route::post( '/handle', 'Site\OrderController@handle')->name('orders.handle');
 
 

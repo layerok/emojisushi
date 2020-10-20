@@ -10,6 +10,7 @@
 <script src="{{ asset('frontend/js/gsap/gsap.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('frontend/js/gsap/ScrollTrigger.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('frontend/js/animations.js') }}" type="text/javascript"></script>
+<script id="widget-wfp-script" type="text/javascript" src="https://secure.wayforpay.com/server/pay-widget.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js" integrity="sha512-IsNh5E3eYy3tr/JiX2Yx4vsCujtkhwl7SLqgnwLNgf04Hrt9BT9SXlLlZlWx+OK4ndzAoALhsMNcCmkggjZB1w==" crossorigin="anonymous"></script>
 {{--<script src="{{ asset('frontend/plugins/fancybox/fancybox.min.js') }}" type="text/javascript"></script>--}}
 <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>

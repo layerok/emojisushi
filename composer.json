@@ -13,6 +13,7 @@
         "fideloper/proxy": "^4.0",
         "laravel/framework": "5.8.*",
         "laravel/tinker": "^1.0",
+        "maksa988/laravel-wayforpay": "^1.0",
         "typicms/nestablecollection": "^1.1"
     },
     "require-dev": {

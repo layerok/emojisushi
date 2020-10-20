@@ -22,6 +22,7 @@
                             <th> Телефон </th>
                             <th class="text-center"> Сумма </th>
                             <th class="text-center"> Статус </th>
+                            <th class="text-center"> Отправлен на постер </th>
                             <th style="width:100px; min-width:100px;" class="text-center text-danger"><i class="fa fa-bolt"> </i></th>
                         </tr>
                         </thead>
@@ -35,9 +36,44 @@
 
                                 <td>{{ $record->sum }} {{ config('settings.currency_symbol') }}</td>
                                 <td class="text-center">
-                                    <span class="badge {{ $record->payment_status->id == 1 ? 'badge-success' : 'badge-danger' }} ">
+                                    @php
+                                        $badge = 'danger';
+                                        switch ($record->payment_status->id ){
+                                            case 3: {
+                                                $badge = 'success';
+                                                break;
+                                            }
+                                            case 1: {
+                                                $badge = 'warning';
+                                                break;
+                                            }
+                                            case 2: {
+                                                $badge = 'success';
+                                                break;
+                                            }
+                                            case 5: {
+                                                $badge = 'warning';
+                                                break;
+                                            }
+                                            default:{
+                                                $badge = 'danger';
+                                            }
+                                        }
+                                    @endphp
+                                    <span class="badge badge-{{ $badge }} ">
                                         {{ $record->payment_status->name }}
                                     </span>
+                                </td>
+                                <td class="text-center">
+                                    @if($record->is_sent_to_poster == 0)
+                                        <span class="badge badge-danger ">
+                                            Нет
+                                        </span>
+                                    @else
+                                        <span class="badge badge-success ">
+                                            Да
+                                        </span>
+                                    @endif
                                 </td>
                                 <td class="text-center">
                                     <div class="btn-group" role="group" aria-label="Second group">

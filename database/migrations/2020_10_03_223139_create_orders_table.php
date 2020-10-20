@@ -21,9 +21,10 @@ class CreateOrdersTable extends Migration
             $table->string('address')->nullable();
             $table->string('comment')->nullable();
             $table->decimal('sum', 8, 2)->default(0);
-            $table->unsignedBigInteger('payment_id')->index();
-            $table->unsignedBigInteger('delivery_id')->index();
-            $table->unsignedBigInteger('payment_status_id')->default(2);
+            $table->unsignedBigInteger('payment_id')->index()->default(1);
+            $table->unsignedBigInteger('delivery_id')->index()->default(1);
+            $table->unsignedBigInteger('payment_status_id')->default(10);
+            $table->boolean('is_sent_to_poster')->default(0);
 
             $table->foreign('payment_id')
                 ->references('id')->on('payment')

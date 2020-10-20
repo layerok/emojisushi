@@ -15,7 +15,7 @@ class PaymentStatus extends Model
      * @var array
      */
     protected $fillable = [
-        "name"
+        "name", "key"
     ];
 
     public function orders()

@@ -100,12 +100,12 @@
                                     В корзину
                                 </button>
 
-                                <div data-control-update class="order-2 order-1-l @if(!Cart::get('99'.$modificator['id']). '99') dn @endif" >
+                                <div data-control-update class="order-2 order-1-l @if(!Cart::get('99'.$modificator['id']. '99')) dn @endif" >
                                     <div class="flex bg-orange w4 black br-pill overflow-hidden ">
                                         <button name="action" value="decrease" type="submit" class="w-third bn  pv3 ph2 bg-inherit black bg-animate hover-bg-gold pointer">-</button>
                                         <div data-control-quantity class="w-third tc pv3">
-                                            @if(Cart::get($modificator['id']))
-                                                {{ Cart::get($modificator['id'])['quantity'] }}
+                                            @if(Cart::get('99' . $modificator['id'] . '99'))
+                                                {{ Cart::get( '99' .$modificator['id'] . '99')['quantity']  }}
                                             @endif
                                         </div>
                                         <button name="action" value="increase" type="submit" class="w-third bn  pv3 ph2 bg-inherit black bg-animate hover-bg-gold pointer">+</button>

@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Category;
+use App\Models\Page;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Cart;
@@ -24,6 +25,9 @@ class ViewComposerServiceProvider extends ServiceProvider
         });
         View::composer('site.partials.header', function ($view) {
             $view->with('cartCount', Cart::getContent()->count());
+        });
+        View::composer('site.partials.nav', function ($view) {
+            $view->with('menu', Page::where('hidden', '=', '0')->get());
         });
     }
 }

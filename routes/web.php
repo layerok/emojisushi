@@ -33,8 +33,8 @@ Route::group(['prefix' => 'order'], function(){
     Route::post('/send', 'Site\OrderController@send')->name('order.send');
 });
 
-Route::get('/delivery-and-payment', 'Site\PagesController@delivery')->name('pages.delivery');
-Route::match(['get', 'post'], '/thankyou', 'Site\PagesController@thankyou')->name('pages.thankyou');
+Route::get('/{page}', 'Site\PageController@index');
+
 Route::post( '/handle', 'Site\OrderController@handle')->name('orders.handle');
 
 

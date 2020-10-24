@@ -28,6 +28,8 @@ class DatabaseSeeder extends Seeder
         $this->call(PaymentTableSeeder::class);
         $this->call(PaymentStatusTableSeeder::class);
 
+        $this->call(PagesTableSeeder::class);
+
 
     }
 }

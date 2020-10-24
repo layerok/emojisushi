@@ -22,6 +22,7 @@ class IndexController extends Controller
 //        $data = json_decode($poster->query('menu.getProducts'), true);
 //
 //        dd($data);
+
         $this->setCatalogSort();
 
         $searched_word = $_GET['word'] ?? '';

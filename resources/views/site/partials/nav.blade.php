@@ -11,11 +11,13 @@
                 </li>
 
             @endforeach
+            @foreach($menu as $page)
                 <li  class="mv1 flex-shrink-0"><!---->
-                    <a href="{{ route('pages.delivery') }}"  class="@if (\Route::current()->getName() == 'pages.delivery')  bg-orange black @else white @endif  ph3-ns ph1 pv1 br-pill link mr2-ns mr1 hover-bg-orange hover-black  ">
-                        <span class="ph1">Доставка и оплата</span>
+                    <a href="/{{ $page->slug }}"  class="@if (\Request::path() == $page->slug)  bg-orange black @else white @endif  ph3-ns ph1 pv1 br-pill link mr2-ns mr1 hover-bg-orange hover-black  ">
+                        <span class="ph1">{{ $page->name }}</span>
                     </a>
                 </li>
+            @endforeach
         </ul>
         @php $is_second_popup = true; @endphp
         <div class="cart-in-menu dn ">

@@ -7,18 +7,22 @@
 
         <!-- Телефоны -->
         <div  class=" ml4-l pl3-l flex flex-column">
-            <div class="flex items-center mb2">
-                <div class="nested-img mr2"><img src="/storage/img/phone.svg" alt=""></div>
-                <a href="tel:+380683034551" target="_blank" class="link white hover-orange f6 f5-ns">+38 (068) 303 45 51</a>
-            </div>
-            <div class="flex items-center mb2">
-                <div class="nested-img mr2"><img src="/storage/img/phone.svg" alt=""></div>
-                <a href="tel:+380933662869" target="_blank" class="link white hover-orange f6 f5-ns">+38 (093) 366 28 69</a>
-            </div>
-            <div class="flex items-center mb2">
-                <div class="nested-img mr2 "><img src="/storage/img/instagram.svg" alt=""></div>
-                <a href="https://www.instagram.com/emoji_bar_/" target="_blank" class="f6 f5-ns white hover-orange link">@emoji_bar_</a>
-            </div>
+            @empty(!config('settings.phone'))
+                @foreach(explode(';', config('settings.phone')) as $phone)
+                <div class="flex items-center mb2">
+                    <div class="nested-img mr2"><img src="/storage/img/phone.svg" alt=""></div>
+                    <a href="tel:{{ preg_replace('/\D/','', $phone) }}" target="_blank" class="link white hover-orange f6 f5-ns">{{ $phone }}</a>
+                </div>
+                @endforeach
+            @endempty
+
+            @empty(!config('settings.social_instagram'))
+                <div class="flex items-center mb2">
+                    <div class="nested-img mr2 "><img src="/storage/img/instagram.svg" alt=""></div>
+                    <a href="https://www.instagram.com/{{config('settings.social_instagram')}}/" target="_blank" class="f6 f5-ns white hover-orange link">{{ config('settings.social_instagram') }}</a>
+                </div>
+            @endempty
+
 
         </div>
 

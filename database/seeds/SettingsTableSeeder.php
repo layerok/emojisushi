@@ -75,7 +75,7 @@ class SettingsTableSeeder extends Seeder
         ],
         [
             'key'                       =>  'social_viber',
-            'value'                     =>  '@emoji_bar_',
+            'value'                     =>  '',
         ],
         [
             'key'                       =>  'social_telegram',
@@ -87,7 +87,7 @@ class SettingsTableSeeder extends Seeder
         ],
         [
             'key'                       =>  'social_instagram',
-            'value'                     =>  '',
+            'value'                     =>  'emoji_bar_',
         ],
         [
             'key'                       =>  'social_linkedin',
@@ -99,6 +99,10 @@ class SettingsTableSeeder extends Seeder
         ],
         [
             'key'                       =>  'facebook_pixels',
+            'value'                     =>  '',
+        ],
+        [
+            'key'                       =>  'wayforpay_test',
             'value'                     =>  '',
         ],
         [

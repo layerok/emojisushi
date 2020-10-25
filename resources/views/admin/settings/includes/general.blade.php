@@ -38,6 +38,46 @@
                 />
             </div>
             <div class="form-group">
+                <label class="control-label" for="phone">Телефон(ы)</label>
+                <input
+                    class="form-control"
+                    type="text"
+                    placeholder="Enter store phone"
+                    id="phone"
+                    name="phone"
+                    value="{{ config('settings.phone') }}"
+                />
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group">
+                        <label class="control-label" for="start_working">Начало рабочего дня</label>
+                        <input
+                            class="form-control"
+                            type="text"
+                            placeholder="Время начала работы"
+                            id="start_working"
+                            name="start_working"
+                            value="{{ config('settings.start_working') }}"
+                        />
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label class="control-label" for="finish_working">Конец рабочего дня</label>
+                        <input
+                            class="form-control"
+                            type="text"
+                            placeholder="Время конца работы"
+                            id="finish_working"
+                            name="finish_working"
+                            value="{{ config('settings.finish_working') }}"
+                        />
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
                 <label class="control-label" for="currency_code">Currency Code</label>
                 <input
                     class="form-control"

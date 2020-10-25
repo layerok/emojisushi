@@ -3,18 +3,20 @@
         <section class="w-100 flex flex-wrap flex-nowrap-l justify-between mb2">
             <!-- Телефоны -->
             <div  class="order-0 w-50 flex flex-column justify-center">
-                <div class="flex items-center mb2">
-                    <div class="nested-img mr2"><img src="/storage/img/phone.svg" alt=""></div>
-                    <a href="tel:+380683034551" target="_blank" class="link white hover-orange f6 f5-ns">+38 (068) 303 45 51</a>
-                </div>
-                <div class="flex items-center mb2">
-                    <div class="nested-img mr2"><img src="/storage/img/phone.svg" alt=""></div>
-                    <a href="tel:+380933662869" target="_blank" class="link white hover-orange f6 f5-ns">+38 (093) 366 28 69</a>
-                </div>
-                <div class="flex items-center mb2">
-                    <div class="nested-img mr2 "><img src="/storage/img/instagram.svg" alt=""></div>
-                    <a href="https://www.instagram.com/emoji_bar_/" target="_blank" class="f6 f5-ns white hover-orange link">@emoji_bar_</a>
-                </div>
+                @empty(!config('settings.phone'))
+                    @foreach(explode(';', config('settings.phone')) as $phone)
+                        <div class="flex items-center mb2">
+                            <div class="nested-img mr2"><img src="/storage/img/phone.svg" alt=""></div>
+                            <a href="tel:{{ preg_replace('/\D/','', $phone) }}" target="_blank" class="link white hover-orange f6 f5-ns">{{ $phone }}</a>
+                        </div>
+                    @endforeach
+                @endempty
+                @empty(!config('settings.social_instagram'))
+                    <div class="flex items-center mb2">
+                        <div class="nested-img mr2 "><img src="/storage/img/instagram.svg" alt=""></div>
+                        <a href="https://www.instagram.com/{{config('settings.social_instagram')}}/" target="_blank" class="f6 f5-ns white hover-orange link">{{ config('settings.social_instagram') }}</a>
+                    </div>
+                @endempty
             </div>
 
             <!-- Лого -->
@@ -23,7 +25,7 @@
                     <a class="w5 h4" href="/">
                         <img src="/storage/img/yellow_logo.svg" alt="">
                     </a>
-                    <p><span class="orange">Время работы:</span> 11:00-22:00</p>
+                    <p><span class="orange">Время работы:</span> {{ config('settings.start_working') }}-{{ config('settings.finish_working') }}</p>
                     <form class="relative mb2" method="get" action="/#products" autocomplete="off">
                         @csrf
                         <input name="word" type="text" class="outline-0 br-pill ba b--orange b--top b--left b--right b--bottom bg-transparent white pa3 placeholder-white" placeholder="Поиск" @isset($_GET['word']) value="{{ $_GET['word'] }}" @endisset>

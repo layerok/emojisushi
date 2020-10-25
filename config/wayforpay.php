@@ -4,20 +4,20 @@ return [
     /*
      * Test mode for using test credentials
      */
-    'testMode' => env("WAYFORPAY_TEST", false),
+    'testMode' => config('settings.wayforpay_test') ?? env("WAYFORPAY_TEST", true),
 
     /*
      * Merchant domain
      */
-    'merchantDomain' => env('WAYFORPAY_DOMAIN', 'demo-shop.rudomanenkovladimir.com'),
+    'merchantDomain' => config('settings.wayforpay_domain') ?? env('WAYFORPAY_DOMAIN', 'market.ua'),
 
     /*
      * Merchant Account ID
      */
-    'merchantAccount' => env('WAYFORPAY_ACCOUNT', 'demo_shop_rudomanenkovladimir_com'),
+    'merchantAccount' => config('settings.wayforpay_account') ?? env('WAYFORPAY_ACCOUNT', 'test_merch_n1'),
 
     /*
      * Merchant Secret key
      */
-    'merchantSecretKey' => env('WAYFORPAY_SECRET_KEY', '851c44c061eb74e6bfd8fad367a460cd83532f78'),
+    'merchantSecretKey' => config('settings.wayforpay_secret_key') ?? env('WAYFORPAY_SECRET_KEY', 'flk3409refn54t54t*FNJRET'),
 ];

@@ -126,6 +126,15 @@ Route::group(['prefix'  =>  'admin'], function () {
             Route::post('products',     'Admin\OrderProductController@orderProducts');
         });
 
+        Route::group(['prefix' => 'pages'], function () {
+            Route::get('/',             'Admin\PageController@index')    ->name('admin.pages.index');
+            Route::get('/create',       'Admin\PageController@create')   ->name('admin.pages.create');
+            Route::post('/store',       'Admin\PageController@store')    ->name('admin.pages.store');
+            Route::get('/edit/{id}',    'Admin\PageController@edit')     ->name('admin.pages.edit');
+            Route::post('/update',      'Admin\PageController@update')   ->name('admin.pages.update');
+            Route::get('/{id}/delete',  'Admin\PageController@delete')   ->name('admin.pages.delete');
+        });
+
     });
 
 });

@@ -4,7 +4,7 @@
 @section('content')
     <div class="flex justify-center">
         <div class="mw7 ph3 w-100">
-            @php htmlspecialchars_decode($page->content) @endphp
+           {!! $page->content !!}
         </div>
     </div>
 @stop

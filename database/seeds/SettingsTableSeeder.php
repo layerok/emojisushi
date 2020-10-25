@@ -22,6 +22,18 @@ class SettingsTableSeeder extends Seeder
             'value'                     =>  'admin@admin.com',
         ],
         [
+            'key'                       =>  'phone',
+            'value'                     =>  '+38 (068) 303 45 51; +38 (068) 303 45 51',
+        ],
+        [
+            'key'                       =>  'start_working',
+            'value'                     =>  '11:00',
+        ],
+        [
+            'key'                       =>  'finish_working',
+            'value'                     =>  '22:00',
+        ],
+        [
             'key'                       =>  'currency_code',
             'value'                     =>  'UAN',
         ],
@@ -54,6 +66,22 @@ class SettingsTableSeeder extends Seeder
             'value'                     =>  '',
         ],
         [
+            'key'                       =>  'social_youtube',
+            'value'                     =>  '',
+        ],
+        [
+            'key'                       =>  'social_whatsapp',
+            'value'                     =>  '',
+        ],
+        [
+            'key'                       =>  'social_viber',
+            'value'                     =>  '@emoji_bar_',
+        ],
+        [
+            'key'                       =>  'social_telegram',
+            'value'                     =>  '',
+        ],
+        [
             'key'                       =>  'social_twitter',
             'value'                     =>  '',
         ],
@@ -74,27 +102,15 @@ class SettingsTableSeeder extends Seeder
             'value'                     =>  '',
         ],
         [
-            'key'                       =>  'stripe_payment_method',
+            'key'                       =>  'wayforpay_domain',
             'value'                     =>  '',
         ],
         [
-            'key'                       =>  'stripe_key',
+            'key'                       =>  'wayforpay_account',
             'value'                     =>  '',
         ],
         [
-            'key'                       =>  'stripe_secret_key',
-            'value'                     =>  '',
-        ],
-        [
-            'key'                       =>  'paypal_payment_method',
-            'value'                     =>  '',
-        ],
-        [
-            'key'                       =>  'paypal_client_id',
-            'value'                     =>  '',
-        ],
-        [
-            'key'                       =>  'paypal_secret_id',
+            'key'                       =>  'wayforpay_secret_key',
             'value'                     =>  '',
         ],
     ];

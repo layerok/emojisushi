@@ -64,6 +64,13 @@
                     </a>
                 </li>
                 <li>
+                    <a class="treeview-item {{ Route::currentRouteName() == 'admin.pages.index' ? 'active' : '' }}"
+                       href="{{ route('admin.pages.index') }}">
+                        <i class="app-menu__icon far fa-file-alt"></i>
+                        <span class="app-menu__label"> Инф. страницы</span>
+                    </a>
+                </li>
+                <li>
                     <a class="treeview-item {{ Route::currentRouteName() == 'admin.payment-status.index' ? 'active' : '' }}"
                        href="{{ route('admin.payment-status.index') }}">
                         <i class="app-menu__icon fas fa-money-bill-alt"></i>

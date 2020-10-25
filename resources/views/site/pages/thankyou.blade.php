@@ -1,5 +1,5 @@
 @extends('site.app')
-@section('title', 'Homepage')
+@section('title', $page->name)
 
 @section('content')
 

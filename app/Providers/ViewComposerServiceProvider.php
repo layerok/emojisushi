@@ -7,6 +7,7 @@ use App\Models\Page;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Cart;
+use Theme;
 
 class ViewComposerServiceProvider extends ServiceProvider
 {
@@ -17,16 +18,17 @@ class ViewComposerServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        View::composer('site.partials.nav', function ($view) {
+
+        View::composer('theme::site.partials.nav', function ($view) {
             $view->with('categories', Category::where([
                 ['id', '>' , 1],
                 ['hidden', '=' , 0],
             ])->orderBy('sort_order', 'desc')->get());
         });
-        View::composer('site.partials.header', function ($view) {
+        View::composer('theme::site.partials.header', function ($view) {
             $view->with('cartCount', Cart::getContent()->count());
         });
-        View::composer('site.partials.nav', function ($view) {
+        View::composer('theme::site.partials.nav', function ($view) {
             $view->with('menu', Page::where('hidden', '=', '0')->get());
         });
     }

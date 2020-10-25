@@ -7,6 +7,7 @@ use App\Traits\UploadAble;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use App\Http\Controllers\BaseController;
+use Storage;
 
 /**
  * Class SettingController
@@ -21,8 +22,10 @@ class SettingController extends BaseController
      */
     public function index()
     {
+        $themes = Storage::disk('themes')->directories();
+
         $this->setPageTitle('Settings', 'Manage Settings');
-        return view('admin.settings.index');
+        return view('admin.settings.index', compact('themes'));
     }
 
     /**

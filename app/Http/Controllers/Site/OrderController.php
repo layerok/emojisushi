@@ -28,25 +28,11 @@ class OrderController extends Controller
 
     public function index(){
 
-
-//        Order::create([
-//            'id' => 118,
-//            'payment_id' => 1,
-//            'delivery_id' => 1,
-//            'phone' => "4324242"
-//        ]);
-//        $order = Order::find(99);
-//
-//        $order->update(['is_sent_to_poster' => 1]);
-//
-//        dd(Order::find(99));
-
         $cart_items = Cart::getContent();
         $delivery   = DB::table('delivery')->get();
         $payment    = DB::table('payment')->get();
 
-        return view('site.pages.checkout', compact('cart_items', 'delivery', 'payment'));
-
+        return view('theme::site.pages.checkout', compact('cart_items', 'delivery', 'payment'));
 
 
     }

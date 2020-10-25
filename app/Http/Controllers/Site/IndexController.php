@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Site;
 
+use Facuz\Theme\Facades\Theme;
 use Illuminate\Support\Facades\DB;
 use App\Models\Category;
 use Illuminate\Http\Request;
@@ -39,7 +40,7 @@ class IndexController extends Controller
                return $query->orderByRaw($sortBy);
             })->where('products.name', 'like', "%{$searched_word}%" )->get();
 
-        return view('site.pages.homepage', compact('products'));
+        return view('theme::site.pages.homepage', compact('products'));
     }
 
     private function setCatalogSort()

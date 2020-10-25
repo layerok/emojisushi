@@ -5,6 +5,15 @@
         <hr>
         <div class="tile-body">
             <div class="form-group">
+                <label class="control-label" for="theme">Тема</label>
+                <select name="theme" id="theme" class="form-control">
+                    @foreach($themes as $theme)
+                        <option value="{{ $theme }}" {{ (config('settings.theme')) == $theme ? 'selected' : '' }}>{{ $theme }}</option>
+                    @endforeach
+                </select>
+            </div>
+
+            <div class="form-group">
                 <label class="control-label" for="site_name">Site Name</label>
                 <input
                     class="form-control"

@@ -5,7 +5,7 @@
         <hr>
         <div class="tile-body">
             <div class="form-group">
-                <label class="control-label" for="wayforpay_test">Тестовый режим</label>
+                <label class="control-label" for="wayforpay_test">Тема</label>
                 <select name="wayforpay_test" id="wayforpay_test" class="form-control">
                     <option value="1" {{ (config('settings.wayforpay_test')) == 1 ? 'selected' : '' }}>Включен</option>
                     <option value="0" {{ (config('settings.wayforpay_test')) == 0 ? 'selected' : '' }}>Выключен</option>

@@ -31,7 +31,7 @@ class CategoryController extends Controller
         }])->where('slug', $slug)
             ->first();
 
-        return view('site.pages.category', compact('category', 'slug'));
+        return view('theme::site.pages.category', compact('category', 'slug'));
     }
 
     private function setCatalogSort()

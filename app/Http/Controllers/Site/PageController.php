@@ -14,9 +14,9 @@ class PageController extends Controller
         $files = Storage::disk('views')->files('site/pages');
 
         if(in_array('site/pages/' . $page->slug .'.blade.php', $files)){
-            return view('site.pages.' .$page->slug, compact('page') );
+            return view('theme::site.pages.' .$page->slug, compact('page') );
         }else{
-            return view('site.pages.default', compact('page'));
+            return view('theme::site.pages.default', compact('page'));
         }
 
     }

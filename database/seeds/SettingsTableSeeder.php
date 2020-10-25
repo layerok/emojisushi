@@ -117,6 +117,10 @@ class SettingsTableSeeder extends Seeder
             'key'                       =>  'wayforpay_secret_key',
             'value'                     =>  '',
         ],
+        [
+            'key'                       =>  'theme',
+            'value'                     =>  'default',
+        ],
     ];
 
     /**

@@ -177,6 +177,7 @@ return [
         App\Providers\SettingServiceProvider::class,
         App\Providers\RepositoryServiceProvider::class,
         App\Providers\ViewComposerServiceProvider::class,
+        App\Providers\ThemeServiceProvider::class,
         Maksa988\WayForPay\WayForPayServiceProvider::class,
 
     ],
@@ -231,6 +232,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Cart' => Darryldecode\Cart\Facades\CartFacade::class,
         'WayForPay' => Maksa988\WayForPay\Facades\WayForPay::class,
+        'Asset' => App\Libraries\Asset::class,
     ],
 
 ];

@@ -24,10 +24,15 @@ class ThemeServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $theme = Setting::where('key', '=', 'theme')->first();
+        $theme = Setting::where('key', '=', 'theme')->value('value');
+
+
+        if(!isset($theme)){
+            $theme = env('APP_THEME', 'default');
+        }
 
         $views = [
-            resource_path("views/themes/{$theme->value}"),
+            resource_path("views/themes/{$theme}"),
             resource_path("views/themes/default")
         ];
 

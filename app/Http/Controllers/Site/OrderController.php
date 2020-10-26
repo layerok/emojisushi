@@ -138,8 +138,8 @@ class OrderController extends Controller
                 $client,
                 $way_products,
                 'UAH', null, 'RU', null,
-                'http://demo-shop.rudomanenkovladimir.com/thankyou',
-                'http://demo-shop.rudomanenkovladimir.com/handle'
+                env("WAYFORPAY_RETURN_URL", $request->getSchemeAndHttpHost() . '/thankyou'),
+                env("WAYFORPAY_SERVICE_URL", $request->getSchemeAndHttpHost() .'/handle')
             )->getAsString($submitText = 'Pay', $buttonClass = 'btn btn-primary'); // Get html form as string
 
 

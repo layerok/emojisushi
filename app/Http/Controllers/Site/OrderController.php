@@ -38,7 +38,7 @@ class OrderController extends Controller
     }
 
     public function handle(Request $request){
-
+        Log::channel('single')->debug('wayforpay прислал ответ');
         $data = json_decode(file_get_contents('php://input'), TRUE);
 //        foreach($data as $value){
 //            Log::channel('single')->debug($value);
@@ -138,8 +138,8 @@ class OrderController extends Controller
                 $client,
                 $way_products,
                 'UAH', null, 'RU', null,
-                env("WAYFORPAY_RETURN_URL", $request->getSchemeAndHttpHost() . '/thankyou'),
-                env("WAYFORPAY_SERVICE_URL", $request->getSchemeAndHttpHost() .'/handle')
+                'https://sumoist.com.ua/thankyou',
+                'https://sumoist.com.ua/order/handle'
             )->getAsString($submitText = 'Pay', $buttonClass = 'btn btn-primary'); // Get html form as string
 
 

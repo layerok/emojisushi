@@ -31,10 +31,11 @@ Route::group(['prefix' => 'order'], function(){
     Route::get('/', 'Site\OrderController@index')->name('order.index');
 
     Route::post('/send', 'Site\OrderController@send')->name('order.send');
+    Route::post( '/handle', 'Site\OrderController@handle');
 });
 
-Route::get('/{page}', 'Site\PageController@index');
+Route::match(['get','post'],'/{page}', 'Site\PageController@index');
 
-Route::post( '/handle', 'Site\OrderController@handle')->name('orders.handle');
+
 
 

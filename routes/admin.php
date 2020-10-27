@@ -135,6 +135,15 @@ Route::group(['prefix'  =>  'admin'], function () {
             Route::get('/{id}/delete',  'Admin\PageController@delete')   ->name('admin.pages.delete');
         });
 
+        Route::group(['prefix' => 'slider'], function () {
+            Route::get('/',             'Admin\SliderController@index')    ->name('admin.slider.index');
+            Route::get('/create',       'Admin\SliderController@create')   ->name('admin.slider.create');
+            Route::post('/store',       'Admin\SliderController@store')    ->name('admin.slider.store');
+            Route::get('/edit/{id}',    'Admin\SliderController@edit')     ->name('admin.slider.edit');
+            Route::post('/update',      'Admin\SliderController@update')   ->name('admin.slider.update');
+            Route::get('/{id}/delete',  'Admin\SliderController@delete')   ->name('admin.slider.delete');
+        });
+
     });
 
 });

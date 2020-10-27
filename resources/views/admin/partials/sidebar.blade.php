@@ -13,6 +13,7 @@
                                Route::currentRouteName() == 'admin.delivery.index' ||
                                Route::currentRouteName() == 'admin.payment.index' ||
                                Route::currentRouteName() == 'admin.attributes.index' ||
+                               Route::currentRouteName() == 'admin.slider.index' ||
                                Route::currentRouteName() == 'admin.payment-status.index' ||
                                Route::currentRouteName() == 'admin.orders.index' ? 'is-expanded' : '' }}">
             <a class="app-menu__item" href="#" data-toggle="treeview">
@@ -71,6 +72,13 @@
                     </a>
                 </li>
                 <li>
+                    <a class="treeview-item {{ Route::currentRouteName() == 'admin.slider.index' ? 'active' : '' }}"
+                       href="{{ route('admin.slider.index') }}">
+                        <i class="app-menu__icon fab fa-slideshare"></i>
+                        <span class="app-menu__label"> Слайдер</span>
+                    </a>
+                </li>
+                <li>
                     <a class="treeview-item {{ Route::currentRouteName() == 'admin.payment-status.index' ? 'active' : '' }}"
                        href="{{ route('admin.payment-status.index') }}">
                         <i class="app-menu__icon fas fa-money-bill-alt"></i>
@@ -86,11 +94,10 @@
             </ul>
         </li>
 
-
         <li>
             <a class="app-menu__item {{ Route::currentRouteName() == 'admin.settings' ? 'active' : '' }}" href="{{ route('admin.settings') }}">
                 <i class="app-menu__icon fa fa-cogs"></i>
-                <span class="app-menu__label">Настройки</span>
+                <span class="app-menu__label"> Настройки</span>
             </a>
         </li>
     </ul>

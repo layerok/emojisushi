@@ -1,4 +1,31 @@
 <?php
+
+/**
+ *
+ * Это пока попытка написать более удобный api для постера
+ * Пока я узнал как реализовать цепочку ф-ций типо такого, но пока нет сил
+ *
+ * $poster = new Poster('{$s_token}')
+ * $poster
+ *      ->setUrl('incomingOrders.createIncomingOrder')
+ *      ->setType('post')
+ *      ->setProducts($arr_products)
+ *      ->setName('Vova')
+ *      ->setAddress('Шишкина 2')
+ *      ->setPhone('+380669111095')
+ *      ->setComment('Пароль на парадной 832')
+ *      ->setEmail('kotopes231@gmail.com')
+ *      ->sendToTelegram(true)
+ *      ->sendOrder();
+ *
+ * либо
+ *
+ * $poster
+ *      ->setOrderId(4)
+ *      ->sendToTelegram()
+ *      ->sendOrder()
+ */
+
 namespace App\Libraries;
 
 use App\Models\Delivery;
@@ -7,10 +34,20 @@ use Illuminate\Support\Facades\Log;
 
 class Poster {
 
-    private $token = "";
+    private $token;
+
+    private $type;
+
+    private $url;
+
+    private $params;
+
+    private $isJson;
 
     public function __construct($token){
         $this->token = $token;
+        $this->type = 'get';
+        $this->isJson = false;
     }
 
     public function sendRequest($url, $type = 'get', $params = [], $json = false)
@@ -139,5 +176,37 @@ class Poster {
             return false;
         }
         return false;
+    }
+
+    public function setType($type){
+        $this->type = $type;
+        return $this;
+    }
+    public function getType(){
+        return $this->type;
+    }
+
+    public function setParams($params){
+        $this->params = $params;
+        return $this;
+    }
+    public function getParams(){
+        return $this->params;
+    }
+
+    public function setUrl($url){
+        $this->url = $url;
+        return $this;
+    }
+    public function getUrl(){
+        return $this->url;
+    }
+
+    public function setIsJson($isJson){
+        $this->isJson = $isJson;
+        return $this;
+    }
+    public function getIsJson(){
+        return $this->isJson;
     }
 }

@@ -104,5 +104,5 @@
 @endsection
 
 @push('scripts')
-    <script src="{{ asset('backend/js/app.js') }}"></script>
+    <script type="text/javascript" src="/backend/js/app.js?{{ \Storage::disk('root')->lastModified('public_html/backend/js/app.js') }}"></script>
 @endpush

@@ -2259,6 +2259,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "product-attributes",
   props: ['productid'],
@@ -20046,13 +20049,13 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { attrs: { id: "" } }, [
     _c("div", { staticClass: "tile" }, [
-      _c("h3", { staticClass: "tile-title" }, [_vm._v("Option Values")]),
+      _c("h3", { staticClass: "tile-title" }, [_vm._v("Значение аттрибута")]),
       _vm._v(" "),
       _c("div", { staticClass: "tile-body" }, [
         _c("div", { staticClass: "table-responsive" }, [
           _c("div", { staticClass: "tile" }, [
             _c("h3", { staticClass: "tile-title" }, [
-              _vm._v("Attribute Values")
+              _vm._v("Значение аттрибута")
             ]),
             _vm._v(" "),
             _c("hr"),
@@ -20062,7 +20065,7 @@ var render = function() {
                 _c(
                   "label",
                   { staticClass: "control-label", attrs: { for: "value" } },
-                  [_vm._v("Value")]
+                  [_vm._v("Значение")]
                 ),
                 _vm._v(" "),
                 _c("input", {
@@ -20077,7 +20080,7 @@ var render = function() {
                   staticClass: "form-control",
                   attrs: {
                     type: "text",
-                    placeholder: "Enter attribute value",
+                    placeholder: "Введите значение аттрибута",
                     id: "value",
                     name: "value"
                   },
@@ -20097,7 +20100,7 @@ var render = function() {
                 _c(
                   "label",
                   { staticClass: "control-label", attrs: { for: "price" } },
-                  [_vm._v("Price")]
+                  [_vm._v("Цена")]
                 ),
                 _vm._v(" "),
                 _c("input", {
@@ -20112,7 +20115,7 @@ var render = function() {
                   staticClass: "form-control",
                   attrs: {
                     type: "number",
-                    placeholder: "Enter attribute value price",
+                    placeholder: "Введите цену аттрибута",
                     id: "price",
                     name: "price"
                   },
@@ -20244,9 +20247,10 @@ var render = function() {
                     },
                     [
                       _c(
-                        "button",
+                        "a",
                         {
                           staticClass: "btn btn-sm btn-primary",
+                          attrs: { href: "#values" },
                           on: {
                             click: function($event) {
                               $event.stopPropagation()
@@ -20291,11 +20295,11 @@ var staticRenderFns = [
       _c("tr", { staticClass: "text-center" }, [
         _c("th", [_vm._v("#")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Value")]),
+        _c("th", [_vm._v("Значение")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Price")]),
+        _c("th", [_vm._v("Цена")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Action")])
+        _c("th", [_vm._v("Действия")])
       ])
     ])
   }
@@ -20666,9 +20670,17 @@ var render = function() {
                     "td",
                     {
                       staticClass: "text-center",
-                      staticStyle: { width: "25%" }
+                      staticStyle: { width: "5%" }
                     },
-                    [_vm._v(_vm._s(pa.attribute_values[0].value))]
+                    [
+                      _vm._v(
+                        _vm._s(
+                          pa.attribute_values[0] != undefined
+                            ? pa.attribute_values[0].id
+                            : "???"
+                        )
+                      )
+                    ]
                   ),
                   _vm._v(" "),
                   _c(
@@ -20676,6 +20688,23 @@ var render = function() {
                     {
                       staticClass: "text-center",
                       staticStyle: { width: "25%" }
+                    },
+                    [
+                      _vm._v(
+                        _vm._s(
+                          pa.attribute_values[0] != undefined
+                            ? pa.attribute_values[0].value
+                            : "???"
+                        )
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "td",
+                    {
+                      staticClass: "text-center",
+                      staticStyle: { width: "20%" }
                     },
                     [_vm._v(_vm._s(pa.quantity))]
                   ),
@@ -20745,6 +20774,8 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", { staticClass: "text-center" }, [
+        _c("th", [_vm._v("id")]),
+        _vm._v(" "),
         _c("th", [_vm._v("Значение")]),
         _vm._v(" "),
         _c("th", [_vm._v("Кол-во")]),

@@ -23,7 +23,7 @@ class ViewComposerServiceProvider extends ServiceProvider
             $view->with('categories', Category::where([
                 ['id', '>' , 1],
                 ['hidden', '=' , 0],
-            ])->orderBy('sort_order', 'desc')->get());
+            ])->orderBy('sort_order', 'asc')->get());
         });
         View::composer('theme::site.partials.header', function ($view) {
             $view->with('cartCount', Cart::getContent()->count());

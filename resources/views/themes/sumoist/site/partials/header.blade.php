@@ -22,8 +22,8 @@
             <!-- Лого -->
             <div class="w-100 order-1 order-0-l flex justify-center relative">
                 <div class="flex flex-column items-center">
-                    <a class="w5 h3" href="/">
-                        <img src="{{ Asset::load('img/logosumoist.png') }}" alt="">
+                    <a  href="/">
+                        <img class="w6" src="{{ Asset::load('img/logosumoist.jpg') }}" alt="">
                     </a>
                     <p><span class="dark-red">Время работы:</span> {{ config('settings.start_working') }}-{{ config('settings.finish_working') }}</p>
                     <form class="relative mb2" method="get" action="/#products" autocomplete="off">

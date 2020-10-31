@@ -233,6 +233,7 @@ return [
         'Cart' => Darryldecode\Cart\Facades\CartFacade::class,
         'WayForPay' => Maksa988\WayForPay\Facades\WayForPay::class,
         'Asset' => App\Libraries\Asset::class,
+        'Image' => App\Libraries\Image::class,
     ],
 
 ];

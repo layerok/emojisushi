@@ -177,7 +177,11 @@
                             <div class="tile-footer">
                                 <div class="row d-print-none mt-2">
                                     <div class="col-12 text-right">
-                                        <button class="btn btn-success" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Обновить продукт</button>
+                                        <button class="btn btn-success" name="action" type="submit" value="save"><i class="fa fa-fw fa-lg fa-check-circle"></i>Обновить продукт</button>
+                                        <button class="btn btn-success" name="action" type="submit" value="close">
+                                            <i class="fa fa-fw fa-lg fa-check-circle"></i>Обновить продукт и <span style="color: darkred">выйти</span>
+                                        </button>
+
                                         <a class="btn btn-danger" href="{{ route('admin.products.index') }}"><i class="fa fa-fw fa-lg fa-arrow-left"></i>Назад</a>
                                     </div>
                                 </div>
@@ -286,5 +290,6 @@
             }
         });
     </script>
-    <script type="text/javascript" src="{{ asset('backend/js/app.js') }}"></script>
+
+    <script type="text/javascript" src="/backend/js/app.js?{{ \Storage::disk('root')->lastModified('public_html/backend/js/app.js') }}"></script>
 @endpush

@@ -72,6 +72,10 @@ class ProductController extends BaseController
         if (!$product) {
             return $this->responseRedirectBack('Error occurred while updating product.', 'error', true, true);
         }
+
+        if($params['action'] == "save" ){
+            return $this->responseRedirectBack('Продукт успешно обновлен', 'success', true, true);
+        }
         return $this->responseRedirect('admin.products.index', 'Product updated successfully' ,'success',false, false);
     }
 

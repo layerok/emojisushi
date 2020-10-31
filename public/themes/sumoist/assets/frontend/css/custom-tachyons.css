@@ -2,6 +2,7 @@
     scroll-behavior: smooth
 }
 
+
 label.error{
     font-size: 14px;
     color: #e7040f;
@@ -111,6 +112,10 @@ label.error{
 
 .h0{
     height: 0;
+}
+
+.h35{
+    height: 12rem;
 }
 
 .hover-bg-near-white:hover,
@@ -298,5 +303,47 @@ label.error{
     }
     100% {
         opacity: 0;
+    }
+}
+@media screen and (min-width: 30em) {
+    .h40-ns{
+        height: 40px;
+    }
+
+    .h0-ns{
+        height: 0;
+    }
+
+    .h45-ns{
+        height: 12rem;
+    }
+}
+
+@media screen and (min-width: 30em) and (max-width: 60em) {
+    .h40-m{
+        height: 40px;
+    }
+
+    .h0-m{
+        height: 0;
+    }
+
+    .h45-m{
+        height: 12rem;
+    }
+
+}
+
+@media screen and (min-width: 60em) {
+    .h40-l{
+        height: 40px;
+    }
+
+    .h0-l{
+        height: 0;
+    }
+
+    .h45-l{
+        height: 12rem;
     }
 }

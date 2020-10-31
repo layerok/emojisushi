@@ -76,17 +76,9 @@
                                         @csrf
                                         <input type="hidden" name="uid" value="{{ $product->attributes->uid }}" >
                                         <button type="submit" name="action" value="remove"  class="ph0 self-start white absolute right-0 top-0 pointer bg-transparent bn">&times;</button>
-                                        @if( count($product->associatedModel->images) > 0)
-                                            @php  $path = '/storage/'. $product->associatedModel->images()->first()->full; @endphp
-                                        @else
-                                            @php if(isset($product->associatedModel->image)){
-                                                $path = $product->associatedModel->image;
-                                            }else{
-                                                $path ='/storage/' . 'img/default-thumb.png';
-                                            } @endphp
-                                        @endif
+
                                         <div class="w-40 nested-img dn db-ns">
-                                            <img src="{{ $path }}" style="max-height:150px; width:auto" >
+                                            <img src="{{ Image::getPath($product) }}" style="max-height:150px; width:auto" >
                                         </div>
                                         <div class="w-100 w-60-ns pl2 flex flex-column-ns flex-row justify-between">
                                             <div>

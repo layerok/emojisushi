@@ -4,16 +4,19 @@
     <div class="swiper-wrapper">
         <!-- Slides -->
         <div class="swiper-slide">
-            <img src="/storage/img/slides/slide1.jpg" alt="">
+            <img src="/themes/sumoist/assets/img/slides/slide1.jpg" alt="">
         </div>
         <div class="swiper-slide">
-            <img src="/storage/img/slides/slide2.jpg" alt="">
+            <img src="/themes/sumoist/assets/img/slides/slide2.jpg" alt="">
         </div>
         <div class="swiper-slide">
-            <img src="/storage/img/slides/slide3.jpg" alt="">
+            <img src="/themes/sumoist/assets/img/slides/slide3.jpg" alt="">
         </div>
         <div class="swiper-slide">
-            <img src="/storage/img/slides/slide4.jpg" alt="">
+            <img src="/themes/sumoist/assets/img/slides/slide4.jpg" alt="">
+        </div>
+        <div class="swiper-slide">
+            <img src="/themes/sumoist/assets/img/slides/slide5.jpg" alt="">
         </div>
 
     </div>

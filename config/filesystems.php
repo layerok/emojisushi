@@ -62,6 +62,10 @@ return [
             'driver' => 'local',
             'root' => base_path('resources/views/themes'),
         ],
+        'root' => [
+            'driver' => 'local',
+            'root' => base_path('/'),
+        ],
 
         's3' => [
             'driver' => 's3',

@@ -16,7 +16,7 @@
                             @csrf
                             <div class="flex mb3 pb2">
                                 @foreach($delivery as $key => $record)
-                                    <input  id="deliveryMethod{{ $record->id }}" class="checked-bg-dark-red checked-black dn" type="radio" name="delivery_id" value="{{ $record->id }}" @if($loop->first) checked @endif >
+                                    <input  id="deliveryMethod{{ $record->id }}" class="checked-bg-dark-red checked-white dn" type="radio" name="delivery_id" value="{{ $record->id }}" @if($loop->first) checked @endif >
                                     <label class="w-100 bg-white black pa2 tc @if($loop->first) br2  br--left @endif @if($loop->last) br2 br--right  @endif  pointer" for="deliveryMethod{{$record->id}}">{{ $record->name }}</label>
                                 @endforeach
                             </div>
@@ -40,7 +40,7 @@
                             </div>
                             <div class="flex mb3 pb2">
                                 @foreach($payment as $key => $record)
-                                    <input id="paymentMethod{{ $record->id }}" class="checked-bg-dark-red checked-black dn" type="radio" name="payment_id" value="{{ $record->id }}" @if($loop->first) checked @endif  >
+                                    <input id="paymentMethod{{ $record->id }}" class="checked-bg-dark-red checked-white dn" type="radio" name="payment_id" value="{{ $record->id }}" @if($loop->first) checked @endif  >
                                     <label class="w-100 bg-white black pa2 tc  @if($loop->first) br2 br--left @endif @if($loop->last) br2 br--right  @endif  pointer" for="paymentMethod{{$record->id}}">{{ $record->name }}</label>
                                 @endforeach
                             </div>
@@ -76,17 +76,9 @@
                                         @csrf
                                         <input type="hidden" name="uid" value="{{ $product->attributes->uid }}" >
                                         <button type="submit" name="action" value="remove"  class="ph0 self-start white absolute right-0 top-0 pointer bg-transparent bn">&times;</button>
-                                        @if( count($product->associatedModel->images) > 0)
-                                            @php  $path = '/storage/'. $product->associatedModel->images()->first()->full; @endphp
-                                        @else
-                                            @php if(isset($product->associatedModel->image)){
-                                                $path = $product->associatedModel->image;
-                                            }else{
-                                                $path ='/storage/' . 'img/default-thumb.png';
-                                            } @endphp
-                                        @endif
+
                                         <div class="w-40 nested-img dn db-ns">
-                                            <img src="{{ $path }}" style="max-height:150px; width:auto" >
+                                            <img src="{{ Image::getPath($product) }}" style="max-height:150px; width:auto" >
                                         </div>
                                         <div class="w-100 w-60-ns pl2 flex flex-column-ns flex-row justify-between">
                                             <div>
@@ -100,7 +92,7 @@
                                                 <div class=" fw5 mv0 mr4 mr0-ns"><span class="f2-ns f4">{{ $product->price }}</span> <span class="f4-ns f6"> грн.</span></div>
                                                 <p class="fw5 mv0 f5 dn db-ns">{{ $product->quantity }} шт</p>
                                             </div>
-                                            <p class="f4 mv0 dn db-ns">{{ $product->associatedModel->weight }} г</p>
+                                            <p class="f4 mv0 dn db-ns">{{ number_format($product->associatedModel->weight, '0', ',', ' ') . ' ' . $product->associatedModel->unit }}</p>
                                         </div>
                                     </form>
                                 @endforeach

@@ -60,7 +60,7 @@ class IndexController extends Controller
         switch ($catalog_sort_type) {
             case 1:
                 // по умолчанию
-                $this->catalog_sort = "categories.sort_order DESC, products.id DESC";
+                $this->catalog_sort = "categories.sort_order ASC, products.id DESC";
                 break;
             case 2:
                 // Цена (возрастание)
@@ -72,11 +72,11 @@ class IndexController extends Controller
                 break;
             case 4:
                 // Сначала новые
-                $this->catalog_sort = 'categories.sort_order DESC, products.id ASC ';
+                $this->catalog_sort = 'categories.sort_order ASC, products.id ASC ';
                 break;
             case 5:
                 // Сначала старые
-                $this->catalog_sort = ' categories.sort_order DESC, products.id DESC';
+                $this->catalog_sort = ' categories.sort_order ASC, products.id DESC';
                 break;
             default:
                 // Сортировка не применяется

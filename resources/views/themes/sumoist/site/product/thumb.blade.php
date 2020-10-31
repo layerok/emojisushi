@@ -2,32 +2,19 @@
     <div class="br3 ba b--dark-red pa3-l pa2 h-100">
         <div class="flex flex-column pb1 pb2 h-100 relative">
             <div class="nested-img flex flex-shrink-0 justify-center "  >
-                @if( count($product->images) > 0)
-                    @php  $path = '/storage/'. $product->images()->first()->full; @endphp
-                @else
-                    @php
-                        if(isset($product->image)){
-                            $path = $product->image;
-                        }else{
-                            $path ='/storage/' . 'img/default-thumb.png';
-                        }
-
-                    @endphp
-                @endif
-                    <img class="self-center align-center-start" style=" width:auto; max-height:220px" src="{{ $path }}" alt="">
-                <!--<div class="h4 contain" :style="{backgroundImage: 'url(' + item.poster_image + ')'}"  ></div>-->
+                    <div class="w-100 h4 h45-l contain  bg-center" style="background-image: url('{{ Image::getPath($product)  }}')"></div>
             </div>
             <form action="{{ route('cart.manipulate') }}" method="post" data-buy class="flex flex-column justify-between h-100">
                 @csrf
                 <div>
                     <h3  class="f3-l f5 fw5 mv3 mb0">{{ $product->name }}</h3>
                     <div class="f6-l f7 fw5 mb2">
-                        <p class="flex flex-column flex-row-l mb3 bg-white-10 br2 modificator bg-black">
+
                             @php
                                 $modificators = [];
                                 $ingredients = [];
                                 $sharpness = [];
-                                $i = -1;
+
                             @endphp
                             @foreach($product->attributes as $productAttribute)
 
@@ -44,7 +31,7 @@
 
                                     @if($attributeValue->attribute->frontend_type == 'radio')
                                         @php
-                                            $i++;
+
                                             $modificators[] = [
                                                         'id'                    => $attributeValue->poster_id,
                                                         'price'                 => $productAttribute->price,
@@ -54,15 +41,22 @@
                                         @endphp
 
 
-                                            <input data-modificator id="modificator_{{ $attributeValue->poster_id }}" class="checked-bg-dark-red checked-white dn" type="radio" name="active_modificator" value="{{ $i }}"  checked >
-                                            <label class=" ma2 w-100-l bg-white black pa2 tc br-pill shadow-1 pointer flex items-center justify-center" for="modificator_{{ $attributeValue->poster_id }}">{{ $attributeValue->value }}</label>
+
 
                                     @endif
                                 @endforeach
 
                             @endforeach
+                        @if(count($modificators) > 0)
 
+                        <p class="flex flex-column flex-row-l mb3 bg-white-10 br2 modificator bg-black">
+                            @foreach($modificators as $key => $modificator)
+                            <input data-modificator id="modificator_{{ $modificator["id"] }}" class="checked-bg-dark-red checked-white dn" type="radio" name="active_modificator" value="{{ $key }}"  checked >
+                            <label class=" ma2 w-100-l bg-white black pa2 tc br-pill shadow-1 pointer flex items-center justify-center" for="modificator_{{ $modificator["id"] }}">{{ $modificator["value"] }}</label>
+                            @endforeach
                         </p>
+                        @endif
+
                         <p>{{ implode(', ', $ingredients) }}</p>
                         <input type="hidden" name="ingredients" value="{{ implode(', ', $ingredients) }}">
                     </div>

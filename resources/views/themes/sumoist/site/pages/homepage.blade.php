@@ -11,11 +11,11 @@
                     @include('theme::site.product.thumb')
                 @empty
                     <div class="ph2 ph3-l f3 mv3">
-                    @isset($_GET['word'])
-                        <p>По запросу "{{ $_GET['word'] }}" ничего не найдено</p><br>
-                    @else
+                        @isset($_POST['word'])
+                            <p>По запросу "{{ $_POST['word'] }}" ничего не найдено</p><br>
+                        @else
                             Товары не найдены
-                    @endisset
+                        @endisset
                     </div>
                 @endforelse
             </div>

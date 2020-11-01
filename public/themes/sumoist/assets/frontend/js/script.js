@@ -3,6 +3,8 @@ $(document).ready(function(){
 })
 window.addEventListener("load", function(event) {
 
+    $('.drawer').drawer();
+
     $.notify.defaults({
         position: 'bottom right',
     });

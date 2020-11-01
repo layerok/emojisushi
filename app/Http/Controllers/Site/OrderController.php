@@ -28,9 +28,10 @@ class OrderController extends Controller
 
     public function index(){
 
+
         $cart_items = Cart::getContent();
-        $delivery   = DB::table('delivery')->get();
-        $payment    = DB::table('payment')->get();
+        $delivery   = DB::table('delivery')->where("hidden", "=", "0")->get();
+        $payment    = DB::table('payment')->where("hidden", "=", "0")->get();
 
         return view('theme::site.pages.checkout', compact('cart_items', 'delivery', 'payment'));
 

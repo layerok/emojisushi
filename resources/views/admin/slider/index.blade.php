@@ -16,19 +16,19 @@
                     <table class="table table-hover table-bordered" id="sampleTable">
                         <thead>
                         <tr>
-                            <th> # </th>
+                            <th class="d-none d-sm-table-cell"> # </th>
                             <th> Имя </th>
-                            <th class="text-center"> Slug </th>
-                            <th class="text-center"> Статус </th>
+                            <th class="text-center d-none d-sm-table-cell"> Slug </th>
+                            <th class="text-center "> Статус </th>
                             <th style="width:100px; min-width:100px;" class="text-center text-danger"><i class="fa fa-bolt"> </i></th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach($records as $record)
                             <tr>
-                                <td>{{ $record->id }}</td>
+                                <td class="d-none d-sm-table-cell">{{ $record->id }}</td>
                                 <td>{{ $record->name }}</td>
-                                <td>{{ $record->slug }}</td>
+                                <td class="d-none d-sm-table-cell">{{ $record->slug }}</td>
 
                                 <td class="text-center">
                                     @if ($record->hidden == 0)
@@ -39,8 +39,8 @@
                                 </td>
                                 <td class="text-center">
                                     <div class="btn-group" role="group" aria-label="Second group">
-                                        <a href="{{ route('admin.products.edit', $record->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i></a>
-                                        <a href="{{ route('admin.products.delete', $record->id) }}" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
+                                        <a href="{{ route('admin.slider.edit', $record->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i></a>
+                                        <a href="{{ route('admin.slider.delete', $record->id) }}" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
                                     </div>
                                 </td>
                             </tr>

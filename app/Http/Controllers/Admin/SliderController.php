@@ -2,23 +2,22 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Contracts\CategoryContract;
-use App\Contracts\ProductContract;
+use App\Contracts\SliderContract;
 use App\Http\Controllers\BaseController;
 use App\Http\Requests\StoreProductFormRequest;
 use App\Models\Slider;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+
 
 class SliderController extends BaseController
 {
-    protected $productRepository;
+    protected $sliderRepository;
 
     public function __construct(
-        ProductContract $productRepository
+        SliderContract $sliderRepository
     )
     {
-        $this->productRepository = $productRepository;
+        $this->sliderRepository = $sliderRepository;
     }
 
     public function index()
@@ -30,44 +29,53 @@ class SliderController extends BaseController
 
     public function create()
     {
-        $categories = $this->categoryRepository->listCategories('name', 'asc');
-
-        $this->setPageTitle('Продукты', 'Создать продукт');
-        return view('admin.products.create', compact('categories'));
+        $this->setPageTitle('Продукты', 'Создать слайд');
+        return view('admin.slider.create');
     }
 
-    public function store(StoreProductFormRequest $request)
+    public function store(Request $request)
     {
+        $this->validate($request, [
+            'name'      =>  'required|max:191',
+            'image'     =>  'mimes:jpg,jpeg,png|max:1000'
+        ]);
+
         $params = $request->except('_token');
 
-        $product = $this->productRepository->createProduct($params);
+        $product = $this->sliderRepository->createSlide($params);
 
         if (!$product) {
-            return $this->responseRedirectBack('Error occurred while creating product.', 'error', true, true);
+            return $this->responseRedirectBack('Возникла ошибка при создании слайда.', 'error', true, true);
         }
-        return $this->responseRedirect('admin.products.index', 'Product added successfully' ,'success',false, false);
+        return $this->responseRedirect('admin.slider.index', 'Слайд добавлен успешно' ,'success',false, false);
     }
 
     public function edit($id)
     {
-        $product = $this->productRepository->findProductById($id);
-        $categories = $this->categoryRepository->listCategories('name', 'asc');
+        $record = $this->sliderRepository->findSlideById($id);
 
 
-        $this->setPageTitle('Продукты', 'Редактировать продукт');
-        return view('admin.products.edit', compact('categories', 'product'));
+
+        $this->setPageTitle('Слайды', 'Редактировать слайд');
+        return view('admin.slider.edit', compact( 'record'));
     }
 
-    public function update(StoreProductFormRequest $request)
+    public function update(Request $request)
     {
+
+        $request->validate( [
+            'name'      =>  'required|max:191',
+            'image'     =>  'mimes:jpg,jpeg,png|max:1000'
+        ]);
+
         $params = $request->except('_token');
 
-        $product = $this->productRepository->updateProduct($params);
+        $record = $this->sliderRepository->updateSlide($params);
 
-        if (!$product) {
-            return $this->responseRedirectBack('Error occurred while updating product.', 'error', true, true);
+        if (!$record) {
+            return $this->responseRedirectBack('Возникла ошибка при обновлении слайда.', 'error', true, true);
         }
-        return $this->responseRedirect('admin.products.index', 'Product updated successfully' ,'success',false, false);
+        return $this->responseRedirect('admin.slider.index', 'Слайд обновлен успешно' ,'success',false, false);
     }
 
     /**
@@ -76,11 +84,11 @@ class SliderController extends BaseController
      */
     public function delete($id)
     {
-        $product = $this->productRepository->deleteProduct($id);
+        $record = $this->sliderRepository->deleteSlide($id);
 
-        if (!$product) {
-            return $this->responseRedirectBack('Error occurred while deleting product.', 'error', true, true);
+        if (!$record) {
+            return $this->responseRedirectBack('Возникла ошибка при удалении слайда.', 'error', true, true);
         }
-        return $this->responseRedirect('admin.products.index', 'Product deleted successfully' ,'success',false, false);
+        return $this->responseRedirect('admin.slider.index', 'Слайд удален успешно' ,'success',false, false);
     }
 }

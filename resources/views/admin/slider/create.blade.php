@@ -3,7 +3,7 @@
 =@section('content')
     <div class="app-title">
         <div>
-            <h1><i class="fa fa-shopping-bag"></i> {{ $pageTitle }} - {{ $subTitle }}</h1>
+            <h1><i class="fab fa-slideshare"></i> {{ $pageTitle }} - {{ $subTitle }}</h1>
         </div>
     </div>
     @include('admin.partials.flash')
@@ -19,9 +19,9 @@
             <div class="tab-content">
                 <div class="tab-pane active" id="general">
                     <div class="tile">
-                        <form action="{{ route('admin.products.store') }}" method="POST" role="form">
+                        <form action="{{ route('admin.slider.store') }}" method="POST" role="form" enctype="multipart/form-data">
                             @csrf
-                            <h3 class="tile-title">Данные товара</h3>
+                            <h3 class="tile-title">Данные слайда</h3>
                             <hr>
                             <div class="tile-body">
                                 <div class="form-group">
@@ -29,7 +29,7 @@
                                     <input
                                         class="form-control @error('name') is-invalid @enderror"
                                         type="text"
-                                        placeholder="Введите имя продукта"
+                                        placeholder="Введите название слайда"
                                         id="name"
                                         name="name"
                                         value="{{ old('name') }}"
@@ -40,104 +40,21 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label" for="poster_id">ID в системе Poster</label>
+                                    <label class="control-label" for="slug">Ссылка</label>
                                     <input
-                                        class="form-control @error('poster_id') is-invalid @enderror"
+                                        class="form-control @error('slug') is-invalid @enderror"
                                         type="text"
-                                        placeholder="Введить id товара"
-                                        id="poster_id"
-                                        name="poster_id"
-                                        value="{{ old('poster_id') }}"
-
+                                        placeholder="Введите ссылку"
+                                        id="slug"
+                                        name="slug"
+                                        value="{{ old('slug') }}"
                                     />
+
                                     <div class="invalid-feedback active">
-                                        <i class="fa fa-exclamation-circle fa-fw"></i> @error('poster_id') <span>{{ $message }}</span> @enderror
+                                        <i class="fa fa-exclamation-circle fa-fw"></i> @error('slug') <span>{{ $message }}</span> @enderror
                                     </div>
                                 </div>
 
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label class="control-label" for="categories">Категории</label>
-                                            <select name="categories[]" id="categories" class="form-control" multiple>
-                                                @foreach($categories as $category)
-                                                    <option value="{{ $category->id }}" >{{ $category->name }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="control-label" for="price">Цена</label>
-                                            <input
-                                                class="form-control @error('price') is-invalid @enderror"
-                                                type="text"
-                                                placeholder="Введите цену товара"
-                                                id="price"
-                                                name="price"
-                                                value="{{ old('price') }}"
-                                            />
-                                            <div class="invalid-feedback active">
-                                                <i class="fa fa-exclamation-circle fa-fw"></i> @error('price') <span>{{ $message }}</span> @enderror
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="control-label" for="weight">Вес</label>
-                                            <input
-                                                class="form-control"
-                                                type="text"
-                                                placeholder="Введите вес товара"
-                                                id="weight"
-                                                name="weight"
-                                                value="{{ old('weight') }}"
-                                            />
-                                            <div class="invalid-feedback active">
-                                                <i class="fa fa-exclamation-circle fa-fw"></i> @error('weight') <span>{{ $message }}</span> @enderror
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="control-label" for="sort_order">Порядок сортировки</label>
-                                            <input
-                                                class="form-control @error('sort_order') is-invalid @enderror"
-                                                type="text"
-                                                placeholder="Введите позицию товара"
-                                                id="sort_order"
-                                                name="sort_order"
-                                                value="{{ old('sort_order') }}"
-                                            />
-                                            <div class="invalid-feedback active">
-                                                <i class="fa fa-exclamation-circle fa-fw"></i> @error('sort_order') <span>{{ $message }}</span> @enderror
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="control-label" for="unit">Единица измерения</label>
-                                            <input
-                                                class="form-control"
-                                                type="text"
-                                                placeholder="Введите единицу измерения"
-                                                id="unit"
-                                                name="unit"
-                                                value="{{ old('unit') }}"
-                                            />
-                                            <div class="invalid-feedback active">
-                                                <i class="fa fa-exclamation-circle fa-fw"></i> @error('unit') <span>{{ $message }}</span> @enderror
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
 
 
                                 <div class="form-group">
@@ -147,16 +64,31 @@
                                                    type="checkbox"
                                                    id="hidden"
                                                    name="hidden"
+                                                   checked
                                             />Активный
                                         </label>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm-3 col-12">
+                                        <img style="width: 100%" src="https://via.placeholder.com/80x80?text=Placeholder+Image" id="logoImg" style="width: 80px; height: auto;">
+
+                                    </div>
+                                    <div class="col-12 col-sm-9">
+                                        <div class="form-group">
+                                            <label class="control-label">Изображение слайда</label>
+                                            <input class="form-control  @error('image') is-invalid @enderror" type="file" name="image" onchange="loadFile(event,'logoImg')"/>
+                                            @error('image') {{ $message }} @enderror
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="tile-footer">
                                 <div class="row d-print-none mt-2">
                                     <div class="col-12 text-right">
-                                        <button class="btn btn-success" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Сохранить продукт</button>
-                                        <a class="btn btn-danger" href="{{ route('admin.products.index') }}"><i class="fa fa-fw fa-lg fa-arrow-left"></i>Назад</a>
+                                        <button class="btn btn-success" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Сохранить слайд</button>
+                                        <a class="btn btn-danger" href="{{ route('admin.slider.index') }}"><i class="fa fa-fw fa-lg fa-arrow-left"></i>Назад</a>
                                     </div>
                                 </div>
                             </div>
@@ -169,10 +101,12 @@
     </div>
 @endsection
 @push('scripts')
-    <script type="text/javascript" src="{{ asset('backend/js/plugins/select2.min.js') }}"></script>
+
     <script>
-        $( document ).ready(function() {
-            $('#categories').select2();
-        });
+        loadFile = function(event, id) {
+            var output = document.getElementById(id);
+            output.src = URL.createObjectURL(event.target.files[0]);
+        };
     </script>
+
 @endpush

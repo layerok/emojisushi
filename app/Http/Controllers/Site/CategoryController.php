@@ -51,7 +51,7 @@ class CategoryController extends Controller
         switch ($catalog_sort_type) {
             case 1:
                 // по умолчанию
-                $this->catalog_sort = "id DESC";
+                $this->catalog_sort = "sort_order ASC, id DESC";
                 break;
             case 2:
                 // Цена (возрастание)

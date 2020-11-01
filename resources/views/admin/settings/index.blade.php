@@ -13,12 +13,12 @@
         <div class="col-md-3">
             <div class="tile p-0">
                 <ul class="nav flex-column nav-tabs user-tabs">
-                    <li class="nav-item"><a class="nav-link active" href="#general" data-toggle="tab">General</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#site-logo" data-toggle="tab">Site Logo</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#footer-seo" data-toggle="tab">Footer &amp; SEO</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#social-links" data-toggle="tab">Social Links</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#analytics" data-toggle="tab">Analytics</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#payments" data-toggle="tab">Payments</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="#general" data-toggle="tab">Основные</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#site-logo" data-toggle="tab">Логотип сайта</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#footer-seo" data-toggle="tab">Подвал сайта и SEO</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#social-links" data-toggle="tab">Социальные ссылки</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#analytics" data-toggle="tab">Аналитика</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#payments" data-toggle="tab">Оплата</a></li>
                 </ul>
             </div>
         </div>

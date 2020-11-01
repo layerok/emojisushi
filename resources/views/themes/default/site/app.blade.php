@@ -8,20 +8,24 @@
     <title>@yield('title') - {{ config('app.name') }}</title>
     @include('theme::site.partials.styles')
 </head>
-<body class="bg-black white roboto  ">
+<body class="bg-black white roboto drawer drawer--right ">
 <div id="beanEater" class="flex justify-center items-center min-vh-100 w-100 fixed z-max bg-black">
     <img src="{{ asset('/storage/img/bean_eater.svg') }}" alt="">
 </div>
 
-<div id="app" >
-    @include('theme::site.partials.header')
-    <products-list></products-list>
 
-</div>
-@yield('content')
+@include('theme::site.partials.header')
+
+<main role="main">
+    @yield('content')
+</main>
+
+
 @include('theme::site.partials.footer')
 @include('theme::site.partials.scripts')
 
 
 </body>
 </html>
+
+

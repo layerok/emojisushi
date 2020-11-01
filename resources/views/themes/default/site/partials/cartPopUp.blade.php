@@ -33,7 +33,11 @@
 
             <div data-cart-not-empty class="@if(Cart::isEmpty()) dn @endif bg-white ba br--bottom br2 b--white ">
                 <div class="">
-                    <div class="mh3 mv2 pv1" >
+                    <div class="flex justify-between mh3 mv2 black">
+                        <div >Общая сумма</div>
+                        <div ><span data-cart-total>{{ Cart::getTotal() }}</span> грн</div>
+                    </div>
+                    <div class="mh3 mv2 pv1 flex justify-center" >
                         <a href="{{ route('order.index') }}"  class="link db w4 bg-orange tc black pa3 bn br-pill bg-animate hover-bg-gold pointer">Оформить</a>
                     </div>
                 </div>

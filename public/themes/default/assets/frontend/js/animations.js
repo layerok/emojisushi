@@ -6,10 +6,10 @@ window.addEventListener("load", function(event) {
             pin: true,
             end: () => document.body.offsetHeight,
             onLeaveBack: () => {
-                document.querySelector('.cart-in-menu').classList.add('dn');
+                //document.querySelector('.cart-in-menu').classList.add('dn');
             },
             onEnter: () => {
-                document.querySelector('.cart-in-menu').classList.remove('dn');
+                //document.querySelector('.cart-in-menu').classList.remove('dn');
             }
         },
         top: -1

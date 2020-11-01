@@ -20,7 +20,7 @@
     @endphp
 
 
-    <form class="mb2 mt1 pt3 mt2-ml pt4-ml " method="post" action="#products" id="sort_form" style="width: 313px">
+    <form class="mb2 mt1 pt3 mt2-ml pt4-ml w5-ns w-auto" method="post" action="#products" id="sort_form">
         @csrf
         <div class="w-100  bg-transparent ba b--orange br2 pointer f6 h40 pl3 pr3 relative ease-in-fast flex items-center nested-list-reset select"
              style="box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05) inset">

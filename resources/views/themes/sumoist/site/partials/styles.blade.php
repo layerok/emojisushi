@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="{{ Asset::load('frontend/css/custom-tachyons.css') }}"/>
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css">
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/drawer/3.2.2/css/drawer.min.css" integrity="sha512-6Rl2AX1gEIy8fZ2fv3G2bidTzGTYychcwX+ivC0EsYg5XbAf0OwxeATDb/AWhiluXKDCitkOdRIohCxlitGerQ==" crossorigin="anonymous" />
 
 
 

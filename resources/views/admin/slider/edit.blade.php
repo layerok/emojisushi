@@ -7,7 +7,7 @@
 @section('content')
     <div class="app-title">
         <div>
-            <h1><i class="fa fa-shopping-bag"></i> {{ $pageTitle }} - {{ $subTitle }}</h1>
+            <h1><i class="fab fa-slideshare"></i> {{ $pageTitle }} - {{ $subTitle }}</h1>
         </div>
     </div>
     @include('admin.partials.flash')
@@ -16,20 +16,20 @@
             <div class="tile p-0">
                 <ul class="nav flex-column nav-tabs user-tabs">
                     <li class="nav-item"><a class="nav-link active" href="#general" data-toggle="tab">Основные</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#images" data-toggle="tab">Изображение</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#attributes" data-toggle="tab">Аттрибуты</a></li>
                 </ul>
             </div>
         </div>
         <div class="col-md-9">
             <div class="tab-content">
                 <div class="tab-pane active" id="general">
+
                     <div class="tile">
-                        <form action="{{ route('admin.products.update') }}" method="POST" role="form">
+                        <form action="{{ route('admin.slider.update') }}" method="POST" role="form" enctype="multipart/form-data" >
                             @csrf
-                            <h3 class="tile-title">Данные товара</h3>
+                            <h3 class="tile-title">Данные слайда</h3>
                             <hr>
                             <div class="tile-body">
+
                                 <div class="form-group">
                                     <label class="control-label" for="name">Имя</label>
                                     <input
@@ -38,127 +38,31 @@
                                         placeholder="Enter attribute name"
                                         id="name"
                                         name="name"
-                                        value="{{ old('name', $product->name) }}"
+                                        value="{{ old('name', $record->name) }}"
                                     />
 
-                                    <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                    <input type="hidden" name="id" value="{{ $record->id }}">
                                     <div class="invalid-feedback active">
                                         <i class="fa fa-exclamation-circle fa-fw"></i> @error('name') <span>{{ $message }}</span> @enderror
                                     </div>
                                 </div>
+
                                 <div class="form-group">
-                                    <label class="control-label" for="poster_id">ID в системе Poster</label>
+                                    <label class="control-label" for="slug">Ссылка</label>
                                     <input
-                                        class="form-control @error('poster_id') is-invalid @enderror"
+                                        class="form-control @error('slug') is-invalid @enderror"
                                         type="text"
-                                        placeholder="Введить id товара"
-                                        id="poster_id"
-                                        name="poster_id"
-                                        value="{{ old('poster_id', $product->poster_id) }}"
+                                        placeholder="Enter attribute name"
+                                        id="slug"
+                                        name="slug"
+                                        value="{{ old('slug', $record->slug) }}"
                                     />
+
                                     <div class="invalid-feedback active">
-                                        <i class="fa fa-exclamation-circle fa-fw"></i> @error('poster_id') <span>{{ $message }}</span> @enderror
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label" for="image">Ссылка на изображение</label>
-                                    <input
-                                        class="form-control @error('image') is-invalid @enderror"
-                                        type="text"
-                                        placeholder="Введить ссылку на изображение"
-                                        id="image"
-                                        name="image"
-                                        value="{{ old('image', $product->image) }}"
-                                    />
-                                    <div class="invalid-feedback active">
-                                        <i class="fa fa-exclamation-circle fa-fw"></i> @error('image') <span>{{ $message }}</span> @enderror
+                                        <i class="fa fa-exclamation-circle fa-fw"></i> @error('slug') <span>{{ $message }}</span> @enderror
                                     </div>
                                 </div>
 
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label class="control-label" for="categories">Категории</label>
-                                            <select name="categories[]" id="categories" class="form-control" multiple>
-                                                @foreach($categories as $category)
-                                                    @php $check = in_array($category->id, $product->categories->pluck('id')->toArray()) ? 'selected' : ''@endphp
-                                                    <option value="{{ $category->id }}" {{ $check }}>{{ $category->name }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="control-label" for="price">Цена</label>
-                                            <input
-                                                class="form-control @error('price') is-invalid @enderror"
-                                                type="text"
-                                                placeholder="Введите цену товара"
-                                                id="price"
-                                                name="price"
-                                                value="{{ old('price', $product->price) }}"
-                                            />
-                                            <div class="invalid-feedback active">
-                                                <i class="fa fa-exclamation-circle fa-fw"></i> @error('price') <span>{{ $message }}</span> @enderror
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="control-label" for="weight">Вес</label>
-                                            <input
-                                                class="form-control"
-                                                type="text"
-                                                placeholder="Enter product weight"
-                                                id="weight"
-                                                name="weight"
-                                                value="{{ old('weight', $product->weight) }}"
-                                            />
-                                            <div class="invalid-feedback active">
-                                                <i class="fa fa-exclamation-circle fa-fw"></i> @error('weight') <span>{{ $message }}</span> @enderror
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="control-label" for="sort_order">Порядок сортировки</label>
-                                            <input
-                                                class="form-control @error('sort_order') is-invalid @enderror"
-                                                type="text"
-                                                placeholder="Введите позицию товара"
-                                                id="sort_order"
-                                                name="sort_order"
-                                                value="{{ old('sort_order', $product->sort_order) }}"
-                                            />
-                                            <div class="invalid-feedback active">
-                                                <i class="fa fa-exclamation-circle fa-fw"></i> @error('sort_order') <span>{{ $message }}</span> @enderror
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="control-label" for="unit">Единица измерения</label>
-                                            <input
-                                                class="form-control"
-                                                type="text"
-                                                placeholder="Введите единицу измерения"
-                                                id="unit"
-                                                name="unit"
-                                                value="{{ old('unit', $product->unit) }}"
-                                            />
-                                            <div class="invalid-feedback active">
-                                                <i class="fa fa-exclamation-circle fa-fw"></i> @error('unit') <span>{{ $message }}</span> @enderror
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
 
 
                                 <div class="form-group">
@@ -168,123 +72,56 @@
                                                    type="checkbox"
                                                    id="hidden"
                                                    name="hidden"
-                                                {{ $product->hidden == 0 ? 'checked' : '' }}
+                                                {{ $record->hidden == 0 ? 'checked' : '' }}
                                             />Активный
                                         </label>
                                     </div>
                                 </div>
+
+
+                                <div class="row">
+                                    <div class="col-12 col-sm-3 ">
+                                        @if ($record->image != null)
+                                            <img style="width: 100%"  src="{{  asset('storage/'.$record->image) }}" id="logoImg" style="width: 80px; height: auto;">
+                                        @else
+                                            <img src="https://via.placeholder.com/80x80?text=Placeholder+Image" id="logoImg" style="width: 80px; height: auto;">
+                                        @endif
+                                    </div>
+                                    <div class="col-12 col-sm-9 ">
+                                        <div class="form-group">
+                                            <label class="control-label">Изображение слайда</label>
+                                            <input class="form-control  @error('image') is-invalid @enderror" type="file" name="image" onchange="loadFile(event,'logoImg')"/>
+                                            @error('image') {{ $message }} @enderror
+                                        </div>
+                                    </div>
+                                </div>
+
+
                             </div>
                             <div class="tile-footer">
                                 <div class="row d-print-none mt-2">
                                     <div class="col-12 text-right">
-                                        <button class="btn btn-success" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Обновить продукт</button>
-                                        <a class="btn btn-danger" href="{{ route('admin.products.index') }}"><i class="fa fa-fw fa-lg fa-arrow-left"></i>Назад</a>
+                                        <button class="btn btn-success" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Обновить слайд</button>
+                                        <a class="btn btn-danger" href="{{ route('admin.slider.index') }}"><i class="fa fa-fw fa-lg fa-arrow-left"></i>Назад</a>
                                     </div>
                                 </div>
                             </div>
                         </form>
                     </div>
                 </div>
-                <div class="tab-pane" id="images">
-                <div class="tile">
-                    <h3 class="tile-title">Загрузить изображение</h3>
-                    <hr>
-                    <div class="tile-body">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <form action="" class="dropzone" id="dropzone" style="border: 2px dashed rgba(0,0,0,0.3)">
-                                    <input type="hidden" name="product_id" value="{{ $product->id }}">
-                                    {{ csrf_field() }}
-                                </form>
-                            </div>
-                        </div>
-                        <div class="row d-print-none mt-2">
-                            <div class="col-12 text-right">
-                                <button class="btn btn-success" type="button" id="uploadButton">
-                                    <i class="fa fa-fw fa-lg fa-upload"></i>Загрузить изображение
-                                </button>
-                            </div>
-                        </div>
-                        @if ($product->images)
-                            <hr>
-                            <div class="row">
-                                @foreach($product->images as $image)
-                                    <div class="col-md-3">
-                                        <div class="card">
-                                            <div class="card-body">
-                                                <img src="{{ asset('storage/'.$image->full) }}" id="brandLogo" class="img-fluid" alt="img">
-                                                <a class="card-link float-right text-danger" href="{{ route('admin.products.images.delete', $image->id) }}">
-                                                    <i class="fa fa-fw fa-lg fa-trash"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endforeach
-                            </div>
-                        @endif
-                    </div>
-                </div>
-            </div>
-                <div class="tab-pane" id="attributes">
-                    <product-attributes :productid="{{ $product->id }}"></product-attributes>
-                </div>
+
+
             </div>
         </div>
     </div>
 @endsection
 @push('scripts')
-    <script type="text/javascript" src="{{ asset('backend/js/plugins/select2.min.js') }}"></script>
+
     <script>
-        $( document ).ready(function() {
-            $('#categories').select2();
-
-        });
+        loadFile = function(event, id) {
+            var output = document.getElementById(id);
+            output.src = URL.createObjectURL(event.target.files[0]);
+        };
     </script>
-    <script type="text/javascript" src="{{ asset('backend/js/plugins/dropzone/dist/min/dropzone.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('backend/js/plugins/bootstrap-notify.min.js') }}"></script>
-    <script>
-        Dropzone.autoDiscover = false;
 
-        $( document ).ready(function() {
-            $('#categories').select2();
-
-
-            let myDropzone = new Dropzone("#dropzone", {
-                paramName: "image",
-                addRemoveLinks: false,
-                maxFilesize: 4,
-                parallelUploads: 2,
-                uploadMultiple: false,
-                url: "{{ route('admin.products.images.upload') }}",
-                autoProcessQueue: false,
-            });
-            myDropzone.on("queuecomplete", function (file) {
-                window.location.reload();
-                showNotification('Completed', 'All product images uploaded', 'success', 'fa-check');
-            });
-            $('#uploadButton').click(function(){
-                if (myDropzone.files.length === 0) {
-                    showNotification('Error', 'Please select files to upload.', 'danger', 'fa-close');
-                } else {
-                    myDropzone.processQueue();
-                }
-            });
-            function showNotification(title, message, type, icon)
-            {
-                $.notify({
-                    title: title + ' : ',
-                    message: message,
-                    icon: 'fa ' + icon
-                },{
-                    type: type,
-                    allow_dismiss: true,
-                    placement: {
-                        from: "top",
-                        align: "right"
-                    },
-                });
-            }
-        });
-    </script>
-    <script type="text/javascript" src="{{ asset('backend/js/app.js') }}"></script>
 @endpush

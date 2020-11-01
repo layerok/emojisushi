@@ -15,7 +15,6 @@ Route::match(['get', 'post'],'/', 'Site\IndexController@index');
 
 
 
-
 Route::match(['get', 'post'], '/category/{slug}', 'Site\CategoryController@show')->name('category.show');
 
 

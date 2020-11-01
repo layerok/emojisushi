@@ -19,14 +19,11 @@ class IndexController extends Controller
 
     public function index()
     {
-//        $poster = new Poster(env('POSTER_TOKEN'));
-//        $data = json_decode($poster->query('menu.getProducts'), true);
-//
-//        dd($data);
+
 
         $this->setCatalogSort();
 
-        $searched_word = $_GET['word'] ?? '';
+        $searched_word = $_POST['word'] ?? '';
 
         $products = \App\Models\Product::with(['attributes.attributeValues', 'images'])
             ->select('products.*')
@@ -60,7 +57,7 @@ class IndexController extends Controller
         switch ($catalog_sort_type) {
             case 1:
                 // по умолчанию
-                $this->catalog_sort = "categories.sort_order ASC, products.id DESC";
+                $this->catalog_sort = "categories.sort_order ASC, products.sort_order ASC, products.id DESC";
                 break;
             case 2:
                 // Цена (возрастание)

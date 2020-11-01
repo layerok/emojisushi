@@ -14,29 +14,29 @@
             </div>
 
             <div class="form-group">
-                <label class="control-label" for="site_name">Site Name</label>
+                <label class="control-label" for="site_name">Имя сайта</label>
                 <input
                     class="form-control"
                     type="text"
-                    placeholder="Enter site name"
+                    placeholder="Введите имя сайта"
                     id="site_name"
                     name="site_name"
                     value="{{ config('settings.site_name') }}"
                 />
             </div>
             <div class="form-group">
-                <label class="control-label" for="site_title">Site Title</label>
+                <label class="control-label" for="site_title">Заголовок сайта</label>
                 <input
                     class="form-control"
                     type="text"
-                    placeholder="Enter site title"
+                    placeholder="Введите заголовок сайта"
                     id="site_title"
                     name="site_title"
                     value="{{ config('settings.site_title') }}"
                 />
             </div>
             <div class="form-group">
-                <label class="control-label" for="default_email_address">Default Email Address</label>
+                <label class="control-label" for="default_email_address">Электронная почта</label>
                 <input
                     class="form-control"
                     type="email"
@@ -47,11 +47,11 @@
                 />
             </div>
             <div class="form-group">
-                <label class="control-label" for="phone">Телефон(ы)</label>
+                <label class="control-label" for="phone">Телефон(ы) - Несколько телефонов заполняйте через точку с запятой</label>
                 <input
                     class="form-control"
                     type="text"
-                    placeholder="Enter store phone"
+                    placeholder="Введите телефоны"
                     id="phone"
                     name="phone"
                     value="{{ config('settings.phone') }}"
@@ -87,22 +87,22 @@
             </div>
 
             <div class="form-group">
-                <label class="control-label" for="currency_code">Currency Code</label>
+                <label class="control-label" for="currency_code">Код валюты</label>
                 <input
                     class="form-control"
                     type="text"
-                    placeholder="Enter store currency code"
+                    placeholder="Введите код валюты"
                     id="currency_code"
                     name="currency_code"
                     value="{{ config('settings.currency_code') }}"
                 />
             </div>
             <div class="form-group">
-                <label class="control-label" for="currency_symbol">Currency Symbol</label>
+                <label class="control-label" for="currency_symbol">Символ валюты</label>
                 <input
                     class="form-control"
                     type="text"
-                    placeholder="Enter store currency symbol"
+                    placeholder="Введите символ валюты"
                     id="currency_symbol"
                     name="currency_symbol"
                     value="{{ config('settings.currency_symbol') }}"

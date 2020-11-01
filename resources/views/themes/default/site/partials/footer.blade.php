@@ -1,8 +1,8 @@
 <footer class=" flex justify-center items-center mv5">
     <div class="w-100 mw7 ph3 bg-black flex flex-row-l flex-column items-center justify-center">
         <!-- Лого -->
-        <a href="" class="nested-img mb3 pb2 mb0-l pb0-l">
-            <img src="/storage/img/yellow_logo.svg" alt="">
+        <a href="/" class=" mb3 pb2 mb0-l pb0-l">
+            <img class="w5-l h4-l w4 h3" src="/storage/img/yellow_logo.svg" alt="">
         </a>
 
         <!-- Телефоны -->

@@ -36,11 +36,15 @@
                                 </td>
                                 <td>{{ $product->price }} {{ config('settings.currency_symbol') }}</td>
                                 <td class="text-center">
-                                    @if ($product->hidden == 0)
-                                        <span class="badge badge-success">Активный</span>
-                                    @else
-                                        <span class="badge badge-danger">Не активный</span>
-                                    @endif
+                                    <div class="toggle-flip">
+                                        <label>
+                                            <input type="checkbox" name="hidden" {{ $product->hidden == 0 ? 'checked' : '' }}>
+                                            <span class="flip-indecator" data-toggle-on="Вкл" data-toggle-off="Выкл">
+
+                                            </span>
+                                        </label>
+                                    </div>
+
                                 </td>
                                 <td class="text-center">
                                     <div class="btn-group" role="group" aria-label="Second group">
@@ -58,13 +62,6 @@
     </div>
 @endsection
 @push('scripts')
-    <script type="text/javascript" src="{{ asset('backend/js/plugins/jquery.dataTables.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('backend/js/plugins/dataTables.bootstrap.min.js') }}"></script>
-    <script type="text/javascript">
-        $('#sampleTable').DataTable({
-            language: {
-                url: '{{ asset('/backend/js/plugins/dataTables/localizations/Russian.json') }}'
-            }
-        });
-    </script>
+
+
 @endpush

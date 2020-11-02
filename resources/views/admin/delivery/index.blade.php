@@ -55,13 +55,5 @@
     </div>
 @endsection
 @push('scripts')
-    <script type="text/javascript" src="{{ asset('backend/js/plugins/jquery.dataTables.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('backend/js/plugins/dataTables.bootstrap.min.js') }}"></script>
-    <script type="text/javascript">
-        $('#sampleTable').DataTable({
-            language: {
-                url: '{{ asset('/backend/js/plugins/dataTables/localizations/Russian.json') }}'
-            }
-        });
-    </script>
+
 @endpush

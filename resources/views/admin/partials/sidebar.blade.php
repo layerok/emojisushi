@@ -13,8 +13,9 @@
                                Route::currentRouteName() == 'admin.delivery.index' ||
                                Route::currentRouteName() == 'admin.payment.index' ||
                                Route::currentRouteName() == 'admin.attributes.index' ||
-                               Route::currentRouteName() == 'admin.slider.index' ||
+                               Route::currentRouteName() == 'admin.pages.index' ||
                                Route::currentRouteName() == 'admin.payment-status.index' ||
+                               Route::currentRouteName() == 'admin.slider.index' ||
                                Route::currentRouteName() == 'admin.orders.index' ? 'is-expanded' : '' }}">
             <a class="app-menu__item" href="#" data-toggle="treeview">
                 <i class="app-menu__icon fas fa-store"></i>

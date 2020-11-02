@@ -23,7 +23,23 @@
 <script src="{{ asset('backend/js/ckeditor5/build/ckeditor.js') }}"></script>
 <script src="{{ asset('backend/js/main.js') }}"></script>
 <script src="{{ asset('backend/js/plugins/pace.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('backend/js/plugins/jquery.dataTables.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('backend/js/plugins/dataTables.bootstrap.min.js') }}"></script>
+<script>
+
+    // Disable search and ordering by default
+    $.extend( $.fn.dataTable.defaults, {
+        stateSave: true,
+        language: {
+            url: '{{ asset('/backend/js/plugins/dataTables/localizations/Russian.json') }}'
+        }
+    } );
+
+    $('#sampleTable').DataTable();
+
+</script>
 @stack('scripts')
+
 
 </body>
 </html>

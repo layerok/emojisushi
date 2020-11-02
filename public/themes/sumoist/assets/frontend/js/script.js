@@ -16,6 +16,7 @@ window.addEventListener("load", function(event) {
     var mySwiper = new Swiper('.swiper-container', {
         // Optional parameters
         loop: true,
+        autoplay: true,
         // If we need pagination
         pagination: {
             el: '.swiper-pagination',

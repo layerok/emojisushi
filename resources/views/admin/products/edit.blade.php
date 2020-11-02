@@ -162,17 +162,16 @@
 
 
                                 <div class="form-group">
-                                    <div class="form-check">
-                                        <label class="form-check-label">
-                                            <input class="form-check-input"
-                                                   type="checkbox"
-                                                   id="hidden"
-                                                   name="hidden"
-                                                {{ $product->hidden == 0 ? 'checked' : '' }}
-                                            />Активный
+                                    <div class="toggle-flip">
+                                        <label>
+                                            <input type="checkbox" name="hidden" {{ $product->hidden == 0 ? 'checked' : '' }}>
+                                            <span class="flip-indecator" data-toggle-on="Вкл" data-toggle-off="Выкл">
+
+                                            </span>
                                         </label>
                                     </div>
-                                </div>
+
+
                             </div>
                             <div class="tile-footer">
                                 <div class="row d-print-none mt-2">

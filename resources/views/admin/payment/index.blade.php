@@ -31,11 +31,12 @@
 
 
                                     <td class="text-center">
-                                        @if ($record->hidden == 0)
-                                            <span class="badge badge-success">Активно</span>
-                                        @else
-                                            <span class="badge badge-danger">Не активно</span>
-                                        @endif
+                                        <div class="toggle-flip">
+                                            <label>
+                                                <input type="checkbox" name="hidden" {{ $record->hidden == 0 ? 'checked' : '' }} data-table="{{ $record->getTable() }}" data-id="{{ $record->id }}" >
+                                                <span class="flip-indecator" data-toggle-on="Вкл" data-toggle-off="Выкл"></span>
+                                            </label>
+                                        </div>
                                     </td>
 
                                     <td class="text-center">

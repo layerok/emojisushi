@@ -18,7 +18,7 @@
                         <tr>
                             <th class="d-none d-sm-table-cell"> # </th>
                             <th> Имя </th>
-                            <th class="text-center d-none d-sm-table-cell"> Slug </th>
+                            <th class=" d-none d-sm-table-cell"> Slug </th>
                             <th class="text-center "> Статус </th>
                             <th style="width:100px; min-width:100px;" class="text-center text-danger"><i class="fa fa-bolt"> </i></th>
                         </tr>
@@ -31,11 +31,14 @@
                                 <td class="d-none d-sm-table-cell">{{ $record->slug }}</td>
 
                                 <td class="text-center">
-                                    @if ($record->hidden == 0)
-                                        <span class="badge badge-success">Активный</span>
-                                    @else
-                                        <span class="badge badge-danger">Не активный</span>
-                                    @endif
+                                    <div class="toggle-flip">
+                                        <label>
+                                            <input type="checkbox" name="hidden" {{ $record->hidden == 0 ? 'checked' : '' }} data-table="{{ $record->getTable() }}" data-id="{{ $record->id }}">
+                                            <span class="flip-indecator" data-toggle-on="Вкл" data-toggle-off="Выкл">
+
+                                            </span>
+                                        </label>
+                                    </div>
                                 </td>
                                 <td class="text-center">
                                     <div class="btn-group" role="group" aria-label="Second group">

@@ -58,14 +58,10 @@
 
 
                                 <div class="form-group">
-                                    <div class="form-check">
-                                        <label class="form-check-label">
-                                            <input class="form-check-input"
-                                                   type="checkbox"
-                                                   id="hidden"
-                                                   name="hidden"
-                                                   checked
-                                            />Активный
+                                    <div class="toggle-flip">
+                                        <label>
+                                            <input type="checkbox" name="hidden" checked >
+                                            <span class="flip-indecator" data-toggle-on="Вкл" data-toggle-off="Выкл"></span>
                                         </label>
                                     </div>
                                 </div>

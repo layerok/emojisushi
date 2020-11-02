@@ -35,7 +35,34 @@
         }
     } );
 
-    $('#sampleTable').DataTable();
+    const table = $('#sampleTable').DataTable();
+
+    table.on( 'click', function (event) {
+        const target = event.target.closest(".flip-indecator");
+
+        if (target) {
+            const input = $(target).siblings("[name='hidden']");
+            let hidden = input.prop("checked");
+            let id = input.data("id");
+            let table = input.data("table");
+
+            console.log(hidden, id, table);
+
+            $.ajax({
+                type: "post",
+                url: "/admin/ajax/change-state",
+                data: {
+                    id: id,
+                    table: table,
+                    hidden: hidden,
+                    "_token": "{{ csrf_token() }}",
+                }
+            })
+        }
+
+    } );
+
+
 
 </script>
 @stack('scripts')

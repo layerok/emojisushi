@@ -146,6 +146,10 @@ Route::group(['prefix'  =>  'admin'], function () {
             Route::get('/{id}/delete',  'Admin\SliderController@delete')   ->name('admin.slider.delete');
         });
 
+        Route::group(['prefix' => 'ajax'], function () {
+            Route::post('change-state', 'Admin\AjaxController@changeState')->name('admin.ajax.change-state');
+        });
+
     });
 
 });

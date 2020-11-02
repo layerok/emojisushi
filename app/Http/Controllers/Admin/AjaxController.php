@@ -12,7 +12,7 @@ class AjaxController extends Controller
 
         $s_table = $_POST['table'];
         $n_id = $_POST['id'];
-        $b_hidden = $_POST['hidden'] == "true" ? 1 : 0;
+        $b_hidden = filter_var($_POST['hidden'], FILTER_VALIDATE_BOOLEAN) ? 1 : 0;
 
 
         DB::table("{$s_table}")->where("id", "=", "{$n_id}")->update([

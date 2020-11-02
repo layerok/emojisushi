@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePagesTable extends Migration
+class CreateMenuTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,16 @@ class CreatePagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('pages', function (Blueprint $table) {
+        Schema::create('menu', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
             $table->string('slug')->unique();
+            $table->string('name');
+            $table->string('description')->nullable();
+            $table->string('image')->nullable();
             $table->text('content')->nullable();
             $table->boolean('hidden')->default('0');
+            $table->unsignedInteger('parent_id')->default(1)->nullable();
+            $table->bigInteger('sort_order')->default(0);
             $table->timestamps();
         });
     }
@@ -30,6 +34,6 @@ class CreatePagesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pages');
+        Schema::dropIfExists('menu');
     }
 }

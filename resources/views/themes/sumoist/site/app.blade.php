@@ -7,6 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title') - {{ config('settings.site_name') }}</title>
     @include('theme::site.partials.styles')
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.3/dist/alpine.min.js" defer></script>
 </head>
 <body class="bg-black white roboto  drawer drawer--right ">
 <div id="beanEater" class="flex justify-center items-center min-vh-100 w-100 fixed z-max bg-black">

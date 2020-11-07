@@ -62,9 +62,20 @@
                     </ul>
                 </div>
             </div>
+
             <div class=" w-100  flex   relative">
                 <div class="flex flex-column ">
-                    <p><span class="dark-red">Время работы:</span> {{ config('settings.start_working') }}-{{ config('settings.finish_working') }}</p>
+                    <div class="flex flex-column flex-row-ns">
+                        <div class="mv3-ns mr3">
+                            @include('theme::site.partials.selectSpot')
+                        </div>
+                        <div>
+                            <p><span class="dark-red">Время работы:</span> {{ config('settings.start_working') }}-{{ config('settings.finish_working') }}</p>
+                        </div>
+
+
+                    </div>
+
                     <!-- Телефоны -->
                     <div  class=" w-100 flex-l dn   tr mr3">
                         @empty(!config('settings.phone'))

@@ -169,7 +169,7 @@
     </div>
 @endsection
 @push('scripts')
-    <script type="text/javascript" src="{{ asset('backend/js/plugins/select2.min.js') }}"></script>
+    <script type="text/javascript" src="{{ Asset::load('backend/js/plugins/select2.min.js', true) }}"></script>
     <script>
         $( document ).ready(function() {
             $('#categories').select2();

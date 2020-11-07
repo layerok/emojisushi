@@ -1,5 +1,6 @@
 <script>
-    const APP_THEME = "{{ \App\Models\Setting::where('key', '=', 'theme')->value('value') }}"
+    const APP_THEME = "{{ \App\Models\Setting::where('key', '=', 'theme')->value('value') }}";
+    const PATH_TO_THEME_ASSETS = "/storage/themes/" + APP_THEME + "/assets/";
 </script>
 
 <script src="{{ Asset::load('frontend/js/jquery.min.js') }}" type="text/javascript"></script>

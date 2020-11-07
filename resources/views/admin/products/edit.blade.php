@@ -237,15 +237,15 @@
     </div>
 @endsection
 @push('scripts')
-    <script type="text/javascript" src="{{ asset('backend/js/plugins/select2.min.js') }}"></script>
+    <script type="text/javascript" src="{{ Asset::load('backend/js/plugins/select2.min.js', true)}}"></script>
     <script>
         $( document ).ready(function() {
             $('#categories').select2();
 
         });
     </script>
-    <script type="text/javascript" src="{{ asset('backend/js/plugins/dropzone/dist/min/dropzone.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('backend/js/plugins/bootstrap-notify.min.js') }}"></script>
+    <script type="text/javascript" src="{{ Asset::load('backend/js/plugins/dropzone/dist/min/dropzone.min.js', true) }}"></script>
+    <script type="text/javascript" src="{{ Asset::load('backend/js/plugins/bootstrap-notify.min.js', true) }}"></script>
     <script>
         Dropzone.autoDiscover = false;
 
@@ -291,5 +291,5 @@
         });
     </script>
 
-    <script type="text/javascript" src="/backend/js/app.js?{{ \Storage::disk('root')->lastModified('public/backend/js/app.js') }}"></script>
+    <script type="text/javascript" src="{{ Asset::load('backend/js/app.js', true) }}"></script>
 @endpush

@@ -3,11 +3,12 @@
 <head>
     <title>@yield('title') - {{ config('app.name') }}</title>
     <meta charset="utf-8" />
-    <link rel="shortcut icon" href="/themes/admin/favicon.ico"  >
+    <link rel="shortcut icon" href="{{ Asset::load('favicon.ico', true) }}"  >
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('backend/css/main.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ Asset::load('backend/css/main.css', true) }}" />
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.3/dist/alpine.min.js" defer></script>
     <!-- Place your kit's code here -->
     <script src="https://kit.fontawesome.com/09179831a3.js" crossorigin="anonymous"></script>
 </head>
@@ -17,22 +18,22 @@
 <main class="app-content" id="app">
     @yield('content')
 </main>
-<script src="{{ asset('backend/js/jquery-3.2.1.min.js') }}"></script>
-<script src="{{ asset('backend/js/popper.min.js') }}"></script>
-<script src="{{ asset('backend/js/bootstrap.min.js') }}"></script>
+<script src="{{ Asset::load('backend/js/jquery-3.2.1.min.js', true) }}"></script>
+<script src="{{ Asset::load('backend/js/popper.min.js', true) }}"></script>
+<script src="{{ Asset::load('backend/js/bootstrap.min.js', true) }}"></script>
 
-<script src="{{ asset('backend/js/ckeditor5/build/ckeditor.js') }}"></script>
-<script src="{{ asset('backend/js/main.js') }}"></script>
-<script src="{{ asset('backend/js/plugins/pace.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('backend/js/plugins/jquery.dataTables.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('backend/js/plugins/dataTables.bootstrap.min.js') }}"></script>
+<script src="{{ Asset::load('backend/js/ckeditor5/build/ckeditor.js', true) }}"></script>
+<script src="{{ Asset::load('backend/js/main.js', true) }}"></script>
+<script src="{{ Asset::load('backend/js/plugins/pace.min.js', true) }}"></script>
+<script type="text/javascript" src="{{ Asset::load('backend/js/plugins/jquery.dataTables.min.js', true) }}"></script>
+<script type="text/javascript" src="{{ Asset::load('backend/js/plugins/dataTables.bootstrap.min.js', true) }}"></script>
 <script>
 
     // Disable search and ordering by default
     $.extend( $.fn.dataTable.defaults, {
         stateSave: true,
         language: {
-            url: '{{ asset('/backend/js/plugins/dataTables/localizations/Russian.json') }}'
+            url: '{{ Asset::load('backend/js/plugins/dataTables/localizations/Russian.json', true) }}'
         }
     } );
 

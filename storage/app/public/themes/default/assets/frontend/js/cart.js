@@ -1,12 +1,12 @@
 $(document).ready(function(){
 
     function initTemplates(){
-        $.get( "/themes/" + APP_THEME +  "/assets/frontend/js/templates/cart.html", function(data){
+        $.get( "/storage/themes/" + APP_THEME +  "/assets/frontend/js/templates/cart.html", function(data){
             /* Compile markup string as a named template */
             $.template( "cartTemplate", data);
         });
 
-        $.get( "/themes/" + APP_THEME +  "/assets/frontend/js/templates/cart-in-checkout.html", function(data){
+        $.get( "/storage/themes/" + APP_THEME +  "/assets/frontend/js/templates/cart-in-checkout.html", function(data){
             /* Compile markup string as a named template */
             $.template( "cartInCheckoutTemplate", data );
         });

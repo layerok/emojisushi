@@ -66,9 +66,6 @@
             <div class=" w-100  flex   relative">
                 <div class="flex flex-column ">
                     <div class="flex flex-column flex-row-ns">
-                        <div class="mv3-ns mr3">
-                            @include('theme::site.partials.selectSpot')
-                        </div>
                         <div>
                             <p><span class="dark-red">Время работы:</span> {{ config('settings.start_working') }}-{{ config('settings.finish_working') }}</p>
                         </div>

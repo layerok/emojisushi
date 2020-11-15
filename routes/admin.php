@@ -89,6 +89,11 @@ Route::group(['prefix'  =>  'admin'], function () {
             Route::post('attributes/add',       'Admin\ProductAttributeController@addAttribute');
             Route::post('attributes/delete',    'Admin\ProductAttributeController@deleteAttribute');
 
+            Route::get('photos/sync',    'Admin\ProductController@syncPhotos') ->name('admin.products.sync-photos');
+            Route::get('prices/sync',    'Admin\ProductController@syncPrices') ->name('admin.products.sync-prices');
+            Route::get('menu/sync',    'Admin\ProductController@syncProducts') ->name('admin.products.sync-menu');
+            Route::get('ingredients/sync',    'Admin\ProductController@syncIngredients') ->name('admin.products.sync-ingredients');
+
         });
         Route::group(['prefix' => 'delivery'], function () {
             Route::get('/',             'Admin\DeliveryController@index')   ->name('admin.delivery.index');
@@ -144,6 +149,17 @@ Route::group(['prefix'  =>  'admin'], function () {
             Route::get('/edit/{id}',    'Admin\SliderController@edit')     ->name('admin.slider.edit');
             Route::post('/update',      'Admin\SliderController@update')   ->name('admin.slider.update');
             Route::get('/{id}/delete',  'Admin\SliderController@delete')   ->name('admin.slider.delete');
+        });
+
+        Route::group(['prefix' => 'users'], function () {
+            Route::get('/',             'Admin\UserController@index')   ->name('admin.users.index');
+            Route::get('/create',       'Admin\UserController@create')  ->name('admin.users.create');
+            Route::post('/store',       'Admin\UserController@store')   ->name('admin.users.store');
+            Route::get('/edit/{id}',    'Admin\UserController@edit')    ->name('admin.users.edit');
+            Route::post('/update',      'Admin\UserController@update')  ->name('admin.users.update');
+            Route::get('/{id}/delete',  'Admin\UserController@delete')  ->name('admin.users.delete');
+            Route::get('/export',       'Admin\UserController@export')  ->name('admin.users.export');
+            Route::post('/{id}/orders',       'Admin\UserController@orders')  ->name('admin.users.orders');
         });
 
         Route::group(['prefix' => 'ajax'], function () {

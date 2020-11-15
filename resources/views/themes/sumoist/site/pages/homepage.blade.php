@@ -10,6 +10,7 @@
                 @forelse($products as $product)
                     @include('theme::site.product.thumb')
                 @empty
+
                     <div class="ph2 ph3-l f3 mv3">
                         @isset($_POST['word'])
                             <p>По запросу "{{ $_POST['word'] }}" ничего не найдено</p><br>

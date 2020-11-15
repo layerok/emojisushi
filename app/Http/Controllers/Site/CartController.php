@@ -80,7 +80,7 @@ class CartController extends Controller
                         $response['message'] = "Товар удален!";
                         Cart::remove($uid);
                     }else{
-                        $response['message'] = "Кол-во уменьшено!";
+                        $response['message'] = "";
                         Cart::update($uid, [
                             'quantity' => -1
                         ]);
@@ -94,7 +94,7 @@ class CartController extends Controller
                     Cart::update($uid, [
                         'quantity' => 1
                     ]);
-                    $response['message'] = "Кол-во увеличено!";
+                    $response['message'] = "";
                     $response['status']  = "success";
                     break;
                 }
@@ -129,4 +129,6 @@ class CartController extends Controller
 
         return redirect('/');
     }
+
+
 }

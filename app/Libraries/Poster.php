@@ -29,6 +29,7 @@
 namespace App\Libraries;
 
 use App\Models\Delivery;
+use App\Models\User;
 use App\Models\Order;
 use Illuminate\Support\Facades\Log;
 
@@ -104,6 +105,7 @@ class Poster {
     }
 
     public function sendOrderById($id){
+
         if(isset($id)){
             $order = Order::with(['products.product', 'products.attributeValue', 'delivery', 'payment'])->find($id);
 
@@ -157,17 +159,41 @@ class Poster {
                 $order_params = array_merge($order_params, $payment);
 
 
+                if(env('APP_ENV') == 'production'){
+                    $bot = new Telegram(env('TELEGRAM_BOT_ID'), env('TELEGRAM_CHAT_ID'));
+                    $bot->sendOrder($id);
+                }
 
-                $bot = new Telegram(env('TELEGRAM_BOT_ID'), env('TELEGRAM_CHAT_ID'));
-                $bot->sendOrder($id);
+
+
 
                 $response = $this->sendOrder($order_params);
 
                 $decoded_response = json_decode($response, true);
 
+
+
                 if(!isset($decoded_response['error'])){
-                    $order->update(['is_sent_to_poster' => 1]);
+
+
+                    $order->phone = preg_replace('/[^\d+]*/', '', $order->phone);
+
+                    $user = User::where("phone", "=", $order->phone);
+
+                    if(!$user->exists()){
+                        $user->create([
+                            'name' => $order->first_name,
+                            'email' => $order->email,
+                            'phone' => $order->phone,
+                            'address' => $order->address,
+                            'password' => bcrypt('lol_password')
+                        ]);
+                    }
+
+                    $order->update(['is_sent_to_poster' => 1, 'user_id' => $order->user_id]);
                     Log::channel('single')->debug('Заказа №'. $order->id . " отправлен на постер");
+
+
                 }
 
                 return $response;

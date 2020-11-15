@@ -31,7 +31,7 @@ class CategoryController extends BaseController
      */
     public function index()
     {
-        $categories = $this->categoryRepository->listCategories();
+        $categories = $this->categoryRepository->listCategories("sort_order", "desc" );
 
         $this->setPageTitle('Категории', 'Список категории');
         return view('admin.categories.index', compact('categories'));

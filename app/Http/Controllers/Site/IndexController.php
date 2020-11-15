@@ -73,7 +73,7 @@ class IndexController extends Controller
                 break;
             case 5:
                 // Сначала старые
-                $this->catalog_sort = ' categories.sort_order ASC, products.id DESC';
+                $this->catalog_sort = 'categories.sort_order ASC, products.id DESC';
                 break;
             default:
                 // Сортировка не применяется

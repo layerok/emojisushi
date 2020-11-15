@@ -102,26 +102,37 @@ class ProductsTableSeeder extends Seeder
                         // Перебираю массив ингредиентов
                         foreach($value['ingredients'] as $ingredient){
 
+                            if(preg_match('/Бокс д\/суши|Набор ролл|Губка д\/посуды|Дезинфектор АХД 2000|Держатели д\/палочек|Ершик д\/посуды уп|Заправка для риса/',$ingredient['ingredient_name'])) continue;
+
+                            $ingredient_name = preg_replace('/^Ролл|^ролл|ПФ$|пф$|Пф$|филе на шкуре|31\/40$/','',$ingredient['ingredient_name']);
                             // Создаю ингридиент и привязываю его к аттрибуты "Ингридиент"
                             if(AttributeValue::where('poster_id', '=', $ingredient['ingredient_id'])->exists()){
                                 $attribute_value_id = AttributeValue::where('poster_id', '=', $ingredient['ingredient_id'])->first();
                             }else{
                                 $attribute_value_id = AttributeValue::insertGetId([
                                     'attribute_id' => 3,// 3 - id аттрибута "Ингридиент"
-                                    'value'        => $ingredient['ingredient_name'],
+                                    'value'        => $ingredient_name,
                                     'poster_id'    => $ingredient['ingredient_id']
                                 ]);
                             }
 
 
+                            $such_product_attribute = AttributeValue::where("poster_id", "=", $ingredient['ingredient_id'])
+                                ->first()
+                                ->productAttributes()
+                                ->where('product_id', '=', $product->id)
+                                ->first();
 
-                            // Создаю аттрибут для продукта
-                            $product_attribute = ProductAttribute::create([
-                                'product_id' =>  $product->id
-                            ]);
+                            if(!isset($such_product_attribute)){
+                                // Создаю аттрибут для продукта
+                                $product_attribute = ProductAttribute::create([
+                                    'product_id' =>  $product->id
+                                ]);
 
-                            // Привязываю созданные выше аттрибут и ингридиет,
-                            $product_attribute->attributeValues()->attach($attribute_value_id);
+                                // Привязываю созданные выше аттрибут и ингридиет,
+                                $product_attribute->attributeValues()->sync($attribute_value_id);
+                            }
+
 
 
                         }

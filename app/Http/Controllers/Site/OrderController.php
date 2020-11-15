@@ -6,6 +6,7 @@ use App\Libraries\Poster;
 use App\Libraries\Telegram;
 use App\Models\OrderProduct;
 use App\Models\PaymentStatus;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
@@ -155,8 +156,8 @@ class OrderController extends Controller
                 return json_encode($response);
             }
 
-            //return json_encode($order);
-            if(env('APP_PRODUCTION_MODE')){
+            if(true){
+
                 $poster = new Poster(env('POSTER_TOKEN'));
                 $response = json_decode($poster->sendOrderById($order->id), true);
 

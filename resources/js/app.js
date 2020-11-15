@@ -52,6 +52,7 @@ Vue.component('attribute-values', require('./components/AttributeValues.vue').de
 
 Vue.component('product-attributes', require('./components/ProductAttributes').default);
 Vue.component('order-products', require('./components/OrderProducts').default);
+Vue.component('user-orders', require('./components/UserOrders').default);
 
 
 

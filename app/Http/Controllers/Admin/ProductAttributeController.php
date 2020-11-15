@@ -39,7 +39,7 @@ class ProductAttributeController extends Controller
     {
         $attribute = Attribute::findOrFail($request->id);
 
-        return response()->json($attribute->values);
+        return response()->json($attribute->values()->orderBy('value', 'asc')->get());
     }
 
     /**

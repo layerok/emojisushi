@@ -164,5 +164,5 @@
 @endsection
 @push('scripts')
 
-    <script type="text/javascript" src="{{ asset('backend/js/app.js') }}"></script>
+    <script type="text/javascript" src="{{ Asset::load('backend/js/app.js', true) }}"></script>
 @endpush

@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Setting;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
 class ThemeServiceProvider extends ServiceProvider
@@ -24,7 +25,10 @@ class ThemeServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $theme = Setting::where('key', '=', 'theme')->value('value');
+        if (!\App::runningInConsole() && count(Schema::getColumnListing('settings'))) {
+            $theme = Setting::where('key', '=', 'theme')->value('value');
+        }
+
 
 
         if(!isset($theme)){

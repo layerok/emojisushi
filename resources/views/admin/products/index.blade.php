@@ -1,20 +1,21 @@
 @extends('admin.app')
 @section('title') {{ $pageTitle }} @endsection
 @section('content')
-    {{--<div class="overlay">
-        <div class="m-loader mr-4">
-            <svg class="m-circular" viewBox="25 25 50 50">
-                <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="4" stroke-miterlimit="10"></circle>
-            </svg>
-        </div>
-        <h3 class="l-text">Loading</h3>
-    </div>--}}
+
     <div class="app-title">
         <div>
             <h1><i class="fa fa-tags"></i> {{ $pageTitle }}</h1>
             <p>{{ $subTitle }}</p>
         </div>
-        <a href="{{ route('admin.products.create') }}" class="btn btn-primary pull-right">Добавить продукт</a>
+        <div>
+            <a href="{{ route('admin.products.sync-photos') }}" class="btn btn-primary pull-right mb-2">Синхронизировать фотографии</a>
+            <a href="{{ route('admin.products.sync-prices') }}" class="btn btn-primary pull-right mb-2">Синхронизировать цены</a>
+            <a href="{{ route('admin.products.sync-menu') }}" class="btn btn-primary pull-right mb-2">Синхронизировать меню</a>
+            <a href="{{ route('admin.products.sync-ingredients') }}" class="btn btn-primary pull-right mb-2">Синхронизировать ингридиенты</a>
+            <a href="{{ route('admin.products.create') }}" class="btn btn-primary pull-right mb-2">Добавить продукт</a>
+        </div>
+
+
     </div>
     @include('admin.partials.flash')
     <div class="row">

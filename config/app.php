@@ -80,7 +80,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'ru',
 
     /*
     |--------------------------------------------------------------------------
@@ -179,6 +179,7 @@ return [
         App\Providers\ViewComposerServiceProvider::class,
         App\Providers\ThemeServiceProvider::class,
         Maksa988\WayForPay\WayForPayServiceProvider::class,
+        Jenssegers\Date\DateServiceProvider::class,
 
     ],
 
@@ -234,6 +235,7 @@ return [
         'WayForPay' => Maksa988\WayForPay\Facades\WayForPay::class,
         'Asset' => App\Libraries\Asset::class,
         'Image' => App\Libraries\Image::class,
+        'Date' => Jenssegers\Date\Date::class,
     ],
 
 ];

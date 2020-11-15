@@ -2282,10 +2282,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "user-orders",
   props: ['userid'],
@@ -20737,32 +20733,26 @@ var render = function() {
               "tbody",
               _vm._l(_vm.userOrders, function(order) {
                 return _c("tr", [
-                  _c(
-                    "td",
-                    {
-                      staticClass: "text-center",
-                      staticStyle: { width: "25%" }
-                    },
-                    [_vm._v("     " + _vm._s(order.id))]
-                  ),
+                  _c("td", { staticStyle: { width: "25%" } }, [
+                    _c(
+                      "a",
+                      {
+                        attrs: {
+                          title: "Просмотреть",
+                          href: "/admin/orders/edit/" + order.id
+                        }
+                      },
+                      [_vm._v("#" + _vm._s(order.id))]
+                    )
+                  ]),
                   _vm._v(" "),
-                  _c(
-                    "td",
-                    {
-                      staticClass: "text-center",
-                      staticStyle: { width: "25%" }
-                    },
-                    [_vm._v("     " + _vm._s(order.sum))]
-                  ),
+                  _c("td", { staticStyle: { width: "25%" } }, [
+                    _vm._v("     " + _vm._s(order.sum))
+                  ]),
                   _vm._v(" "),
-                  _c(
-                    "td",
-                    {
-                      staticClass: "text-center",
-                      staticStyle: { width: "20%" }
-                    },
-                    [_vm._v("     " + _vm._s(order.created_at))]
-                  ),
+                  _c("td", { staticStyle: { width: "20%" } }, [
+                    _vm._v("     " + _vm._s(order.created_at))
+                  ]),
                   _vm._v(" "),
                   _c(
                     "td",
@@ -20776,12 +20766,7 @@ var render = function() {
                           _vm._s(order.is_sent_to_poster == 1 ? "Да" : "Нет")
                       )
                     ]
-                  ),
-                  _vm._v(" "),
-                  _c("td", {
-                    staticClass: "text-center",
-                    staticStyle: { width: "10%" }
-                  })
+                  )
                 ])
               }),
               0
@@ -20798,14 +20783,16 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("thead", [
-      _c("tr", { staticClass: "text-center" }, [
+      _c("tr", [
         _c("th", [_vm._v("Номер заказа")]),
         _vm._v(" "),
         _c("th", [_vm._v("Сумма")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Дата создания")]),
+        _c("th", [_vm._v("Создан")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Отправлен на постер")])
+        _c("th", { staticClass: "text-center" }, [
+          _vm._v("Отправлен на постер")
+        ])
       ])
     ])
   }

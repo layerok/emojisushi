@@ -11,6 +11,11 @@
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.3/dist/alpine.min.js" defer></script>
     <!-- Place your kit's code here -->
     <script src="https://kit.fontawesome.com/09179831a3.js" crossorigin="anonymous"></script>
+    <style>
+        .tile{
+            overflow-y:auto;
+        }
+    </style>
 </head>
 <body class="app sidebar-mini rtl">
 @include('admin.partials.header')

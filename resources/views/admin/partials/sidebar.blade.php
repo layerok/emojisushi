@@ -50,7 +50,7 @@
                     <a class="treeview-item {{ Request::is('admin/users*') ? 'active' : '' }}"
                        href="{{ route('admin.users.index') }}">
                         <i class="app-menu__icon fa fa-user"></i>
-                        <span class="app-menu__label"> Пользователи</span>
+                        <span class="app-menu__label"> Покупатели</span>
                     </a>
                 </li>
                 <li>

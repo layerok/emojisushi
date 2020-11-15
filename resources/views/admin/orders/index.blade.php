@@ -31,7 +31,7 @@
                             <tr>
                                 <td>{{ $record->id }}</td>
                                 <td>{{ $record->created_at }}</td>
-                                <td>{{ $record->first_name }}</td>
+                                <td> <a href="/admin/users/edit/{{ $record->user_id }}" > {{ !empty($record->first_name) ? $record->first_name : 'Не указано'  }} </a></td>
                                 <td>{{ $record->phone }}</td>
 
                                 <td>{{ $record->sum }} {{ config('settings.currency_symbol') }}</td>

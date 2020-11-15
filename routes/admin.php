@@ -15,7 +15,8 @@ Route::group(['prefix'  =>  'admin'], function () {
                 'products_count'            => App\Models\Product::all()->count(),
                 'spots_count'               => App\Models\Spot::all()->count(),
                 'attribute_values_count'    => App\Models\AttributeValue::all()->count(),
-                'categories_count'          => App\Models\Category::all()->count()
+                'categories_count'          => App\Models\Category::all()->count(),
+                'users_count'               => App\Models\User::all()->count()
             ]);
         })->name('admin.dashboard');
         Route::get('/settings',     'Admin\SettingController@index')    ->name('admin.settings');

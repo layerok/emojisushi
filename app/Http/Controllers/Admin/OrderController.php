@@ -8,12 +8,40 @@ use App\Models\Delivery;
 use App\Models\PaymentStatus;
 use Illuminate\Http\Request;
 use App\Models\Order;
+use App\Models\User;
 
 class OrderController extends BaseController
 {
     public function index()
     {
+
+
         $records = Order::orderBy('updated_at', 'desc')->get();
+
+        /*foreach($records as $order){
+
+            $clearPhone = preg_replace('/[^\d+]/', '', $order->phone);
+
+            $user = User::where('phone', '=', $clearPhone);
+
+            if(!$user->exists()){
+                $user->create([
+                    'name' => $order->first_name,
+                    'phone' => $clearPhone,
+                    'email' => $order->email,
+                    'address' => $order->address,
+                    'password' => bcrypt('lolpassword')
+                ]);
+            }
+
+
+            $order->update([
+                'user_id' => $user->first()->id
+            ]);
+
+
+
+        }*/
 
         $this->setPageTitle('Заказы', 'Заказы');
         return view('admin.orders.index', compact('records'));

@@ -175,22 +175,35 @@ class Poster {
 
                 if(!isset($decoded_response['error'])){
 
-
+                    $order->update(['is_sent_to_poster' => 1]);
                     $order->phone = preg_replace('/[^\d+]*/', '', $order->phone);
 
-                    $user = User::where("phone", "=", $order->phone);
+                    $user = User::where("phone", "=", $order->phone)->first();
 
-                    if(!$user->exists()){
-                        $user->create([
+                    if(!$user){
+                        $user = User::create([
                             'name' => $order->first_name,
                             'email' => $order->email,
                             'phone' => $order->phone,
                             'address' => $order->address,
                             'password' => bcrypt('lol_password')
                         ]);
+                    }else{
+                        if(!empty($order->email)){
+                            $user->email = $order->email;
+                        }
+                        if(!empty($order->first_name)){
+                            $user->name = $order->first_name;
+                        }
+                        if(!empty($order->address)){
+                            $user->address = $order->address;
+                        }
+
+                        $user->save();
                     }
 
-                    $order->update(['is_sent_to_poster' => 1, 'user_id' => $order->user_id]);
+
+                    $order->update(['user_id' => $user->id]);
                     Log::channel('single')->debug('Заказа №'. $order->id . " отправлен на постер");
 
 

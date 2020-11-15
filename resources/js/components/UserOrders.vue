@@ -6,24 +6,20 @@
                 <div class="table-responsive">
                     <table class="table table-sm">
                         <thead>
-                        <tr class="text-center">
+                        <tr >
                             <th>Номер заказа</th>
                             <th>Сумма</th>
-                            <th>Дата создания</th>
-                            <th>Отправлен на постер</th>
+                            <th>Создан</th>
+                            <th class="text-center">Отправлен на постер</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr v-for="order in userOrders">
-                            <td style="width: 25%" class="text-center">     {{ order.id }}</td>
-                            <td style="width: 25%" class="text-center">     {{ order.sum }}</td>
-                            <td style="width: 20%" class="text-center">     {{ order.created_at }}</td>
-                            <td style="width: 20%" class="text-center">     {{ order.is_sent_to_poster == 1 ? 'Да': 'Нет' }}</td>
-                            <td style="width: 10%" class="text-center">
-<!--                                <button class="btn btn-sm btn-danger" @click="deleteProductAttribute(op)">-->
-<!--                                    <i class="fa fa-trash"></i>-->
-<!--                                </button>-->
-                            </td>
+                            <td style="width: 25%" ><a title="Просмотреть" :href="'/admin/orders/edit/' + order.id">#{{ order.id }}</a>  </td>
+                            <td style="width: 25%" >     {{ order.sum }}</td>
+                            <td style="width: 20%" >     {{ order.created_at }}</td>
+                            <td class="text-center" style="width: 20%" >     {{ order.is_sent_to_poster == 1 ? 'Да': 'Нет' }}</td>
+
                         </tr>
                         </tbody>
                     </table>

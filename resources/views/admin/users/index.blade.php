@@ -2,9 +2,9 @@
 @section('title') {{ $pageTitle }} @endsection
 @section('content')
     <div class="app-title">
-        <div>
+        <div class="mb-3">
             <h1><i class="fa fa fa-user"></i> {{ $pageTitle }}</h1>
-            <p>{{ $subTitle }}</p>
+            <p>{{ $subTitle }} </p>
         </div>
         <div>
             <a href="{{ route('admin.users.export') }}" class="btn btn-primary pull-right mb-1">Экспортировать в excel</a>
@@ -15,14 +15,15 @@
     @include('admin.partials.flash')
     <div class="row">
         <div class="col-md-12">
-            <div class="tile">
+            <div class="tile" style="overflow-y:auto">
                 <div class="tile-body">
                     <table class="table table-hover table-bordered" id="sampleTable">
                         <thead>
                         <tr>
-                            <th> # </th>
+                            <th > # </th>
                             <th> Имя </th>
-                            <th class="text-center"> Телефон </th>
+                            <th > Телефон </th>
+                            <th > Почта </th>
                             <th style="width:100px; min-width:100px;" class="text-center text-danger"><i class="fa fa-bolt"> </i></th>
                         </tr>
                         </thead>
@@ -30,9 +31,11 @@
                         @foreach($records as $record)
 
                                 <tr>
-                                    <td>{{ $record->id }}</td>
-                                    <td>{{ $record->name }}</td>
+                                    <td  >{{ $record->id }}</td>
+                                    <td>{{ !empty($record->name) ? $record->name : 'Не указано'  }}</td>
                                     <td>{{ $record->phone }}</td>
+                                    <td>{{ $record->email }}</td>
+
 
 
 

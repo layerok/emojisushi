@@ -25,7 +25,7 @@
                 <form action="{{ route('admin.users.update') }}" method="POST" role="form" enctype="multipart/form-data">
                     @csrf
                     <div class="tile-body">
-
+                        <div>Создан: {{ $targetRecord->created_at }}</div>
                         <div class="row">
                             <div class="col-12 col-md-6">
                                 <div class="form-group">

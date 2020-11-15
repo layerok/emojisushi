@@ -8,8 +8,15 @@ use Maatwebsite\Excel\Concerns\FromQuery;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\WithMapping;
+use \PhpOffice\PhpSpreadsheet\Cell\StringValueBinder;
+use Maatwebsite\Excel\Concerns\WithCustomValueBinder;
+use Maatwebsite\Excel\Concerns\ShouldAutoSize;
+use Maatwebsite\Excel\Concerns\WithStyles;
+use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 
-class UsersExport implements FromQuery, WithHeadings, WithMapping
+
+class UsersExport extends StringValueBinder implements FromQuery,
+    WithHeadings, WithMapping, WithCustomValueBinder, ShouldAutoSize, WithStyles
 {
     use Exportable;
 
@@ -24,6 +31,8 @@ class UsersExport implements FromQuery, WithHeadings, WithMapping
             $user->id,
             $user->name,
             $user->phone,
+            $user->email,
+            $user->address,
         ];
     }
 
@@ -33,6 +42,19 @@ class UsersExport implements FromQuery, WithHeadings, WithMapping
             '#',
             'Имя',
             'Телефон',
+            'Почта',
+            'Адрес',
         ];
     }
+
+    public function styles(Worksheet $sheet)
+    {
+        return [
+            // Style the first row as bold text.
+            1    => ['font' => ['bold' => true]],
+
+        ];
+    }
+
+
 }

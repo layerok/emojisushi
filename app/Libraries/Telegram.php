@@ -114,7 +114,7 @@ class Telegram {
         $txt = "%0A<b>Товары в заказе</b> %0A";
         $emoji = $this->emojis['products'] ?? '';
         foreach($products as $product){
-            $txt .= $emoji." - ".$product['name']." x".$product['count'].".%0A";
+            $txt .= $emoji." - ".urlencode($product['name']." x".$product['count']).".%0A";
         }
         $txt .= "%0A%0A";
         return $txt;

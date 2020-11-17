@@ -5,6 +5,9 @@
 
     RewriteEngine On
 
+#   Редирект на страницу без index.php в адресе
+    RewriteRule ^index.php/(.*)$ /$1 [R=permanent,L]
+
     # Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]

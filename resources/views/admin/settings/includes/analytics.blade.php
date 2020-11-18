@@ -15,6 +15,26 @@
                 >{!! Config::get('settings.google_analytics') !!}</textarea>
             </div>
             <div class="form-group">
+                <label class="control-label" for="gtm_head">Google tag manager code</label>
+                <textarea
+                    class="form-control"
+                    rows="4"
+                    placeholder="Enter google tag manager code"
+                    id="gtm_head"
+                    name="gtm_head"
+                >{!! Config::get('settings.gtm_head') !!}</textarea>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="google_analytics">Google tag manager code (noscript)</label>
+                <textarea
+                    class="form-control"
+                    rows="4"
+                    placeholder="Enter google tag manager (noscript)"
+                    id="gtm_body"
+                    name="gtm_body"
+                >{!! Config::get('settings.gtm_body') !!}</textarea>
+            </div>
+            <div class="form-group">
                 <label class="control-label" for="facebook_pixels">Facebook Pixel Code</label>
                 <textarea
                     class="form-control"

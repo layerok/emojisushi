@@ -98,6 +98,14 @@ class SettingsTableSeeder extends Seeder
             'value'                     =>  '',
         ],
         [
+            'key'                       =>  'gtm_head',
+            'value'                     =>  '',
+        ],
+        [
+            'key'                       =>  'gtm_body',
+            'value'                     =>  '',
+        ],
+        [
             'key'                       =>  'facebook_pixels',
             'value'                     =>  '',
         ],

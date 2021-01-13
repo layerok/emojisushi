@@ -9,6 +9,7 @@
 <script src="{{ Asset::load('frontend/js/jquery.form.min.js') }}" type="text/javascript"></script>
 <script src="{{ Asset::load('frontend/js/jquery.tmpl.min.js') }}" type="text/javascript"></script>
 <script src="{{ Asset::load('frontend/js/jquery.mask.min.js') }}" type="text/javascript"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
 <script src="{{ Asset::load('frontend/js/notify.js') }}" type="text/javascript"></script>
 <script src="{{ Asset::load('frontend/js/layerok.js') }}" type="text/javascript"></script>

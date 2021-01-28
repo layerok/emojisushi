@@ -168,7 +168,6 @@ class ProductController extends BaseController
                 ]);
 
             }
-
         }
         //dd($arr_product_ids);
         Product::whereNotIn('poster_id', $arr_product_ids)->delete();

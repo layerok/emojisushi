@@ -160,6 +160,7 @@ Route::group(['prefix'  =>  'admin'], function () {
             Route::post('/update',      'Admin\UserController@update')  ->name('admin.users.update');
             Route::get('/{id}/delete',  'Admin\UserController@delete')  ->name('admin.users.delete');
             Route::get('/export',       'Admin\UserController@export')  ->name('admin.users.export');
+            Route::get('/export-poster', 'Admin\UserController@exportPosterUsers')  ->name('admin.users.export-poster');
             Route::post('/{id}/orders',       'Admin\UserController@orders')  ->name('admin.users.orders');
         });
 

@@ -11,16 +11,17 @@ use App\Contracts\CategoryContract;
 use App\Libraries\Telegram;
 use Cart;
 use App\Libraries\Poster;
+use poster\src\PosterApi;
 
 class IndexController extends Controller
 {
     private $catalog_sort;
 
 
+
+
     public function index()
     {
-
-
         $this->setCatalogSort();
 
         $searched_word = $_POST['word'] ?? '';

@@ -6,7 +6,9 @@ use App\Http\Controllers\BaseController;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Exports\UsersExport;
+use App\Exports\PosterUsersExport;
 use Maatwebsite\Excel\Facades\Excel;
+use poster\src\PosterApi;
 
 
 class UserController extends BaseController
@@ -14,6 +16,15 @@ class UserController extends BaseController
 
     public function index()
     {
+        // Setting up account and token for requests
+        /*PosterApi::init([
+            'account_name' => 'emoji-bar2.joinposter.com',
+            'access_token' => env('POSTER_TOKEN'),
+        ]);
+
+        // Reading settings
+        $result = (object)PosterApi::clients()->getClients();
+        dd($result->response[600]);*/
         $records = User::all();
         $this->setPageTitle('Пользователи', 'Пользователи');
         return view('admin.users.index', compact('records'));
@@ -119,6 +130,11 @@ class UserController extends BaseController
     public function export()
     {
         return Excel::download(new UsersExport, 'users.xlsx');
+    }
+
+    public function exportPosterUsers()
+    {
+        return Excel::download(new PosterUsersExport, 'poster_users.xlsx');
     }
 
     public function orders(Request $request)

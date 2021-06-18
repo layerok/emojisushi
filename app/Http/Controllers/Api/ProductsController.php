@@ -41,6 +41,42 @@ class ProductsController extends Controller
         return $products;
     }
 
+    public function images(){
+        $products = Product::with('images')->get();
+
+        $result = [];
+        foreach($products as $product) {
+            $ingredients = [];
+            foreach ($product->attributes as $productAttribute) {
+
+
+                foreach ($productAttribute->attributeValues as $key => $attributeValue) {
+
+                    if ($attributeValue->attribute_id == 3){
+
+                        $ingredients[] = $attributeValue->value;
+                    }
+
+                }
+
+            }
+
+            $additional_photo = $product->images()->first()['full'];
+            $img = $additional_photo ? 'https://emojisushi.com.ua/storage/' . $additional_photo : null ;
+            $result[] = [
+                'poster_id' => $product['poster_id'],
+                'name' => $product['name'],
+                'ingredients' => implode(', ', $ingredients),
+                'image'     =>  $img,
+            ];
+        }
+        echo json_encode($result);
+    }
+
+    public function getImage($posterId){
+        $product = Product::with('images')->where('poster_id', $posterId)->first();
+    }
+
 
 
 }

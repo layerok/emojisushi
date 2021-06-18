@@ -2,7 +2,9 @@
     <div class="br3 ba b--dark-red pa3-l pa2 h-100">
         <div class="flex flex-column pb1 pb2 h-100 relative">
             <div class="nested-img flex flex-shrink-0 justify-center "  >
-                    <div class="w-100 h4 h45-l contain  bg-center" style="background-image: url('{{ Image::getPath($product)  }}')"></div>
+                    <div class="w-100 h4 h45-l contain  bg-center" style="background-image: url('{{ Image::getPath($product)  }}')">
+                        <div style="width: 75px; height: 75px" class="bg-red white br-100">50%</div>
+                    </div>
             </div>
             <form action="{{ route('cart.manipulate') }}" method="post" data-buy class="flex flex-column justify-between h-100">
                 @csrf

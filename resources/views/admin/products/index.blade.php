@@ -9,7 +9,7 @@
         </div>
         <div>
            {{-- <a href="{{ route('admin.products.sync-photos') }}" class="btn btn-primary pull-right mb-2">Синхронизировать фотографии</a>--}}
-            <a href="{{ route('admin.products.sync-prices') }}" class="btn btn-primary pull-right mb-2">Синхронизировать цены</a>
+            <a href="{{ route('admin.products.sync-prices') }}" class="btn btn-primary pull-right mb-2">Синхронизировать цены и веса</a>
 {{--            <a href="{{ route('admin.products.sync-menu') }}" class="btn btn-primary pull-right mb-2">Синхронизировать меню</a>--}}
 {{--            <a href="{{ route('admin.products.sync-ingredients') }}" class="btn btn-primary pull-right mb-2">Синхронизировать ингридиенты</a>--}}
             <a href="{{ route('admin.products.create') }}" class="btn btn-primary pull-right mb-2">Добавить продукт</a>

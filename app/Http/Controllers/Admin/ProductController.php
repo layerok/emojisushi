@@ -155,15 +155,13 @@ class ProductController extends BaseController
                         ->update([
                             'price'         => delEndind($value1['spots'][0]['price']),
                         ]);
-
                 }
-
             }
             else {
                 $record['price'] = delEndind($product['price'][1]);
                 Product::where("poster_id", "=", $product['product_id'])->update([
                     'price' => $record['price'],
-//                    'weight' => $product['out'],
+                    'weight' => $product['out'],
 //                    'hidden' => $product['spots'][0]['visible'] == 1 ? 0 : 1
                 ]);
 

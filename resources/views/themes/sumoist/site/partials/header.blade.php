@@ -34,7 +34,7 @@
 
     </nav>
     <div class="w-100 mw7 ph3  relative pt3">
-        <button type="button" class="drawer-toggle drawer-hamburger " style="background-color:black">
+        <button type="button" class="drawer-toggle drawer-hamburger border border-secondary" style="background-color:black">
             <span class="sr-only">toggle navigation</span>
             <span class="drawer-hamburger-icon white"></span>
         </button>

@@ -256,7 +256,7 @@
             let myDropzone = new Dropzone("#dropzone", {
                 paramName: "image",
                 addRemoveLinks: false,
-                maxFilesize: 4,
+                maxFilesize: 12,
                 parallelUploads: 2,
                 uploadMultiple: false,
                 url: "{{ route('admin.products.images.upload') }}",

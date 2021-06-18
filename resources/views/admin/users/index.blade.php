@@ -7,7 +7,7 @@
             <p>{{ $subTitle }} </p>
         </div>
         <div>
-            <a href="{{ route('admin.users.export') }}" class="btn btn-primary pull-right mb-1">Экспортировать в excel</a>
+{{--            <a href="{{ route('admin.users.export') }}" class="btn btn-primary pull-right mb-1">Экспортировать в excel</a>--}}
             <a href="{{ route('admin.users.export-poster') }}" class="btn btn-primary pull-right mb-1">Экспортировать пользователей постера</a>
             <a href="{{ route('admin.users.create') }}" class="btn btn-primary pull-right mb-1">Добавить пользователя</a>
         </div>

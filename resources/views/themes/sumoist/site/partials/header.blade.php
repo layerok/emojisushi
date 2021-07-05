@@ -34,6 +34,9 @@
 
     </nav>
     <div class="w-100 mw7 ph3  relative pt3">
+        <div class="ttu b f7 f3-ns flex justify-center" style="color: #FFF118; margin-bottom:8px;padding-right: 60px;">
+            При заказе от 500 грн - ролл «Аляска» в подарок
+        </div>
         <button type="button" class="drawer-toggle drawer-hamburger border border-secondary" style="background-color:black">
             <span class="sr-only">toggle navigation</span>
             <span class="drawer-hamburger-icon white"></span>
@@ -43,10 +46,10 @@
 
             <!-- Лого -->
             <div class="w-100 flex justify-between relative">
-                <div class="flex ">
-                    <a class="w5 " href="/">
+                <div class="flex h1">
+                    {{--<a class="w5 " href="/">
                         <img  src="{{ Asset::load('img/logo.jpg') }}" alt="">
-                    </a>
+                    </a>--}}
                 </div>
                 <div class="dn db-l">
                     <ul class="list flex items-end">
